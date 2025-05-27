@@ -1,0 +1,52 @@
+﻿@model CheckoutVM
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h2 class="text-2xl font-bold mb-4">Checkout</h2>
+
+<form asp-action="PlaceOrder" method="post">
+    <div class="mb-4">
+        <label asp-for="ShippingCity" class="block font-semibold mb-1">Shipping City</label>
+        <input type="text" name="shippingCity" required class="w-full p-2 border rounded" />
+    </div>
+
+    <div class="mb-4">
+        <label class="block font-semibold mb-1">Payment Method</label>
+        <select name="paymentMethod" class="w-full p-2 border rounded" required>
+            <option value="Paypal">Paypal</option>
+            <option value="MobileMoney">Mobile Money</option>
+            <option value="CashOnDelivery">Cash on Delivery</option>
+        </select>
+    </div>
+
+    <h4 class="text-lg font-semibold mb-2">Your Cart</h4>
+    <table class="w-full mb-4 text-left border">
+        <thead>
+            <tr class="border-b">
+                <th class="p-2">Product</th>
+                <th class="p-2">Quantity</th>
+                <th class="p-2">Price</th>
+                <th class="p-2">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr class="border-b">
+                    <td class="p-2">@item.Product.Name</td>
+                    <td class="p-2">@item.Quantity</td>
+                    <td class="p-2">TSh @item.Product.Price</td>
+                    <td class="p-2">TSh @(item.Quantity * item.Product.Price)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="font-bold mb-4">
+        Total: TSh @Model.Items.Sum(i => i.Product.Price * i.Quantity)
+    </div>
+
+    <button type="submit" class="bg-blue-600 btn btn-success text-white px-4 py-2 rounded">Place Order</button>
+</form>

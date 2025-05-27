@@ -1,0 +1,43 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<h2 class="text-2xl font-bold mb-4">Order Confirmation</h2>
+
+<p class="mb-2">Thank you for your purchase!</p>
+
+<div class="mb-4">
+    <strong>Order ID:</strong> @Model.Id <br />
+    <strong>Status:</strong> @Model.Status <br />
+    <strong>Shipping City:</strong> @Model.ShippingCity <br />
+    <strong>Payment Method:</strong> @Model.PaymentMethod <br />
+    <strong>Order Date:</strong> @Model.OrderDate.ToString("yyyy-MM-dd HH:mm") <br />
+    <strong>Total Amount:</strong> TSh @Model.TotalAmount
+</div>
+
+<h4 class="text-lg font-semibold mb-2">Items:</h4>
+<table class="w-full mb-4 border text-left">
+    <thead>
+        <tr class="border-b">
+            <th class="p-2">Product</th>
+            <th class="p-2">Quantity</th>
+            <th class="p-2">Unit Price</th>
+            <th class="p-2">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr class="border-b">
+                <td class="p-2">@item.Product.Name</td>
+                <td class="p-2">@item.Quantity</td>
+                <td class="p-2">TSh @item.UnitPrice</td>
+                <td class="p-2">TSh @(item.Quantity * item.UnitPrice)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Index", "Product")" class="text-blue-600 btn btn-primary">Continue Shopping</a>

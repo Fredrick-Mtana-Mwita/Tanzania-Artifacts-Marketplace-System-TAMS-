@@ -1,0 +1,101 @@
+﻿@model AdminDashboardVM
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 card font-weight-bold text-white display-5 text-bg-primary text-center">Admin Dashboard</h2>
+
+   
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-primary h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Total Users</h5>
+                    <p class="card-text display-6">@Model.TotalUsers</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-success h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Total Sellers</h5>
+                    <p class="card-text display-6">@Model.TotalSellers</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-secondary h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Total Orders</h5>
+                    <p class="card-text display-6">@Model.TotalOrders</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-dark bg-warning h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Pending Orders</h5>
+                    <p class="card-text display-6">@Model.PendingOrders</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-info h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Completed Orders</h5>
+                    <p class="card-text display-6">@Model.CompletedOrders</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-dark h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Total Sales</h5>
+                    <p class="card-text display-6">TSh @Model.TotalSales.ToString("N0")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Orders Table -->
+    <div class="card">
+        <div class="card-header bg-light">
+            <h5 class="mb-0 display-6 font-weight-bold text-center bg-primary text-white">Recent Orders</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0 table-active table-bordered table-responsive table-striped table-striped-columns">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Order Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.RecentOrders)
+                        {
+                            <tr>
+                                <td>@order.Id</td>
+                                <td>@order.User?.FirstName</td>
+                                <td>TSh @order.TotalAmount.ToString("N0")</td>
+                                <td>
+                                    <span class="badge
+                                        @(order.Status == OrderStatus.Delivered ? "bg-success" :
+                                          order.Status == OrderStatus.Pending ? "bg-warning text-dark" :
+                                          "bg-primary")">
+                                        @order.Status
+                                    </span>
+                                </td>
+                                <td>@order.OrderDate.ToShortDateString()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+﻿global using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data;
+global using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models;
+global using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Repositories;
+global using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Constants;
+global using Tanzania_Artifacts_MarketPlace_System_NEW_1_.ViewModel;
+global using Microsoft.EntityFrameworkCore;
+
+

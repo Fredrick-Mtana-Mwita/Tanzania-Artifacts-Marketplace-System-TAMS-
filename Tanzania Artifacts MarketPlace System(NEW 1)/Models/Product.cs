@@ -1,0 +1,26 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
+{
+    [Table("Product")]
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string ProductImage { get; set; } = string.Empty;
+        public string ProductHistory { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
+        public bool InStock { get; set; }
+        public int StockQuantity { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+        public DateTime? DateUpdated { get; set; }
+
+        // Relationships
+        public string? SellerId { get; set; }
+        public virtual ApplicationUser Seller { get; set; } = default!;
+        public virtual ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
+        public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+    }
+}

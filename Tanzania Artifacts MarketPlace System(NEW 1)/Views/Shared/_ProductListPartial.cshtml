@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Product>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    @if (!string.IsNullOrEmpty(product.ProductImage))
+                    {
+                        <img src="~/images/@product.ProductImage" class="card-img-top" alt="@product.Name" style="height: 200px; object-fit: cover;" />
+                    }
+                    else
+                    {
+                        <img src="~/images/No Image.jpg" class="card-img-top" alt="No Image" style="height: 200px; object-fit: cover;" />
+                    }
+
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text fw-bold">Price: @("TSh " + product.Price.ToString("N2"))</p>
+                        <a href="@Url.Action("Details", "Product", new { id = product.Id })" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No products found.</p>
+}

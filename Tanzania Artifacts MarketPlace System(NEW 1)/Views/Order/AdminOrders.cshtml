@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Order>
+@using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Constants
+
+@{
+    var search = ViewBag.Search as string ?? "";
+    var selectedStatus = ViewBag.SelectedStatus as string ?? "";
+    var selectedPayment = ViewBag.SelectedPayment as string ?? "";
+}
+
+<h2 class="mb-4">All Orders (Admin)</h2>
+
+<form method="get" asp-action="AdminOrders" class="mb-4 row g-2 align-items-center">
+
+    <div class="col-auto">
+        <input type="text" name="search" value="@search" class="form-control" placeholder="Search by Order ID or User..." />
+    </div>
+
+    <div class="col-auto">
+        <select name="statusFilter" class="form-select">
+            <option value="">-- Filter by Status --</option>
+            @foreach (var status in Enum.GetValues(typeof(OrderStatus)).Cast<OrderStatus>())
+            {
+                var isSelected = status.ToString() == selectedStatus;
+                <option value="@status" selected="@(isSelected ? "selected" : null)">@status</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-auto">
+        <select name="paymentFilter" class="form-select">
+            <option value="">-- Filter by Payment Method --</option>
+            @foreach (var payment in Enum.GetValues(typeof(PaymentMethod)).Cast<PaymentMethod>())
+            {
+                var isSelected = payment.ToString() == selectedPayment;
+                <option value="@payment" selected="@(isSelected ? "selected" : null)">@payment</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </div>
+</form>
+
+<table class="table table-bordered table-hover table-responsive">
+    <thead class="table-dark">
+        <tr>
+            <th>Order #</th>
+            <th>User</th>
+            <th>Status</th>
+            <th>Payment</th>
+            <th>Total (TSh)</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.User?.FirstName</td>
+
+                <td>
+                    @switch (order.Status)
+                    {
+                        case OrderStatus.Ordered:
+                            <span class="badge bg-secondary">Ordered</span>
+                            break;
+                        case OrderStatus.Shipped:
+                            <span class="badge bg-primary">Shipped</span>
+                            break;
+                        case OrderStatus.Delivered:
+                            <span class="badge bg-success">Delivered</span>
+                            break;
+                        case OrderStatus.Cancelled:
+                            <span class="badge bg-danger">Cancelled</span>
+                            break;
+                        default:
+                            <span class="badge bg-dark">@order.Status</span>
+                            break;
+                    }
+                </td>
+
+                <td>
+                    @switch (order.PaymentMethod)
+                    {
+                        case PaymentMethod.CashOnDelivery:
+                            <span class="badge bg-info text-dark">Cash on Delivery</span>
+                            break;
+                        case PaymentMethod.MobileMoney:
+                            <span class="badge bg-warning text-dark">Mobile Money</span>
+                            break;
+                        case PaymentMethod.Paypal:
+                            <span class="badge bg-success">Paypal</span>
+                            break;
+                        default:
+                            <span class="badge bg-secondary">@order.PaymentMethod</span>
+                            break;
+                    }
+                </td>
+
+                <td>TSh @order.TotalAmount.ToString("N0")</td>
+                <td>@order.OrderDate.ToString("dd MMM yyyy")</td>
+
+                <td>
+                    <a asp-action="EditOrder" asp-route-id="@order.Id" class="btn btn-sm btn-warning me-1">Update</a>
+                    @if (!order.IsCancelled)
+                    {
+                        <form asp-action="CancelOrder" asp-route-id="@order.Id" method="post" style="display:inline">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Cancel this order?')">Cancel</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

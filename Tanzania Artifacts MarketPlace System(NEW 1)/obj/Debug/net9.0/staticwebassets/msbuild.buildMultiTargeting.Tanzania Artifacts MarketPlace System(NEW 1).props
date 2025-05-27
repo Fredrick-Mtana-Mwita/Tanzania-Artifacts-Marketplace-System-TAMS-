@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Tanzania Artifacts MarketPlace System(NEW 1).props" />
+</Project>

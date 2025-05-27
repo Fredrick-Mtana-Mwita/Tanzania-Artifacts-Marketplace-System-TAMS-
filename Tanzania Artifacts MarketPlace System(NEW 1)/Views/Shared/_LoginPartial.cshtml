@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Cart" asp-action="Index">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+    </li>
+
+
+    <li class="nav-item">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>
+    </li>
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var currentUser = await UserManager.GetUserAsync(User);
+        var firstName = currentUser?.FirstName ?? "User";
+        var profileImage = string.IsNullOrEmpty(currentUser?.ProfileImage) ? "default-profile.jpg" : currentUser.ProfileImage;
+
+        <li class="nav-item d-flex align-items-center">
+            <a class="nav-link text-dark d-flex align-items-center" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                <img src="~/images/@profileImage" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; margin-right: 8px;" />
+                Hello @firstName!
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <span class="btn btn-sm ms-2">Admin</span>
+                }
+                else if (User.IsInRole("Seller"))
+                {
+                    <span class="btn btn-sm ms-2">Seller</span>
+                }
+                else if (User.IsInRole("User"))
+                {
+                    <span class="btn btn-sm btn-primary ms-2">User</span>
+                }
+                
+            </a>
+        </li>
+
+      
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>
