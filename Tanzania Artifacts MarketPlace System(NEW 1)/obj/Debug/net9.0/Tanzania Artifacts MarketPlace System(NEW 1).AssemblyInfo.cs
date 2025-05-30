@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tanzania Artifacts MarketPlace System(NEW 1)")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3b308444c6e0b92d7e5d2100320db6b9855eda3d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+483053d9b877044ad42618b97e56408cb7df2f9d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tanzania Artifacts MarketPlace System(NEW 1)")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tanzania Artifacts MarketPlace System(NEW 1)")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

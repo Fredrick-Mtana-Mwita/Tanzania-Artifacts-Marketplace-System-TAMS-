@@ -40,10 +40,15 @@
                         </li>
 
                     </ul>
+                 @*    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Recipient’s username" aria-label="Recipient’s username" aria-describedby="basic-addon2">
+                        <span class="input-group-text" id="basic-addon2">@example.com</span>
+                    </div> *@
+
                     <form class="d-flex me-3" method="get" asp-controller="Product" asp-action="Search">
                         <input class="form-control me-2" type="search" name="query" placeholder="Search artifacts..." />
                         <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
+                    </form> 
                     <partial name="_LoginPartial" />
                 </div>
             </div>

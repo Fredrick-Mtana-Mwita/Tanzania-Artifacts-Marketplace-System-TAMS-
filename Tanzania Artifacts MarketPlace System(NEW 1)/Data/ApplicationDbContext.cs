@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models;
-using static Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.WishListItem;
+
 
 namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data
 {

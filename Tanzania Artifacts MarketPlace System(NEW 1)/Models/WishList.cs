@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using static Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.WishListItem;
 
 namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
 {
