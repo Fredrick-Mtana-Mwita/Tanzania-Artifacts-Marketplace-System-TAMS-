@@ -4,23 +4,37 @@
     ViewData["Title"] = "Product Details";
 }
 
-<div class="container mt-5">
-    <div class="card shadow p-4">
-        <h2 class="text-center">@Model.Name</h2>
-        <hr />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
 
-        <div class="row">
-            <!-- Left Column: Product Image and Details -->
-            <div class="col-md-6">
-                <img src="~/images/@Model.ProductImage"
-                     alt="@Model.Name"
-                     class="img-thumbnail float-start me-3 mb-3"
-                     style="max-width: 200px; height: auto;" />
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4 animate__animated animate__fadeIn">
+        <h2 class="text-center fw-bold mb-4 text-dark display-6">@Model.Name</h2>
+        <hr class="mb-4" />
 
-                <div>
-                    <p><strong>Description:</strong> @Model.Description</p>
-                    <p><strong>Price:</strong> @("TSh " + Model.Price.ToString("N2"))</p>
+        <!-- Image & Info Row -->
+        <div class="row g-4 align-items-start justify-content-center">
+            <!-- LHS: Product Image -->
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="zoom-container mx-auto">
+                    <img src="~/images/@Model.ProductImage"
+                         alt="@Model.Name"
+                         class="zoom-image img-fluid shadow-sm rounded-3"
+                         style="max-width: 280px; max-height: 280px; object-fit: cover;" />
+                </div>
+            </div>
+
+            <!-- RHS: Description, Price, Stock, Cart -->
+            <div class="col-lg-6 col-md-6">
+                <div class="d-flex flex-column gap-3">
+                    <p><i class="bi bi-info-circle-fill text-primary me-2"></i><strong>Description:</strong><br />@Model.Description</p>
+
                     <p>
+                        <i class="bi bi-cash-coin text-success me-2"></i><strong>Price:</strong>
+                        <span class="text-dark fw-semibold">TSh @Model.Price.ToString("N2")</span>
+                    </p>
+
+                    <p>
+                        <i class="bi bi-check-circle-fill me-2 @(Model.InStock ? "text-success" : "text-danger")"></i>
                         <strong>In Stock:</strong>
                         @if (Model.InStock)
                         {
@@ -32,28 +46,39 @@
                         }
                     </p>
 
-                    <!-- Add to Cart Button -->
                     @if (Model.InStock)
                     {
-                        <form asp-controller="Cart" asp-action="Add" method="post">
+                        <form asp-controller="Cart" asp-action="Add" method="post" class="mt-2">
                             <input type="hidden" name="productId" value="@Model.Id" />
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            <button type="submit" class="btn btn-warning px-4 py-2 shadow-sm rounded-3 fw-semibold transition-all">
+                                <i class="bi bi-cart-plus-fill me-2"></i> Add to Cart
+                            </button>
                         </form>
                     }
                 </div>
             </div>
+        </div>
 
-            <!-- Right Column: Product History -->
-            <div class="col-md-6">
-                <h4>Product History</h4>
-                <div style="max-height: 300px; overflow-y: auto;">
-                    <p>@Model.ProductHistory</p>
+        <!-- Product History Centered Below -->
+        <div class="row mt-5 justify-content-center">
+            <div class="col-lg-10">
+                <h4 class="mb-3 text-info text-center animate__animated animate__fadeInUp"><i class="bi bi-clock-history me-2"></i>Product History</h4>
+                <div class="bg-light p-3 rounded-3 shadow-sm overflow-auto history-scroll animate__animated animate__fadeInUp"
+                     style="max-height: 300px;">
+                    <p class="text-secondary">@Model.ProductHistory</p>
                 </div>
             </div>
         </div>
 
-        <div class="mt-4">
-            <a href="@Url.Action("Index", "Product")" class="btn btn-primary">← Back to Products</a>
+
+        <!-- Back Button -->
+        <div class="mt-4 text-center">
+            <a href="@Url.Action("Index", "Product")" class="btn btn-warning rounded-pill px-4 py-2 shadow-sm">
+                <i class="bi bi-arrow-left"></i> Back to Products
+            </a>
         </div>
     </div>
 </div>
+
+<!-- Optional CSS animation -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />

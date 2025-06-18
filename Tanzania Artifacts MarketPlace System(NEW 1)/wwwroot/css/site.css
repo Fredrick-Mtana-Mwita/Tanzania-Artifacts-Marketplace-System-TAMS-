@@ -153,43 +153,90 @@ body {
         }
 }
 
-/* === ProductDetails Zoom === */
-.zoom-container {
-    overflow: hidden;
-    border-radius: 10px;
-    cursor: zoom-in;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    max-height: 280px;
-}
-
-.zoom-image {
-    transition: transform 0.4s ease-in-out;
-    display: block;
-    width: 100%;
-    height: 240px;
+/* === Product Details Enhanced Styling === */
+.product-img {
+    border-radius: 12px;
     object-fit: cover;
-    border-radius: 10px;
-}
-
-.zoom-container:hover .zoom-image {
-    transform: scale(1.05);
-}
-
-.modal-img {
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     max-width: 100%;
-    max-height: 80vh;
-    object-fit: contain;
 }
 
-.details-list li {
-    margin-bottom: 0.4rem;
+    .product-img:hover {
+        transform: scale(1.03);
+        opacity: 0.95;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+/* Responsive product image */
+@media (max-width: 768px) {
+    .product-img {
+        max-height: 300px;
+    }
 }
 
 @media (max-width: 576px) {
-    .zoom-image {
-        height: 200px;
+    .product-img {
+        max-height: 200px;
     }
 }
+
+/* === Product History Box === */
+.product-history-box {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* === Product Details Buttons === */
+.product-btn {
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+    .product-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+/* Product History Scroll Styling */
+.history-scroll {
+    position: relative;
+    transition: all 0.4s ease-in-out;
+    scrollbar-width: thin;
+    scrollbar-color: #c0c0c0 transparent;
+}
+
+    .history-scroll::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .history-scroll::-webkit-scrollbar-thumb {
+        background-color: #adb5bd;
+        border-radius: 10px;
+    }
+
+    .history-scroll:hover {
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fdfdfd;
+    }
+
+
+/* === Back to Products Button === */
+.back-to-products {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 50px;
+}
+
+    .back-to-products:hover {
+        transform: scale(1.03);
+        background-color: #f8f9fa;
+    }
 
 /* === Product Cards === */
 .hover-effect {
@@ -220,56 +267,55 @@ body {
 
 /* === Carousel === */
 #heroCarousel {
-    height: 500px; 
+    height: 500px;
     margin-top: 1rem;
 }
 
     #heroCarousel .carousel-item img {
         object-fit: cover;
-        height: 100%; 
+        height: 100%;
         border-radius: 12px;
     }
 
 .carousel-caption {
     bottom: 2rem;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.6);
     padding: 1rem;
     border-radius: 8px;
     max-width: 90%;
     margin: auto;
 }
 
-.carousel-caption h3 {
-    font-size: 1.75rem;
-    font-weight: bold;
-    color: #fff;
-}
+    .carousel-caption h3 {
+        font-size: 1.75rem;
+        font-weight: bold;
+        color: #fff;
+    }
 
-.carousel-caption p {
-    font-size: 1.1rem;
-    color: #ddd;
-}
+    .carousel-caption p {
+        font-size: 1.1rem;
+        color: #ddd;
+    }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .carousel-caption {
         padding: 0.75rem;
         bottom: 1rem;
     }
+
     .carousel-item img {
         height: 300px;
     }
 
-        .carousel-caption h3 {
-            font-size: 1.25rem;
-        }
+    .carousel-caption h3 {
+        font-size: 1.25rem;
+    }
 
-        .carousel-caption p {
-            font-size: 0.9rem;
-        }
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
 }
-
 
 /* === Category Cards === */
 .category-card img {
@@ -299,3 +345,87 @@ footer a {
     footer a:hover {
         text-decoration: underline;
     }
+
+/* === Product Card Enhancements === */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    background-color: #fff;
+    border-radius: 16px;
+    margin-top: 1rem;
+}
+
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        opacity: 0.97;
+    }
+
+.product-image {
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+@media (max-width: 576px) {
+    .product-image {
+        height: 160px;
+    }
+}
+/* === css styling for Checkout.cshtml === */
+/* Hover Effect on Table Rows */
+table tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .form-control-lg, .form-select-lg {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .fs-5 {
+        font-size: 1.1rem !important;
+    }
+}
+/* === css styling for Confirmation.cshtml === */
+/* Hover effect for table rows */
+table tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Responsive padding on mobile */
+@media (max-width: 576px) {
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .display-6 {
+        font-size: 1.8rem;
+    }
+
+    .table-responsive {
+        font-size: 0.9rem;
+    }
+
+    ul.list-group li {
+        font-size: 0.95rem;
+    }
+}
+
+
+

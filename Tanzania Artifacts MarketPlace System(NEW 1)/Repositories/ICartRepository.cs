@@ -7,7 +7,7 @@
         Task RemoveFromCartAsync(string userId, int productId);
         Task ClearCartAsync(string userId);
         Task DecreaseQuantityAsync(string userId, int productId);
+        Task<int> GetCartItemCountAsync(string userId);
         Task SaveAsync();
-
     }
 }

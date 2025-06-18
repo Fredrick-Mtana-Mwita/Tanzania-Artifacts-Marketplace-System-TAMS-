@@ -30,6 +30,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICartRepository,CartRepository>();   
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
+
 // Register UnitOfWork with DI
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

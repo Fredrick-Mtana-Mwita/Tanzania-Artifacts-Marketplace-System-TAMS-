@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Bmqp3ya3dML2494afPy9vsdazOlkhxiJ62AxcPrhMlE=",
+  "Hash": "5Q+RAyzGdAHxNVjQ4qsYYsWl5j7Gbg75DZuyHoXdHvo=",
   "Source": "Tanzania Artifacts MarketPlace System(NEW 1)",
   "BasePath": "_content/Tanzania Artifacts MarketPlace System(NEW 1)",
   "Mode": "Default",
@@ -4637,12 +4637,12 @@
       "OriginalItemSpec": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\lib\\popper.js\\esm\\dom-utils\\listscrollparents.js"
     },
     {
-      "Identity": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\kx5jlyzdim-ydobtqzvjp.gz",
+      "Identity": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\kx5jlyzdim-hwzqg3keju.gz",
       "SourceId": "Tanzania Artifacts MarketPlace System(NEW 1)",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/Tanzania Artifacts MarketPlace System(NEW 1)",
-      "RelativePath": "css/site#[.{fingerprint=ydobtqzvjp}]?.css.gz",
+      "RelativePath": "css/site#[.{fingerprint=hwzqg3keju}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -4651,8 +4651,8 @@
       "RelatedAsset": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\css\\site.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "a3i9xcomrm",
-      "Integrity": "Kstl870/np+Tq11JfyeiTHo8g4Ukb37fUUOvCVn45uA=",
+      "Fingerprint": "8efyg5ylgc",
+      "Integrity": "kNlc47BxTB3+GZ+H69Vd49EwgoFUsbHVJ/zTSFkQz5k=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\css\\site.css"
@@ -6422,12 +6422,12 @@
       "OriginalItemSpec": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\lib\\popper.js\\esm\\dom-utils\\getnodescroll.min.js"
     },
     {
-      "Identity": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\x3iv3yw6wf-tsy5wwc3xk.gz",
+      "Identity": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\x3iv3yw6wf-26ocftqo4c.gz",
       "SourceId": "Tanzania Artifacts MarketPlace System(NEW 1)",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/Tanzania Artifacts MarketPlace System(NEW 1)",
-      "RelativePath": "js/site#[.{fingerprint=tsy5wwc3xk}]?.js.gz",
+      "RelativePath": "js/site#[.{fingerprint=26ocftqo4c}]?.js.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -6436,8 +6436,8 @@
       "RelatedAsset": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\js\\site.js",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "homu487gxg",
-      "Integrity": "UeJ/aqpKj75zTYBWg/fl4clxgdn7qvpaoTKIKxfwgkg=",
+      "Fingerprint": "6wybn8591b",
+      "Integrity": "ZqyzvFOpZFIOlgTrKCOHRkdmvPqvFKofzVBCrIKFJfk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\js\\site.js"
@@ -7192,8 +7192,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ydobtqzvjp",
-      "Integrity": "yto75bKYzDXutUjYgRidpNDazvUz6hx4i5voQmsQpD8=",
+      "Fingerprint": "hwzqg3keju",
+      "Integrity": "vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -7346,6 +7346,48 @@
       "OriginalItemSpec": "wwwroot\\images\\No Image.jpg"
     },
     {
+      "Identity": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\images\\profileImages\\89a312d7-4002-4f70-8107-082c88cda1b3.jpg",
+      "SourceId": "Tanzania Artifacts MarketPlace System(NEW 1)",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\",
+      "BasePath": "_content/Tanzania Artifacts MarketPlace System(NEW 1)",
+      "RelativePath": "images/profileImages/89a312d7-4002-4f70-8107-082c88cda1b3#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "u2sfdtadh2",
+      "Integrity": "GiO67/H8OvLhAxQP2SK4FyqasCGdMIvrmMmFdyYc9NI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\profileImages\\89a312d7-4002-4f70-8107-082c88cda1b3.jpg"
+    },
+    {
+      "Identity": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\images\\profileImages\\cf957403-13e7-4280-9447-b480ebd510c7.jpg",
+      "SourceId": "Tanzania Artifacts MarketPlace System(NEW 1)",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\",
+      "BasePath": "_content/Tanzania Artifacts MarketPlace System(NEW 1)",
+      "RelativePath": "images/profileImages/cf957403-13e7-4280-9447-b480ebd510c7#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "k6zpdfbq0m",
+      "Integrity": "XHf/HqJ/Kn09NAFCTFzWLLF46DNMk6DYPXDAOl/NpBQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\profileImages\\cf957403-13e7-4280-9447-b480ebd510c7.jpg"
+    },
+    {
       "Identity": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\images\\profileImages\\default-user.jpg",
       "SourceId": "Tanzania Artifacts MarketPlace System(NEW 1)",
       "SourceType": "Discovered",
@@ -7423,8 +7465,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "tsy5wwc3xk",
-      "Integrity": "bV8Nxk+XvzVGI54+IOc7iUg3poYTga+YuE7X3QYcvPY=",
+      "Fingerprint": "26ocftqo4c",
+      "Integrity": "plfATkq4ZKm2Cvt9r+bn3wwz3ouLDl5qBqb3asFziBo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
@@ -11880,12 +11922,12 @@
     },
     {
       "Route": "css/site.css",
-      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\kx5jlyzdim-ydobtqzvjp.gz",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\kx5jlyzdim-hwzqg3keju.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000595947557"
+          "Quality": "0.000510725230"
         }
       ],
       "ResponseHeaders": [
@@ -11895,15 +11937,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1677"
+          "Value": "1957"
         },
         {
           "Name": "ETag",
-          "Value": "\"Kstl870/np+Tq11JfyeiTHo8g4Ukb37fUUOvCVn45uA=\""
+          "Value": "\"kNlc47BxTB3+GZ+H69Vd49EwgoFUsbHVJ/zTSFkQz5k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 18 Jun 2025 00:28:56 GMT"
+          "Value": "Wed, 18 Jun 2025 12:06:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11923,13 +11965,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"yto75bKYzDXutUjYgRidpNDazvUz6hx4i5voQmsQpD8=\""
+          "Value": "W/\"vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-yto75bKYzDXutUjYgRidpNDazvUz6hx4i5voQmsQpD8="
+          "Value": "sha256-vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM="
         }
       ]
     },
@@ -11944,7 +11986,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5792"
+          "Value": "7745"
         },
         {
           "Name": "Content-Type",
@@ -11952,11 +11994,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yto75bKYzDXutUjYgRidpNDazvUz6hx4i5voQmsQpD8=\""
+          "Value": "\"vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 18 Jun 2025 00:28:56 GMT"
+          "Value": "Wed, 18 Jun 2025 12:06:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11966,13 +12008,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-yto75bKYzDXutUjYgRidpNDazvUz6hx4i5voQmsQpD8="
+          "Value": "sha256-vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM="
         }
       ]
     },
     {
       "Route": "css/site.css.gz",
-      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\kx5jlyzdim-ydobtqzvjp.gz",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\kx5jlyzdim-hwzqg3keju.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11981,7 +12023,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1677"
+          "Value": "1957"
         },
         {
           "Name": "Content-Type",
@@ -11989,11 +12031,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Kstl870/np+Tq11JfyeiTHo8g4Ukb37fUUOvCVn45uA=\""
+          "Value": "\"kNlc47BxTB3+GZ+H69Vd49EwgoFUsbHVJ/zTSFkQz5k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 18 Jun 2025 00:28:56 GMT"
+          "Value": "Wed, 18 Jun 2025 12:06:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12011,18 +12053,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Kstl870/np+Tq11JfyeiTHo8g4Ukb37fUUOvCVn45uA="
+          "Value": "sha256-kNlc47BxTB3+GZ+H69Vd49EwgoFUsbHVJ/zTSFkQz5k="
         }
       ]
     },
     {
-      "Route": "css/site.ydobtqzvjp.css",
-      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\kx5jlyzdim-ydobtqzvjp.gz",
+      "Route": "css/site.hwzqg3keju.css",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\kx5jlyzdim-hwzqg3keju.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000595947557"
+          "Quality": "0.000510725230"
         }
       ],
       "ResponseHeaders": [
@@ -12032,15 +12074,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1677"
+          "Value": "1957"
         },
         {
           "Name": "ETag",
-          "Value": "\"Kstl870/np+Tq11JfyeiTHo8g4Ukb37fUUOvCVn45uA=\""
+          "Value": "\"kNlc47BxTB3+GZ+H69Vd49EwgoFUsbHVJ/zTSFkQz5k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 18 Jun 2025 00:28:56 GMT"
+          "Value": "Wed, 18 Jun 2025 12:06:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12060,13 +12102,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"yto75bKYzDXutUjYgRidpNDazvUz6hx4i5voQmsQpD8=\""
+          "Value": "W/\"vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "ydobtqzvjp"
+          "Value": "hwzqg3keju"
         },
         {
           "Name": "label",
@@ -12074,12 +12116,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-yto75bKYzDXutUjYgRidpNDazvUz6hx4i5voQmsQpD8="
+          "Value": "sha256-vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM="
         }
       ]
     },
     {
-      "Route": "css/site.ydobtqzvjp.css",
+      "Route": "css/site.hwzqg3keju.css",
       "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -12089,7 +12131,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5792"
+          "Value": "7745"
         },
         {
           "Name": "Content-Type",
@@ -12097,11 +12139,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yto75bKYzDXutUjYgRidpNDazvUz6hx4i5voQmsQpD8=\""
+          "Value": "\"vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 18 Jun 2025 00:28:56 GMT"
+          "Value": "Wed, 18 Jun 2025 12:06:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12111,7 +12153,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "ydobtqzvjp"
+          "Value": "hwzqg3keju"
         },
         {
           "Name": "label",
@@ -12119,13 +12161,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-yto75bKYzDXutUjYgRidpNDazvUz6hx4i5voQmsQpD8="
+          "Value": "sha256-vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM="
         }
       ]
     },
     {
-      "Route": "css/site.ydobtqzvjp.css.gz",
-      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\kx5jlyzdim-ydobtqzvjp.gz",
+      "Route": "css/site.hwzqg3keju.css.gz",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\kx5jlyzdim-hwzqg3keju.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12134,7 +12176,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1677"
+          "Value": "1957"
         },
         {
           "Name": "Content-Type",
@@ -12142,11 +12184,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Kstl870/np+Tq11JfyeiTHo8g4Ukb37fUUOvCVn45uA=\""
+          "Value": "\"kNlc47BxTB3+GZ+H69Vd49EwgoFUsbHVJ/zTSFkQz5k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 18 Jun 2025 00:28:56 GMT"
+          "Value": "Wed, 18 Jun 2025 12:06:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12164,7 +12206,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "ydobtqzvjp"
+          "Value": "hwzqg3keju"
         },
         {
           "Name": "label",
@@ -12172,7 +12214,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Kstl870/np+Tq11JfyeiTHo8g4Ukb37fUUOvCVn45uA="
+          "Value": "sha256-kNlc47BxTB3+GZ+H69Vd49EwgoFUsbHVJ/zTSFkQz5k="
         }
       ]
     },
@@ -21535,6 +21577,170 @@
       ]
     },
     {
+      "Route": "images/profileImages/89a312d7-4002-4f70-8107-082c88cda1b3.jpg",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\images\\profileImages\\89a312d7-4002-4f70-8107-082c88cda1b3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "49056"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GiO67/H8OvLhAxQP2SK4FyqasCGdMIvrmMmFdyYc9NI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 10:24:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GiO67/H8OvLhAxQP2SK4FyqasCGdMIvrmMmFdyYc9NI="
+        }
+      ]
+    },
+    {
+      "Route": "images/profileImages/89a312d7-4002-4f70-8107-082c88cda1b3.u2sfdtadh2.jpg",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\images\\profileImages\\89a312d7-4002-4f70-8107-082c88cda1b3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "49056"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GiO67/H8OvLhAxQP2SK4FyqasCGdMIvrmMmFdyYc9NI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 10:24:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "u2sfdtadh2"
+        },
+        {
+          "Name": "label",
+          "Value": "images/profileImages/89a312d7-4002-4f70-8107-082c88cda1b3.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-GiO67/H8OvLhAxQP2SK4FyqasCGdMIvrmMmFdyYc9NI="
+        }
+      ]
+    },
+    {
+      "Route": "images/profileImages/cf957403-13e7-4280-9447-b480ebd510c7.jpg",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\images\\profileImages\\cf957403-13e7-4280-9447-b480ebd510c7.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15997"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XHf/HqJ/Kn09NAFCTFzWLLF46DNMk6DYPXDAOl/NpBQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 03:36:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XHf/HqJ/Kn09NAFCTFzWLLF46DNMk6DYPXDAOl/NpBQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/profileImages/cf957403-13e7-4280-9447-b480ebd510c7.k6zpdfbq0m.jpg",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\images\\profileImages\\cf957403-13e7-4280-9447-b480ebd510c7.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15997"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XHf/HqJ/Kn09NAFCTFzWLLF46DNMk6DYPXDAOl/NpBQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 03:36:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "k6zpdfbq0m"
+        },
+        {
+          "Name": "label",
+          "Value": "images/profileImages/cf957403-13e7-4280-9447-b480ebd510c7.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XHf/HqJ/Kn09NAFCTFzWLLF46DNMk6DYPXDAOl/NpBQ="
+        }
+      ]
+    },
+    {
       "Route": "images/profileImages/default-user.ivldh0y640.jpg",
       "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\images\\profileImages\\default-user.jpg",
       "Selectors": [],
@@ -21781,6 +21987,167 @@
       ]
     },
     {
+      "Route": "js/site.26ocftqo4c.js",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\x3iv3yw6wf-26ocftqo4c.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001157407407"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "863"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZqyzvFOpZFIOlgTrKCOHRkdmvPqvFKofzVBCrIKFJfk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 10:22:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"plfATkq4ZKm2Cvt9r+bn3wwz3ouLDl5qBqb3asFziBo=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "26ocftqo4c"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-plfATkq4ZKm2Cvt9r+bn3wwz3ouLDl5qBqb3asFziBo="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.26ocftqo4c.js",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2088"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"plfATkq4ZKm2Cvt9r+bn3wwz3ouLDl5qBqb3asFziBo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 10:22:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "26ocftqo4c"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-plfATkq4ZKm2Cvt9r+bn3wwz3ouLDl5qBqb3asFziBo="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.26ocftqo4c.js.gz",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\x3iv3yw6wf-26ocftqo4c.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "863"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZqyzvFOpZFIOlgTrKCOHRkdmvPqvFKofzVBCrIKFJfk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 10:22:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "26ocftqo4c"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZqyzvFOpZFIOlgTrKCOHRkdmvPqvFKofzVBCrIKFJfk="
+        }
+      ]
+    },
+    {
       "Route": "js/site.js",
       "AssetFile": "C:\\Users\\Fanbula-Desk\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\9.0.4\\staticwebassets\\js\\site.js",
       "Selectors": [],
@@ -21819,12 +22186,12 @@
     },
     {
       "Route": "js/site.js",
-      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\x3iv3yw6wf-tsy5wwc3xk.gz",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\x3iv3yw6wf-26ocftqo4c.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.002409638554"
+          "Quality": "0.001157407407"
         }
       ],
       "ResponseHeaders": [
@@ -21834,15 +22201,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "414"
+          "Value": "863"
         },
         {
           "Name": "ETag",
-          "Value": "\"UeJ/aqpKj75zTYBWg/fl4clxgdn7qvpaoTKIKxfwgkg=\""
+          "Value": "\"ZqyzvFOpZFIOlgTrKCOHRkdmvPqvFKofzVBCrIKFJfk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Jun 2025 05:30:46 GMT"
+          "Value": "Wed, 18 Jun 2025 10:22:49 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21862,13 +22229,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"bV8Nxk+XvzVGI54+IOc7iUg3poYTga+YuE7X3QYcvPY=\""
+          "Value": "W/\"plfATkq4ZKm2Cvt9r+bn3wwz3ouLDl5qBqb3asFziBo=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-bV8Nxk+XvzVGI54+IOc7iUg3poYTga+YuE7X3QYcvPY="
+          "Value": "sha256-plfATkq4ZKm2Cvt9r+bn3wwz3ouLDl5qBqb3asFziBo="
         }
       ]
     },
@@ -21883,7 +22250,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "834"
+          "Value": "2088"
         },
         {
           "Name": "Content-Type",
@@ -21891,11 +22258,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"bV8Nxk+XvzVGI54+IOc7iUg3poYTga+YuE7X3QYcvPY=\""
+          "Value": "\"plfATkq4ZKm2Cvt9r+bn3wwz3ouLDl5qBqb3asFziBo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Jun 2025 05:30:46 GMT"
+          "Value": "Wed, 18 Jun 2025 10:22:49 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21905,13 +22272,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-bV8Nxk+XvzVGI54+IOc7iUg3poYTga+YuE7X3QYcvPY="
+          "Value": "sha256-plfATkq4ZKm2Cvt9r+bn3wwz3ouLDl5qBqb3asFziBo="
         }
       ]
     },
     {
       "Route": "js/site.js.gz",
-      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\x3iv3yw6wf-tsy5wwc3xk.gz",
+      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\x3iv3yw6wf-26ocftqo4c.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -21920,7 +22287,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "414"
+          "Value": "863"
         },
         {
           "Name": "Content-Type",
@@ -21928,11 +22295,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"UeJ/aqpKj75zTYBWg/fl4clxgdn7qvpaoTKIKxfwgkg=\""
+          "Value": "\"ZqyzvFOpZFIOlgTrKCOHRkdmvPqvFKofzVBCrIKFJfk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Jun 2025 05:30:46 GMT"
+          "Value": "Wed, 18 Jun 2025 10:22:49 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21950,168 +22317,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-UeJ/aqpKj75zTYBWg/fl4clxgdn7qvpaoTKIKxfwgkg="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.tsy5wwc3xk.js",
-      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\x3iv3yw6wf-tsy5wwc3xk.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.002409638554"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "414"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"UeJ/aqpKj75zTYBWg/fl4clxgdn7qvpaoTKIKxfwgkg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 08 Jun 2025 05:30:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"bV8Nxk+XvzVGI54+IOc7iUg3poYTga+YuE7X3QYcvPY=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "tsy5wwc3xk"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-bV8Nxk+XvzVGI54+IOc7iUg3poYTga+YuE7X3QYcvPY="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.tsy5wwc3xk.js",
-      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\wwwroot\\js\\site.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "834"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"bV8Nxk+XvzVGI54+IOc7iUg3poYTga+YuE7X3QYcvPY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 08 Jun 2025 05:30:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "tsy5wwc3xk"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-bV8Nxk+XvzVGI54+IOc7iUg3poYTga+YuE7X3QYcvPY="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.tsy5wwc3xk.js.gz",
-      "AssetFile": "D:\\C# projects\\Tanzania Artifacts MarketPlace System(NEW 1)\\Tanzania Artifacts MarketPlace System(NEW 1)\\obj\\Debug\\net9.0\\compressed\\x3iv3yw6wf-tsy5wwc3xk.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "414"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"UeJ/aqpKj75zTYBWg/fl4clxgdn7qvpaoTKIKxfwgkg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 08 Jun 2025 05:30:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "tsy5wwc3xk"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.js.gz"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-UeJ/aqpKj75zTYBWg/fl4clxgdn7qvpaoTKIKxfwgkg="
+          "Value": "sha256-ZqyzvFOpZFIOlgTrKCOHRkdmvPqvFKofzVBCrIKFJfk="
         }
       ]
     },

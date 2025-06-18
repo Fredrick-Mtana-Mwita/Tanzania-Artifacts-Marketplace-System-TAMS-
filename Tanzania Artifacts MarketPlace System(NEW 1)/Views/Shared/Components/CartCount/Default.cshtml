@@ -1,0 +1,11 @@
+﻿@model int
+
+<div id="cartCountContainer">
+    <a href="@Url.Action("Index", "Cart")" class="btn btn-outline-dark position-relative me-3" aria-label="Shopping cart">
+        <i class="bi bi-cart-fill fs-4"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:0.7rem;">
+            @Model
+            <span class="visually-hidden">items in cart</span>
+        </span>
+    </a>
+</div>

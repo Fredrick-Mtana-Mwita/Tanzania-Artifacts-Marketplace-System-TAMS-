@@ -4,40 +4,89 @@
     ViewData["Title"] = "Order Confirmation";
 }
 
-<h2 class="text-2xl font-bold mb-4">Order Confirmation</h2>
+<!-- Bootstrap Icons & Animations -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-<p class="mb-2">Thank you for your purchase!</p>
+<div class="container my-5 animate__animated animate__fadeInUp">
+    <div class="card shadow-lg border-0 rounded-4 p-4 bg-white">
+        <div class="text-center mb-4">
+            <i class="bi bi-check-circle-fill text-warning display-3 mb-2 animate__animated animate__bounceIn"></i>
+            <h2 class="fw-bold text-warning display-6">Order Confirmed</h2>
+            <p class="text-secondary">Thank you for your purchase! Your order has been placed successfully.</p>
+        </div>
 
-<div class="mb-4">
-    <strong>Order ID:</strong> @Model.Id <br />
-    <strong>Status:</strong> @Model.Status <br />
-    <strong>Shipping City:</strong> @Model.ShippingCity <br />
-    <strong>Payment Method:</strong> @Model.PaymentMethod <br />
-    <strong>Order Date:</strong> @Model.OrderDate.ToString("yyyy-MM-dd HH:mm") <br />
-    <strong>Total Amount:</strong> TSh @Model.TotalAmount
+        <!-- Order Info -->
+        <div class="row g-4">
+            <div class="col-md-6">
+                <ul class="list-group shadow-sm rounded-3">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong><i class="bi bi-hash me-2 text-primary"></i>Order ID:</strong>
+                        <span>@Model.Id</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong><i class="bi bi-truck me-2 text-success"></i>Status:</strong>
+                        <span class="fw-semibold">@Model.Status</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong><i class="bi bi-geo-alt-fill me-2 text-danger"></i>Shipping City:</strong>
+                        <span>@Model.ShippingCity</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-6">
+                <ul class="list-group shadow-sm rounded-3">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong><i class="bi bi-wallet2 me-2 text-warning"></i>Payment Method:</strong>
+                        <span>@Model.PaymentMethod</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong><i class="bi bi-calendar-check-fill me-2 text-info"></i>Order Date:</strong>
+                        <span>@Model.OrderDate.ToString("yyyy-MM-dd HH:mm")</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong><i class="bi bi-currency-exchange me-2 text-primary"></i>Total:</strong>
+                        <span class="text-success fw-bold">TSh @Model.TotalAmount.ToString("N2")</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Items Table -->
+        <div class="mt-5">
+            <h4 class="text-warning text-center fw-bold mb-3"><i class="bi bi-box-seam me-2"></i>Items in Your Order</h4>
+            <div class="table-responsive rounded-3 shadow-sm overflow-hidden">
+                <table class="table table-bordered text-center align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th><i class="bi bi-tag-fill"></i> Product</th>
+                            <th><i class="bi bi-stack"></i> Quantity</th>
+                            <th><i class="bi bi-cash"></i> Unit Price</th>
+                            <th><i class="bi bi-calculator"></i> Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr class="hover-shadow-sm transition-all">
+                                <td>@item.Product.Name</td>
+                                <td>@item.Quantity</td>
+                                <td>TSh @item.UnitPrice.ToString("N2")</td>
+                                <td class="text-success fw-semibold">TSh @(item.Quantity * item.UnitPrice)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="text-center mt-4">
+            <a href="@Url.Action("Index", "Product")"
+               class="btn btn-outline-warning btn-lg rounded-pill shadow-sm px-5 py-2 animate__animated animate__fadeInUp">
+                <i class="bi bi-arrow-left me-2"></i>Continue Shopping
+            </a>
+        </div>
+    </div>
 </div>
-
-<h4 class="text-lg font-semibold mb-2">Items:</h4>
-<table class="w-full mb-4 border text-left">
-    <thead>
-        <tr class="border-b">
-            <th class="p-2">Product</th>
-            <th class="p-2">Quantity</th>
-            <th class="p-2">Unit Price</th>
-            <th class="p-2">Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Items)
-        {
-            <tr class="border-b">
-                <td class="p-2">@item.Product.Name</td>
-                <td class="p-2">@item.Quantity</td>
-                <td class="p-2">TSh @item.UnitPrice</td>
-                <td class="p-2">TSh @(item.Quantity * item.UnitPrice)</td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<a href="@Url.Action("Index", "Product")" class="text-blue-600 btn btn-primary">Continue Shopping</a>

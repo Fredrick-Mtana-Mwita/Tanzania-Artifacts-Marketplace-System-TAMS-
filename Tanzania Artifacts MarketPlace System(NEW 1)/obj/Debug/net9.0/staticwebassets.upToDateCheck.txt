@@ -218,6 +218,8 @@ wwwroot\images\Kiondo Basket.jpeg
 wwwroot\images\MAKONDE .jpg
 wwwroot\images\Makonde-tree-of-life.jpg
 wwwroot\images\No Image.jpg
+wwwroot\images\profileImages\89a312d7-4002-4f70-8107-082c88cda1b3.jpg
+wwwroot\images\profileImages\cf957403-13e7-4280-9447-b480ebd510c7.jpg
 wwwroot\images\profileImages\default-user.jpg
 wwwroot\images\Tanzanite Jewerly.jpg
 wwwroot\images\Tribal Art.jpg

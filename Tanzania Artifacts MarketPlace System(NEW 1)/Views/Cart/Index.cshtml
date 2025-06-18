@@ -57,19 +57,19 @@
 
         <!-- Action Buttons & Total -->
         <div class="d-flex justify-content-between align-items-center mt-4">
-            <a href="@Url.Action("Index", "Product")" class="btn btn-outline-secondary">← Back to Products</a>
+            <a href="@Url.Action("Index", "Product")" class="btn btn-outline-warning">← Back to Products</a>
 
             <div>
                 <h4 class="d-inline-block me-3">
                     Total: @("TSh " + Model.Items.Sum(i => i.Product.Price * i.Quantity).ToString("N2"))
                 </h4>
-                <a href="@Url.Action("Checkout", "Order")" class="btn btn-success">Checkout</a>
+                <a href="@Url.Action("Checkout", "Order")" class="btn btn-warning">Checkout</a>
             </div>
         </div>
     }
     else
     {
         <p>Your cart is empty.</p>
-        <a href="@Url.Action("Index", "Product")" class="btn btn-outline-primary">← Continue Shopping</a>
+        <a href="@Url.Action("Index", "Product")" class="btn btn-outline-warning">← Continue Shopping</a>
     }
 </div>

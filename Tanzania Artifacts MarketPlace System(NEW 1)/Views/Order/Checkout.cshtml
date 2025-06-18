@@ -4,49 +4,71 @@
     ViewData["Title"] = "Checkout";
 }
 
-<h2 class="text-2xl font-bold mb-4">Checkout</h2>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-<form asp-action="PlaceOrder" method="post">
-    <div class="mb-4">
-        <label asp-for="ShippingCity" class="block font-semibold mb-1">Shipping City</label>
-        <input type="text" name="shippingCity" required class="w-full p-2 border rounded" />
+<div class="container my-5 animate__animated animate__fadeInUp">
+    <div class="card shadow-lg p-4 rounded-4 border-0 bg-white">
+        <h2 class="text-center mb-4 fw-bold text-warning display-6"><i class="bi bi-bag-check-fill me-2"></i>Checkout</h2>
+        <hr class="mb-4" />
+
+        <form asp-action="PlaceOrder" method="post" class="row gy-4">
+            <!-- Shipping Info -->
+            <div class="col-md-6">
+                <label asp-for="ShippingCity" class="form-label fw-semibold"><i class="bi bi-geo-alt-fill text-danger me-1"></i>Shipping City</label>
+                <input asp-for="ShippingCity" required class="form-control form-control-lg shadow-sm" placeholder="e.g., Dar es Salaam" />
+            </div>
+
+            <!-- Payment Method -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold"><i class="bi bi-credit-card-2-back-fill text-success me-1"></i>Payment Method</label>
+                <select name="paymentMethod" class="form-select form-select-lg shadow-sm" required>
+                    <option value="">-- Select Payment Method --</option>
+                    <option value="Paypal">PayPal</option>
+                    <option value="MobileMoney">Mobile Money</option>
+                    <option value="CashOnDelivery">Cash on Delivery</option>
+                </select>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="col-12">
+                <h4 class="text-dark fw-bold mt-4 mb-3 text-center"><i class="bi bi-cart-fill me-2"></i>Your Cart</h4>
+                <div class="table-responsive shadow-sm rounded-3">
+                    <table class="table table-bordered align-middle text-center">
+                        <thead class="table-light">
+                            <tr>
+                                <th><i class="bi bi-box-seam"></i> Product</th>
+                                <th><i class="bi bi-stack"></i> Quantity</th>
+                                <th><i class="bi bi-currency-exchange"></i> Price</th>
+                                <th><i class="bi bi-calculator-fill"></i> Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Items)
+                            {
+                                <tr class="hover-shadow-sm transition-all">
+                                    <td>@item.Product.Name</td>
+                                    <td>@item.Quantity</td>
+                                    <td>TSh @item.Product.Price.ToString("N2")</td>
+                                    <td class="fw-semibold text-success">TSh @(item.Quantity * item.Product.Price)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Total and Submit -->
+            <div class="col-12 d-flex justify-content-between align-items-center mt-3 flex-wrap">
+                <div class="fs-5 fw-bold text-warning mb-2">
+                    <i class="bi bi-receipt-cutoff me-1"></i>Order Total:
+                    <span class="text-dark">TSh @Model.Items.Sum(i => i.Product.Price * i.Quantity). Tsh</span>
+                </div>
+
+                <button type="submit" class="btn btn-warning btn-lg px-5 py-2 shadow-sm rounded-pill animate__animated animate__pulse animate__infinite">
+                    <i class="bi bi-check2-circle me-2"></i>Place Order
+                </button>
+            </div>
+        </form>
     </div>
-
-    <div class="mb-4">
-        <label class="block font-semibold mb-1">Payment Method</label>
-        <select name="paymentMethod" class="w-full p-2 border rounded" required>
-            <option value="Paypal">Paypal</option>
-            <option value="MobileMoney">Mobile Money</option>
-            <option value="CashOnDelivery">Cash on Delivery</option>
-        </select>
-    </div>
-
-    <h4 class="text-lg font-semibold mb-2">Your Cart</h4>
-    <table class="w-full mb-4 text-left border">
-        <thead>
-            <tr class="border-b">
-                <th class="p-2">Product</th>
-                <th class="p-2">Quantity</th>
-                <th class="p-2">Price</th>
-                <th class="p-2">Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Items)
-            {
-                <tr class="border-b">
-                    <td class="p-2">@item.Product.Name</td>
-                    <td class="p-2">@item.Quantity</td>
-                    <td class="p-2">TSh @item.Product.Price</td>
-                    <td class="p-2">TSh @(item.Quantity * item.Product.Price)</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <div class="font-bold mb-4">
-        Total: TSh @Model.Items.Sum(i => i.Product.Price * i.Quantity)
-    </div>
-
-    <button type="submit" class="bg-blue-600 btn btn-success text-white px-4 py-2 rounded">Place Order</button>
-</form>
+</div>
