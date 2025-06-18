@@ -14,6 +14,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
         public int Quantity { get; set; }
         public bool InStock { get; set; }
         public int StockQuantity { get; set; }
+        public bool IsFeatured { get; set; } = false;
+        public int SoldCount { get; set; } = 0;
+
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
         public DateTime? DateUpdated { get; set; }
 

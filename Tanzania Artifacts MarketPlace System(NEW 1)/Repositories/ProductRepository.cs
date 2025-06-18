@@ -14,20 +14,40 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Repositories
             _context = dbContext;
         }
 
-   
-
         // Retrieves all products asynchronously
         public async Task<IEnumerable<Product>> GetAllAsync()
-            => await _context.Products.ToListAsync ();
+            => await _context.Products.ToListAsync();
 
         // Retrieves a single product by its ID
         public async Task<Product?> GetByIdAsync(int id)
-            => await _context.Products.FirstOrDefaultAsync (p=>p.Id == id);
+            => await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
 
         // Searches products where the name or description contains the keyword
         public async Task<IEnumerable<Product>> SearchAsync(string keyword)
-                    => await _context.Products
-                    .Where(p => p.Name.Contains(keyword) || p.Description.Contains(keyword))
-                    .ToListAsync();
+            => await _context.Products
+                            .Where(p => p.Name.Contains(keyword) || p.Description.Contains(keyword))
+                            .ToListAsync();
+
+        // Gets featured products (e.g., manually marked)
+        public async Task<IEnumerable<Product>> GetFeaturedAsync()
+            => await _context.Products
+                             .Where(p => p.IsFeatured)
+                             .OrderByDescending(p => p.DateCreated)
+                             .Take(6)
+                             .ToListAsync();
+
+        // Gets the most recently added products
+        public async Task<IEnumerable<Product>> GetNewArrivalsAsync()
+            => await _context.Products
+                             .OrderByDescending(p => p.DateCreated)
+                             .Take(6)
+                             .ToListAsync();
+
+        // Gets best-selling products (based on SoldCount)
+        public async Task<IEnumerable<Product>> GetBestSellersAsync()
+            => await _context.Products
+                             .OrderByDescending(p => p.SoldCount)
+                             .Take(6)
+                             .ToListAsync();
     }
 }

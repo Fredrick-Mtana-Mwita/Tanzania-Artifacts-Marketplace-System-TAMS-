@@ -1,21 +1,30 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Interfaces;
 
 namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductRepository _productRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IProductRepository productRepository)
         {
             _logger = logger;
+            _productRepository = productRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var viewModel = new HomePageViewModel
+            {
+                FeaturedProducts = await _productRepository.GetFeaturedAsync(),
+                NewArrivals = await _productRepository.GetNewArrivalsAsync(),
+                BestSellers = await _productRepository.GetBestSellersAsync()
+            };
+            return View(viewModel);
         }
 
         public IActionResult Privacy()

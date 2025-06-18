@@ -1,31 +1,301 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* === Buttons & Forms === */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
 }
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* === Navbar Styling === */
+.navbar-light {
+    background-color: #fff !important;
+}
+
+.navbar .nav-link {
+    color: #000 !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+        color: #f0ad4e !important;
+    }
+
+.btn-outline-dark i {
+    color: #000;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background-color: white;
+}
+
+/* === Sidebar === */
+.sidebar {
+    width: 260px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1f4037, #99f2c8);
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1050;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(-280px);
+        box-shadow: 2px 0 12px rgba(0,0,0,0.4);
+    }
+
+        .sidebar.show {
+            transform: translateX(0);
+        }
+}
+
+.sidebar-link {
+    transition: all 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+}
+
+    .sidebar-link:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+        text-decoration: none;
+    }
+
+.active-seller-link {
+    background-color: rgba(255, 255, 255, 0.35);
+    font-weight: 700;
+    border-left: 4px solid white;
+}
+
+.user-profile img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    box-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+
+/* === Checkout Section === */
+.checkout-section {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.list-group-item img {
+    border-radius: 10px;
+}
+
+.checkout-btn {
+    transition: all 0.3s ease;
+}
+
+    .checkout-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+
+.spinner-border {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .checkout-section {
+        padding: 1rem;
+    }
+
+    .list-group-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+        .list-group-item .text-end {
+            text-align: left !important;
+        }
+}
+
+/* === ProductDetails Zoom === */
+.zoom-container {
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: zoom-in;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    max-height: 280px;
+}
+
+.zoom-image {
+    transition: transform 0.4s ease-in-out;
+    display: block;
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.zoom-container:hover .zoom-image {
+    transform: scale(1.05);
+}
+
+.modal-img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.details-list li {
+    margin-bottom: 0.4rem;
+}
+
+@media (max-width: 576px) {
+    .zoom-image {
+        height: 200px;
+    }
+}
+
+/* === Product Cards === */
+.hover-effect {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .hover-effect:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+.product-card img {
+    object-fit: cover;
+    height: 220px;
+    border-radius: 8px;
+}
+
+/* === Newsletter Section === */
+.newsletter {
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/newsletter-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding: 3rem 1rem;
+    border-radius: 12px;
+}
+
+/* === Carousel === */
+#heroCarousel {
+    height: 500px; 
+    margin-top: 1rem;
+}
+
+    #heroCarousel .carousel-item img {
+        object-fit: cover;
+        height: 100%; 
+        border-radius: 12px;
+    }
+
+.carousel-caption {
+    bottom: 2rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 90%;
+    margin: auto;
+}
+
+.carousel-caption h3 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.carousel-caption p {
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-caption {
+        padding: 0.75rem;
+        bottom: 1rem;
+    }
+    .carousel-item img {
+        height: 300px;
+    }
+
+        .carousel-caption h3 {
+            font-size: 1.25rem;
+        }
+
+        .carousel-caption p {
+            font-size: 0.9rem;
+        }
+}
+
+
+/* === Category Cards === */
+.category-card img {
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* === Transitions === */
+.transition-all {
+    transition: all 0.3s ease-in-out;
+}
+
+/* === Footer === */
+footer.footer {
+    background-color: #212529;
+    color: #ccc;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+footer a {
+    color: #f0ad4e;
+    text-decoration: none;
+}
+
+    footer a:hover {
+        text-decoration: underline;
+    }

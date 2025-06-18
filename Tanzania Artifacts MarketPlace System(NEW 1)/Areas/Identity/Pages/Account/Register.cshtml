@@ -8,10 +8,22 @@
     <div class="col-md-6 col-lg-5">
         <div class="card shadow rounded-4">
             <div class="card-body p-4">
-                <h2 class="card-title text-center text-primary fw-bold mb-4">Create Account</h2>
+                <h2 class="card-title text-center text-warning fw-bold mb-4">Create Account</h2>
                 <hr />
                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.FirstName" class="form-control" placeholder="First Name" />
+                        <label asp-for="Input.FirstName"></label>
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.LastName" class="form-control" placeholder="Last Name" />
+                        <label asp-for="Input.LastName"></label>
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+
 
                     <div class="form-floating mb-3">
                         <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
@@ -31,7 +43,7 @@
                         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                     </div>
 
-                    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary fw-bold">Register</button>
+                    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-warning fw-bold">Register</button>
                 </form>
             </div>
         </div>

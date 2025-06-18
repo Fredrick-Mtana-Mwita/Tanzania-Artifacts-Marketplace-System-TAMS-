@@ -1,0 +1,49 @@
+﻿<footer class="footer bg-dark text-light pt-5 pb-3 mt-5 shadow-lg" data-aos="fade-up">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-md-4">
+                <h5 class="text-warning">Tanzania Artifacts</h5>
+                <p>Explore authentic cultural pieces from artisans across Tanzania.</p>
+            </div>
+            <div class="col-md-2">
+                <h6 class="text-uppercase text-warning">Links</h6>
+                <ul class="list-unstyled">
+                    <li><a asp-action="Index" asp-controller="Home" text-decoration-none">Home</a></li>
+                    <li><a asp-action="Index" asp-controller="Product" class="text-light text-decoration-none">Shop</a></li>
+                    <li>
+                        <a class="text-light text-decoration-none" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    </li>
+                    <li>
+                        <a class="text-light text-decoration-none" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h6 class="text-uppercase text-warning">Contact</h6>
+                <p>Email: support@tanzifacts.com</p>
+                <p>Phone: +255 123 456 789</p>
+            </div>
+            <div class="col-md-3">
+                <h6 class="text-uppercase text-warning">Follow Us</h6>
+                <a href="#" class="text-warning me-2" data-bs-toggle="tooltip" title="Facebook">
+                    <i class="fab fa-facebook fa-lg"></i>
+                </a>
+                <a href="#" class="text-warning me-2" data-bs-toggle="tooltip" title="Instagram">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <a href="https://x.com" class="text-warning" data-bs-toggle="tooltip" title="X (formerly Twitter)" target="_blank" rel="noopener">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 512 512" fill="currentColor" class="align-middle">
+                        <path d="M370.6 0H471L301.1 218.3 500.6 512H345.4L229.4 343.4 95.3 512H0L180.5 275.1 0 0H161.6L267.5 153.5 370.6 0z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <hr class="my-4 border-light">
+        <p class="text-center mb-0">&copy; @DateTime.Now.Year Tanzania Artifacts Marketplace. All rights reserved.</p>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="btn btn-warning rounded-circle shadow position-fixed bottom-0 end-0 m-4 d-none" title="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+</footer>

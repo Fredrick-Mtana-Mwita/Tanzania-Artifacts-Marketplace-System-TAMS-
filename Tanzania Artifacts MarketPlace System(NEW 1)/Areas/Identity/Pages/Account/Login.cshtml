@@ -9,7 +9,7 @@
     <div class="col-md-6 col-lg-5">
         <div class="card shadow rounded-4">
             <div class="card-body p-4">
-                <h2 class="card-title text-center mb-4 text-primary fw-bold">Login</h2>
+                <h2 class="card-title text-center mb-4 text-warning fw-bold">Login</h2>
                 <hr />
                 <form id="account" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
@@ -33,7 +33,7 @@
                         </label>
                     </div>
 
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary fw-bold">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-warning fw-bold">Log in</button>
                 </form>
             </div>
         </div>
@@ -41,9 +41,9 @@
         <!-- Links Card -->
         <div class="card mt-3 shadow-sm rounded-4">
             <div class="card-body text-center">
-                <a id="forgot-password" asp-page="./ForgotPassword" class="text-decoration-none mx-2">Forgot password?</a>
-                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-decoration-none mx-2">Register</a>
-                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="text-decoration-none mx-2">Resend confirmation</a>
+                <a id="forgot-password" asp-page="./ForgotPassword" class="text-decoration-none text-warning mx-2">Forgot password?</a>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-decoration-none text-warning mx-2">Register</a>
+                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="text-decoration-none text-warning mx-2">Resend confirmation</a>
             </div>
         </div>
     </div>

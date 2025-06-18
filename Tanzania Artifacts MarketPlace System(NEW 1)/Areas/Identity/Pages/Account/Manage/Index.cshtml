@@ -7,24 +7,93 @@
 
 <h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
+
 <div class="row">
     <div class="col-md-6">
-        <form id="profile-form" method="post">
+        <form id="profile-form" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+            <!-- Profile Image Preview + Reset Button -->
+            <div class="mb-3 text-center">
+                <img src="@Model.ProfileImage" id="profilePreview" class="rounded-circle shadow-sm border" style="width: 120px; height: 120px; object-fit: cover;" alt="Profile Image" />
+                <div class="mt-2">
+                    <button type="button" class="btn btn-primary btn-sm" id="resetImageBtn">
+                        <i class="bi bi-x-circle me-1"></i> Reset Image
+                    </button>
+                </div>
+            </div>
+
+            <!-- Upload Profile Image -->
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ProfileImageFile" type="file" class="form-control" accept="image/*" />
+                <label asp-for="Input.ProfileImageFile" class="form-label">Upload New Profile Image</label>
+                <span asp-validation-for="Input.ProfileImageFile" class="text-danger"></span>
+            </div>
+
+            <!-- Username (read-only) -->
             <div class="form-floating mb-3">
                 <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
                 <label asp-for="Username" class="form-label"></label>
             </div>
+
+            <!-- Phone Number -->
             <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number."/>
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+
+            <!-- Save Button -->
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">
+                Save
+            </button>
+
+            <!-- Loading Spinner Overlay -->
+            <div id="spinnerOverlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background-color:rgba(255,255,255,0.6); z-index:9999;">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        const imageInput = document.querySelector('input[type="file"][name="Input.ProfileImageFile"]');
+        const previewImg = document.getElementById('profilePreview');
+        const resetBtn = document.getElementById('resetImageBtn');
+        const originalSrc = previewImg.src;
+        const spinnerOverlay = document.getElementById("spinnerOverlay");
+        const saveBtn = document.getElementById("update-profile-button");
+
+        // Preview Image
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    previewImg.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Reset to original image
+        resetBtn.addEventListener("click", function () {
+            imageInput.value = null;
+            previewImg.src = originalSrc;
+        });
+
+        // Show spinner and disable Save button on submit
+        document.getElementById("profile-form").addEventListener("submit", function () {
+            spinnerOverlay.style.display = "block";
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> Saving...';
+        });
+    </script>
 }

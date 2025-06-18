@@ -510,6 +510,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                     b.Property<bool>("InStock")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsFeatured")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -531,6 +534,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
 
                     b.Property<string>("SellerId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("SoldCount")
+                        .HasColumnType("int");
 
                     b.Property<int>("StockQuantity")
                         .HasColumnType("int");
@@ -638,29 +644,6 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                     b.ToTable("SellerProfile");
                 });
 
-            modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.WishListItem+WishlistItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WishlistId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("WishlistId");
-
-                    b.ToTable("WishListItem");
-                });
-
             modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Wishlist", b =>
                 {
                     b.Property<int>("Id")
@@ -685,6 +668,29 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("WishList");
+                });
+
+            modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.WishlistItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WishlistId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("WishlistId");
+
+                    b.ToTable("WishListItem");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -874,7 +880,18 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.WishListItem+WishlistItem", b =>
+            modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Wishlist", b =>
+                {
+                    b.HasOne("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.WishlistItem", b =>
                 {
                     b.HasOne("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Product", "Product")
                         .WithMany()
@@ -891,17 +908,6 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Wishlist");
-                });
-
-            modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Wishlist", b =>
-                {
-                    b.HasOne("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Cart", b =>
