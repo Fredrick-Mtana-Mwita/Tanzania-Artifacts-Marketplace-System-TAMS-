@@ -110,13 +110,23 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
 
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
+
+                    // Redirect based on your Roles enum
+                    switch (user.Role)
+                    {
+                        case Roles.Admin:
+                            return LocalRedirect("/Admin/AdminDashboard");
+
+                        case Roles.Seller:
+                            return LocalRedirect("/Seller/SellerDashboard");
+
+                        default:
+                            return LocalRedirect("/Home/Index");
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -134,7 +144,6 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

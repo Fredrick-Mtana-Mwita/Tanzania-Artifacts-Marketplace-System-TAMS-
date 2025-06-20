@@ -1,71 +1,59 @@
-﻿@using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Admin.ViewModel
-@model List<ManageUserVM>
-
+﻿@model List<ManageUserVM>
+@using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Constants
 @{
     ViewData["Title"] = "Manage Users";
 }
 
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-    <div class="sidebar-header text-center py-4 bg-dark text-white">
-        <h4>Admin Dashboard</h4>
+<!-- Icons + Animations -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+
+<div class="container py-5 animate__animated animate__fadeIn">
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+        <h2 class="fw-bold text-dark text-center mb-2">Manage Users</h2>
+        <span class="badge bg-gradient bg-dark text-light px-3 py-2 shadow-sm">Total Users: @Model.Count()</span>
     </div>
-    <ul class="list-unstyled">
-        <li><a href="#" class="sidebar-link" onclick="location.href='@Url.Action("ManageUser", "Admin")'"><i class="fa fa-users"></i> Manage Users</a></li>
-        <li><a href="#" class="sidebar-link" onclick="location.href='@Url.Action("CreateUser", "Admin")'"><i class="fa fa-user-plus"></i> Create User</a></li>
-        <li><a href="#" class="sidebar-link" onclick="location.href='@Url.Action("AdminOrders", "Admin")'"><i class="fa fa-box"></i> Manage Orders</a></li>
-    </ul>
-</div>
 
-<!-- Main Content -->
-<div class="main-content">
-    <div class="container mt-4">
-        <h2 class="card bg-primary text-white mb-4 fw-bold text-center shadow-lg p-3">Manage Users</h2>
-
-        @if (TempData["Message"] != null)
-        {
-            <div class="alert alert-success animate__animated animate__fadeIn">@TempData["Message"]</div>
-        }
-
-        <table class="table table-bordered table-hover table-responsive-md shadow-lg">
-            <thead class="thead-dark">
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th class="text-center">Actions</th>
+    <div class="table-responsive shadow-lg border rounded-4 bg-white animate__animated animate__fadeInUp animate__faster">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light text-white text-center">
+                <tr class="fs-6">
+                    <th><i class="bi bi-person-badge"></i> Name</th>
+                    <th><i class="bi bi-envelope-at"></i> Email</th>
+                    <th><i class="bi bi-person-gear"></i> Role</th>
+                    <th><i class="bi bi-tools"></i> Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var user in Model)
                 {
-                    <tr class="animate__animated animate__fadeIn">
-                        <td>@user.FirstName</td>
-                        <td>@user.LastName</td>
+                    <tr class="hover-row animate__animated animate__fadeInUp animate__faster">
+                        <td>@user.FirstName @user.LastName</td>
                         <td>@user.Email</td>
-                        <td>@user.Role</td>
-                        <td class="text-center">
-                            <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap">
-                                <!-- Update Role Form -->
+                        <td>
+                            <span class="badge bg-@(
+                                user.Role == Roles.Admin ? "danger" :
+                                user.Role == Roles.Seller ? "primary" : "secondary"
+                            ) rounded-pill px-3">
+                                @user.Role
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-center gap-2">
                                 <form asp-action="UpdateUserRole" method="post" class="d-flex align-items-center gap-2">
                                     <input type="hidden" name="id" value="@user.Id" />
-                                    <select name="role" class="form-control form-control-sm w-auto">
-                                        @foreach (Roles role in Enum.GetValues(typeof(Roles)))
-                                        {
-                                            <option value="@role" selected="@(user.Role == role)">
-                                                @role
-                                            </option>
-                                        }
+                                    <select name="role" class="form-select form-select-sm shadow-sm" style="width: 130px;">
+                                        <option value="User" selected="@(user.Role == Roles.User)">User</option>
+                                        <option value="Seller" selected="@(user.Role == Roles.Seller)">Seller</option>
+                                        <option value="Admin" selected="@(user.Role == Roles.Admin)">Admin</option>
                                     </select>
-                                    <button type="submit" class="btn btn-sm btn-primary transition-all">Update</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-success transition-btn">
+                                        <i class="bi bi-check2-circle"></i>
+                                    </button>
                                 </form>
-
-                                <!-- Delete User Form -->
-                                <form asp-action="DeleteUser" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');" class="ml-2">
-                                    <input type="hidden" name="id" value="@user.Id" />
-                                    <button type="submit" class="btn btn-sm btn-danger transition-all">Delete</button>
-                                </form>
+                                <a asp-action="DeleteUser" asp-route-id="@user.Id" class="btn btn-sm btn-outline-danger transition-btn">
+                                    <i class="bi bi-trash3"></i>
+                                </a>
                             </div>
                         </td>
                     </tr>
@@ -75,15 +63,3 @@
     </div>
 </div>
 
-<!-- Sidebar Toggle Button -->
-<button class="sidebar-toggle" id="toggleSidebar">
-    <span>&#9776;</span>
-</button>
-
-
-<!-- JavaScript for Sidebar Toggle -->
-<script>
-    document.getElementById('toggleSidebar').addEventListener('click', function() {
-        document.getElementById('sidebar').classList.toggle('active');
-    });
-</script>

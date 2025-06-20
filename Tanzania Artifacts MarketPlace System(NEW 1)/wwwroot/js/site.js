@@ -3,25 +3,75 @@
 
 // Write your JavaScript code.
 
-// JavaScript code for sidebar toggle
+// Sidebar toggle logic
 document.addEventListener("DOMContentLoaded", function () {
     const sidebar = document.getElementById("sidebar");
     const toggleBtn = document.getElementById("sidebarToggle");
 
+    // Existing sidebar toggle for main layout
     toggleBtn?.addEventListener("click", function () {
         sidebar.classList.toggle("show");
     });
 
-    // Optional: click outside sidebar closes it on small screens
+    // Close sidebar on outside click for mobile
     document.addEventListener("click", function (e) {
-        if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target) && sidebar.classList.contains("show")) {
+        if (
+            sidebar &&
+            toggleBtn &&
+            !sidebar.contains(e.target) &&
+            !toggleBtn.contains(e.target) &&
+            sidebar.classList.contains("show")
+        ) {
             sidebar.classList.remove("show");
         }
     });
 
-    // Optionally refresh cart count on page load
-    // refreshCartCount();
+    // Theme initialization
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    document.body.classList.add(`${savedTheme}-theme`);
+
+    const icon = document.getElementById("themeIcon");
+    if (icon) {
+        if (savedTheme === "light") {
+            icon.classList.remove("bi-moon-stars-fill");
+            icon.classList.add("bi-sun-fill");
+        }
+    }
+
+    // Admin mobile sidebar toggle button
+    const adminSidebarToggle = document.querySelector(".toggle-sidebar");
+    const adminSidebar = document.querySelector(".admin-sidebar");
+
+    if (adminSidebarToggle && adminSidebar) {
+        adminSidebarToggle.addEventListener("click", function () {
+            adminSidebar.classList.toggle("show");
+        });
+    }
 });
+
+// 🌗 Theme toggle function (dark/light)
+function toggleTheme() {
+    const body = document.body;
+    const icon = document.getElementById("themeIcon");
+
+    if (body.classList.contains("dark-theme")) {
+        body.classList.remove("dark-theme");
+        body.classList.add("light-theme");
+        if (icon) {
+            icon.classList.remove("bi-sun-fill");
+            icon.classList.add("bi-moon-stars-fill");
+        }
+        localStorage.setItem("theme", "light");
+    } else {
+        body.classList.remove("light-theme");
+        body.classList.add("dark-theme");
+        if (icon) {
+            icon.classList.remove("bi-moon-stars-fill");
+            icon.classList.add("bi-sun-fill");
+        }
+        localStorage.setItem("theme", "dark");
+    }
+}
 
 // 🔁 Refresh Cart Count in Navbar after add/remove
 function refreshCartCount() {
@@ -46,7 +96,6 @@ function addToCart(productId) {
         .then(response => {
             if (response.ok) {
                 refreshCartCount(); // 🔁 Update cart badge
-                // Optional: show a toast or confirmation
                 console.log("Product added to cart.");
             } else {
                 console.error('Add to cart failed');

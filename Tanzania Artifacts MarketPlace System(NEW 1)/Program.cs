@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Implementations;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Interfaces;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICartRepository,CartRepository>();   
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 
 // Register UnitOfWork with DI

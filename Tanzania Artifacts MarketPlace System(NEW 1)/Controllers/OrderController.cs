@@ -1,9 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Interfaces;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.ViewModel;
 
 [Authorize]
 public class OrderController : Controller
@@ -12,62 +17,43 @@ public class OrderController : Controller
     private readonly IProductRepository _productRepository;
     private readonly IOrderRepository _orderRepository;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IEmailService _emailService;
 
     public OrderController(
         ICartRepository cartRepository,
         IProductRepository productRepository,
         IOrderRepository orderRepository,
-        UserManager<ApplicationUser> userManager)
+        UserManager<ApplicationUser> userManager,
+        IEmailService emailService)
     {
         _cartRepository = cartRepository;
         _productRepository = productRepository;
         _orderRepository = orderRepository;
         _userManager = userManager;
+        _emailService = emailService;
     }
 
-    // GET: Order/Checkout
     public async Task<IActionResult> Checkout()
     {
         var user = await _userManager.GetUserAsync(User);
-
-        if (user == null)
-        {
-            return RedirectToAction("Login", "Account");
-        }
+        if (user == null) return RedirectToAction("Login", "Account");
 
         var cart = await _cartRepository.GetCartByUserIdAsync(user.Id);
+        if (cart == null || !cart.Items.Any()) return RedirectToAction("Index", "Cart");
 
-        if (cart == null || !cart.Items.Any())
-        {
-            return RedirectToAction("Index", "Cart");
-        }
-
-        var vm = new CheckoutVM
-        {
-            Items = (List<CartItem>)cart.Items
-        };
-
-        return View(vm); 
+        var vm = new CheckoutVM { Items = cart.Items.ToList() };
+        return View(vm);
     }
-
 
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> PlaceOrder(CheckoutVM vm)
     {
         var user = await _userManager.GetUserAsync(User);
-
-        if (user == null)
-        {
-            return RedirectToAction("Login", "Account");
-        }
+        if (user == null) return RedirectToAction("Login", "Account");
 
         var cart = await _cartRepository.GetCartByUserIdAsync(user.Id);
-
-        if (cart == null || !cart.Items.Any())
-        {
-            return RedirectToAction("Index", "Cart");
-        }
+        if (cart == null || !cart.Items.Any()) return RedirectToAction("Index", "Cart");
 
         var order = new Order
         {
@@ -88,14 +74,54 @@ public class OrderController : Controller
         await _orderRepository.AddAsync(order);
         await _cartRepository.ClearCartAsync(user.Id);
 
+        // Build Email Body with table
+        string subject = "Order Confirmation - Tanzania Artifacts Marketplace";
+
+        string tableRows = string.Join("", order.Items.Select(item => $@"
+            <tr>
+                <td style='padding:8px;border:1px solid #ccc'>{item.Product?.Name}</td>
+                <td style='padding:8px;border:1px solid #ccc'>{item.Quantity}</td>
+                <td style='padding:8px;border:1px solid #ccc'>TSh {item.UnitPrice:N2}</td>
+                <td style='padding:8px;border:1px solid #ccc'>TSh {(item.Quantity * item.UnitPrice):N2}</td>
+            </tr>
+        "));
+
+        string body = $@"
+            <div style='font-family:sans-serif;'>
+                <h2>Hello {user.FirstName}, thank you for your order!</h2>
+                <p>Your order <strong>#{order.Id}</strong> has been successfully placed.</p>
+                <p><strong>Shipping City:</strong> {order.ShippingCity}</p>
+                <p><strong>Payment Method:</strong> {order.PaymentMethod}</p>
+                <p><strong>Order Date:</strong> {order.OrderDate:yyyy-MM-dd HH:mm}</p>
+                <p><strong>Total Amount:</strong> TSh {order.TotalAmount:N2}</p>
+
+                <h3 style='margin-top:30px;'>Order Items</h3>
+                <table style='border-collapse:collapse;width:100%;margin-top:10px;'>
+                    <thead>
+                        <tr style='background:#f0f0f0;'>
+                            <th style='padding:8px;border:1px solid #ccc;'>Product</th>
+                            <th style='padding:8px;border:1px solid #ccc;'>Quantity</th>
+                            <th style='padding:8px;border:1px solid #ccc;'>Unit Price</th>
+                            <th style='padding:8px;border:1px solid #ccc;'>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>{tableRows}</tbody>
+                </table>
+
+                <p style='margin-top:30px;'>We will notify you once your order is processed.</p>
+                <p style='color:#888;'>Tanzania Artifacts Marketplace Team</p>
+            </div>
+        ";
+
+        await _emailService.SendEmailAsync(user.Email!, subject, body);
+
         return RedirectToAction("Confirmation", new { id = order.Id });
     }
 
     public async Task<IActionResult> Confirmation(int id)
     {
         var order = await _orderRepository.GetByIdAsync(id);
-        if (order == null)
-            return NotFound();
+        if (order == null) return NotFound();
 
         return View(order);
     }
@@ -129,7 +155,4 @@ public class OrderController : Controller
 
         return View(orders);
     }
-
-
-
 }

@@ -3,14 +3,14 @@
     <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/css/site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"7745"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM=\u0022"},{"Name":"Last-Modified","Value":"Wed, 18 Jun 2025 12:06:19 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-joHBteOQfitGbexMPbD6eN4CEKTQHdiT07FCcpnaJ84="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"14627"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022joHBteOQfitGbexMPbD6eN4CEKTQHdiT07FCcpnaJ84=\u0022"},{"Name":"Last-Modified","Value":"Thu, 19 Jun 2025 14:17:31 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/css/site.hwzqg3keju.css">
+    <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/css/site.yj4mho3emh.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"hwzqg3keju"},{"Name":"integrity","Value":"sha256-vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM="},{"Name":"label","Value":"_content/Tanzania Artifacts MarketPlace System(NEW 1)/css/site.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7745"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM=\u0022"},{"Name":"Last-Modified","Value":"Wed, 18 Jun 2025 12:06:19 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"yj4mho3emh"},{"Name":"integrity","Value":"sha256-joHBteOQfitGbexMPbD6eN4CEKTQHdiT07FCcpnaJ84="},{"Name":"label","Value":"_content/Tanzania Artifacts MarketPlace System(NEW 1)/css/site.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"14627"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022joHBteOQfitGbexMPbD6eN4CEKTQHdiT07FCcpnaJ84=\u0022"},{"Name":"Last-Modified","Value":"Thu, 19 Jun 2025 14:17:31 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/favicon.61n19gt1b8.ico">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</AssetFile>
@@ -96,6 +96,18 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-p\u002B5wrHqWM3GRh5qT9oHQIVotKM/ffZgLHm6wuMAk0uo="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"12800"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022p\u002B5wrHqWM3GRh5qT9oHQIVotKM/ffZgLHm6wuMAk0uo=\u0022"},{"Name":"Last-Modified","Value":"Sat, 10 May 2025 11:03:57 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/images/profileImages/6f25c63d-724b-4616-b403-94d2d2b274d1.hrsf5j2ho4.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\profileImages\6f25c63d-724b-4616-b403-94d2d2b274d1.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"hrsf5j2ho4"},{"Name":"integrity","Value":"sha256-ow\u002BC73OlEN6Dv8tIJuYf5S4bGhuDHpeLCySYNp70JdU="},{"Name":"label","Value":"_content/Tanzania Artifacts MarketPlace System(NEW 1)/images/profileImages/6f25c63d-724b-4616-b403-94d2d2b274d1.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"32230"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022ow\u002BC73OlEN6Dv8tIJuYf5S4bGhuDHpeLCySYNp70JdU=\u0022"},{"Name":"Last-Modified","Value":"Thu, 19 Jun 2025 06:54:45 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/images/profileImages/6f25c63d-724b-4616-b403-94d2d2b274d1.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\profileImages\6f25c63d-724b-4616-b403-94d2d2b274d1.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ow\u002BC73OlEN6Dv8tIJuYf5S4bGhuDHpeLCySYNp70JdU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"32230"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022ow\u002BC73OlEN6Dv8tIJuYf5S4bGhuDHpeLCySYNp70JdU=\u0022"},{"Name":"Last-Modified","Value":"Thu, 19 Jun 2025 06:54:45 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/images/profileImages/89a312d7-4002-4f70-8107-082c88cda1b3.jpg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\profileImages\89a312d7-4002-4f70-8107-082c88cda1b3.jpg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
@@ -156,17 +168,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-cT7q/e/Z3YqxPqrwGqPXg1a0C/3rbs5P5eLVzV9ZRzY="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"130626"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022cT7q/e/Z3YqxPqrwGqPXg1a0C/3rbs5P5eLVzV9ZRzY=\u0022"},{"Name":"Last-Modified","Value":"Thu, 15 May 2025 09:20:05 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/js/site.26ocftqo4c.js">
+    <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/js/site.hj175ikhr6.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"26ocftqo4c"},{"Name":"integrity","Value":"sha256-plfATkq4ZKm2Cvt9r\u002Bbn3wwz3ouLDl5qBqb3asFziBo="},{"Name":"label","Value":"_content/Tanzania Artifacts MarketPlace System(NEW 1)/js/site.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2088"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022plfATkq4ZKm2Cvt9r\u002Bbn3wwz3ouLDl5qBqb3asFziBo=\u0022"},{"Name":"Last-Modified","Value":"Wed, 18 Jun 2025 10:22:49 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"hj175ikhr6"},{"Name":"integrity","Value":"sha256-c89IUHZ5RZ3\u002B2F2OKmCylBDMgIAz769s3cwMoTlo5Cw="},{"Name":"label","Value":"_content/Tanzania Artifacts MarketPlace System(NEW 1)/js/site.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3623"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022c89IUHZ5RZ3\u002B2F2OKmCylBDMgIAz769s3cwMoTlo5Cw=\u0022"},{"Name":"Last-Modified","Value":"Thu, 19 Jun 2025 14:02:59 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/js/site.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-plfATkq4ZKm2Cvt9r\u002Bbn3wwz3ouLDl5qBqb3asFziBo="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2088"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022plfATkq4ZKm2Cvt9r\u002Bbn3wwz3ouLDl5qBqb3asFziBo=\u0022"},{"Name":"Last-Modified","Value":"Wed, 18 Jun 2025 10:22:49 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-c89IUHZ5RZ3\u002B2F2OKmCylBDMgIAz769s3cwMoTlo5Cw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3623"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022c89IUHZ5RZ3\u002B2F2OKmCylBDMgIAz769s3cwMoTlo5Cw=\u0022"},{"Name":"Last-Modified","Value":"Thu, 19 Jun 2025 14:02:59 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/lib/bootstrap/dist/css/bootstrap-grid.bqjiyaj88i.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\bootstrap-grid.css'))</AssetFile>
@@ -2692,13 +2704,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Tanzania Artifacts MarketPlace System(NEW 1).ohp1l7j03e.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-tOcAVeLcfwDwZWCcdP0Q5uEPA4fvvWyju9UCqbeOZc4="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1162"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022tOcAVeLcfwDwZWCcdP0Q5uEPA4fvvWyju9UCqbeOZc4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 18 Jun 2025 03:31:23 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1162"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022tOcAVeLcfwDwZWCcdP0Q5uEPA4fvvWyju9UCqbeOZc4=\u0022"},{"Name":"Last-Modified","Value":"Thu, 19 Jun 2025 14:31:41 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1).ohp1l7j03e.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Tanzania Artifacts MarketPlace System(NEW 1).ohp1l7j03e.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ohp1l7j03e"},{"Name":"integrity","Value":"sha256-tOcAVeLcfwDwZWCcdP0Q5uEPA4fvvWyju9UCqbeOZc4="},{"Name":"label","Value":"_content/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1).bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1162"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022tOcAVeLcfwDwZWCcdP0Q5uEPA4fvvWyju9UCqbeOZc4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 18 Jun 2025 03:31:23 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1162"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022tOcAVeLcfwDwZWCcdP0Q5uEPA4fvvWyju9UCqbeOZc4=\u0022"},{"Name":"Last-Modified","Value":"Thu, 19 Jun 2025 14:31:41 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

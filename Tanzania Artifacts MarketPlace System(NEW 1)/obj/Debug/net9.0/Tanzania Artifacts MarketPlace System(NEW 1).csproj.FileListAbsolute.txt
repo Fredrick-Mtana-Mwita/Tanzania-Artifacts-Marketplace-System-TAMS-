@@ -10,7 +10,9 @@ D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts M
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).pdb
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Azure.Core.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Azure.Identity.dll
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Humanizer.dll
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\MailKit.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
@@ -74,6 +76,7 @@ D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts M
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\MimeKit.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Mono.TextTemplating.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\Newtonsoft.Json.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\NuGet.Common.dll
@@ -356,7 +359,9 @@ D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts M
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\nezrqnk58p-muycvpuwrr.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\v0zgfp0y55-87fc7y1x7t.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\yfc7ypekbg-mlv21k5csn.gz
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\kx5jlyzdim-yj4mho3emh.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\8uiudbouiw-61n19gt1b8.gz
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\x3iv3yw6wf-hj175ikhr6.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\lt68c4x32l-bqjiyaj88i.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\t4uild2x7b-c2jlpeoesf.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\k7ifr2nm3d-erw9l3u2r3.gz
@@ -584,5 +589,3 @@ D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts M
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).pdb
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).genruntimeconfig.cache
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\ref\Tanzania Artifacts MarketPlace System(NEW 1).dll
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\x3iv3yw6wf-26ocftqo4c.gz
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\kx5jlyzdim-hwzqg3keju.gz

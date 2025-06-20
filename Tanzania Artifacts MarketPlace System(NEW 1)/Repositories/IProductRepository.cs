@@ -22,5 +22,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Repositories
 
         // Gets best-selling products (based on SoldCount)
         Task<IEnumerable<Product>> GetBestSellersAsync();
+        Task UpdateAsync(Product product);
+        Task DeleteAsync(Product product);
+
     }
 }

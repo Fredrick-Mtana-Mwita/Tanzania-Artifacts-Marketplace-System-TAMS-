@@ -1,0 +1,65 @@
+﻿@model Banner
+@{
+    ViewData["Title"] = "Create Banner";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+<div class="container py-5 animate__animated animate__fadeIn">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow rounded-4">
+                <div class="card-body p-4">
+                    <h2 class="card-title text-center text-warning fw-bold mb-4">
+                        <i class="bi bi-image-fill me-2"></i>Create New Banner
+                    </h2>
+
+                    <form asp-action="CreateBanner" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label fw-semibold">Title</label>
+                            <input asp-for="Title" class="form-control rounded-pill" placeholder="Enter banner title" />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Subtitle" class="form-label fw-semibold">Subtitle</label>
+                            <input asp-for="Subtitle" class="form-control rounded-pill" placeholder="Enter banner subtitle" />
+                            <span asp-validation-for="Subtitle" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="ImageFile" class="form-label fw-semibold">Upload Image</label>
+                            <input type="file" class="form-control" name="ImageFile" id="ImageFile" accept="image/*" onchange="previewBannerImage(event)" required />
+                        </div>
+
+                        <div class="mb-3 text-center">
+                            <img id="preview" src="https://via.placeholder.com/600x200?text=Preview+Image" class="img-fluid rounded shadow-sm border" style="max-height: 200px;" />
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-warning rounded-pill fw-bold">
+                                <i class="bi bi-check-circle me-2"></i>Create Banner
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <a asp-action="BannerManagement" class="btn btn-sm btn-outline-warning rounded-pill px-4">
+                            <i class="bi bi-arrow-left"></i> Back to Banner Management
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function previewBannerImage(event) {
+            const preview = document.getElementById('preview');
+            preview.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+}

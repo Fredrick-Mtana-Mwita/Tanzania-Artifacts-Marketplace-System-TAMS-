@@ -49,5 +49,17 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Repositories
                              .OrderByDescending(p => p.SoldCount)
                              .Take(6)
                              .ToListAsync();
+        public async Task UpdateAsync(Product product)
+        {
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(Product product)
+        {
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

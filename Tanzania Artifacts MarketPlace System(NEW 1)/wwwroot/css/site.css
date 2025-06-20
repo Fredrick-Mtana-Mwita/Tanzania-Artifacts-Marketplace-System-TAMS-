@@ -426,6 +426,295 @@ table tbody tr:hover {
         font-size: 0.95rem;
     }
 }
+/*===styling for admindashboard.cshtml starts here ===*/
+
+.dashboard-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-float {
+    animation: floatIcon 2.5s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+/*===styling for admindashboard.cshtml ends here ===*/
+
+/*===styling for adminorder.cshtml starts here ===*/
+
+.hover-row:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+}
+
+.transition-btn {
+    transition: all 0.2s ease-in-out;
+}
+
+    .transition-btn:hover {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+@media (max-width: 576px) {
+    .table th, .table td {
+        font-size: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .btn {
+        padding: 0.35rem 0.65rem;
+    }
+
+    .badge {
+        font-size: 0.75rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .table th, .table td {
+        font-size: 1rem;
+    }
+}
+
+/*===styling for adminorder.cshtml ends here ===*/
+/*===styling for ManageUser.cshtml starts here ===*/
+
+.hover-row:hover {
+    background-color: rgba(255, 228, 132, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.1);
+}
+
+.transition-btn {
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+    .transition-btn:hover {
+        transform: scale(1.1);
+        opacity: 0.85;
+    }
+
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 0.85rem;
+    }
+
+    .form-select {
+        width: 100px !important;
+    }
+
+    .btn {
+        padding: 0.35rem 0.65rem;
+    }
+}
+
+/*===styling for ManageUser.cshtml ends here ===*/
+/*===styling for ProductApproval.cshtml ends here ===*/
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-success:hover,
+.btn-outline-danger:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+@media (max-width: 576px) {
+    .card-body h5 {
+        font-size: 1rem;
+    }
+
+    .card-body p {
+        font-size: 0.85rem;
+    }
+}
+
+/*===styling for ProductApproval.cshtml ends here ===*/
+/*===styling for AdminSidebar.cshtml starts here ===*/
+/* Base styles */
+body.light-theme {
+    background-color: #f9fafb;
+    color: #111;
+}
+
+body.dark-theme {
+    background-color: #111827;
+    color: #fff;
+}
+
+/* Sidebar */
+.admin-sidebar {
+    transition: all 0.3s ease;
+}
+
+    .admin-sidebar a {
+        color: inherit;
+        padding: 12px 18px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .admin-sidebar a:hover,
+        .admin-sidebar a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fbbf24 !important;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+
+.toggle-sidebar {
+    display: none;
+}
+
+/* Mobile sidebar toggle */
+@media (max-width: 768px) {
+    .admin-sidebar {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 250px;
+        height: 100%;
+        background-color: #111827;
+        z-index: 1000;
+        padding-top: 60px;
+        transition: left 0.3s ease;
+    }
+
+        .admin-sidebar.show {
+            left: 0;
+        }
+
+    .toggle-sidebar {
+        display: inline-block;
+    }
+}
+
+/*===styling for AdminSidebar.cshtml ends here ===*/
+/* Base styles for theme starts here  */
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+    /* Light Theme */
+    body.light-theme {
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+
+.light-theme .card,
+.light-theme .table,
+.light-theme .modal-content {
+    background-color: #ffffff;
+    color: #212529;
+    border-color: #dee2e6;
+}
+
+.light-theme .list-group-item {
+    background-color: #fff;
+    color: #212529;
+    border-color: #dee2e6;
+}
+
+.light-theme a,
+.light-theme .bi {
+    color: #0d6efd;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-theme .card,
+.dark-theme .table,
+.dark-theme .modal-content {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border-color: #333;
+}
+
+.dark-theme .list-group-item {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border-color: #333;
+}
+
+.dark-theme a,
+.dark-theme .bi {
+    color: #66b2ff;
+}
+
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5 {
+    color: #ffffff;
+}
+
+/* Ensure icons and text contrast well */
+.dark-theme .btn-outline-primary {
+    color: #66b2ff;
+    border-color: #66b2ff;
+}
+
+    .dark-theme .btn-outline-primary:hover {
+        background-color: #66b2ff;
+        color: #000;
+    }
+
+/* Navbar adjustments */
+.dark-theme .navbar {
+    background-color: #1e1e1e !important;
+    border-bottom: 1px solid #333;
+}
+
+.light-theme .navbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Table hover fix */
+.dark-theme .table-hover tbody tr:hover {
+    background-color: #2a2a2a;
+}
+/* Base styles for theme starts here  */
 
 
 

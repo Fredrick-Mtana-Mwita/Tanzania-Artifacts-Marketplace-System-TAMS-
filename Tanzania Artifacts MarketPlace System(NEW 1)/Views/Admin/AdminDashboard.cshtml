@@ -1,126 +1,94 @@
-﻿@* <!DOCTYPE html> *@
-@* <html lang="en"> *@
-@* <head> *@
-@*     <meta charset="UTF-8"> *@
-@*     <meta name="viewport" content="width=device-width, initial-scale=1.0"> *@
-@*     <title>Admin Dashboard</title> *@
-@*     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> *@
-@*     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"> *@
+﻿@model AdminDashboardVM
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-@*     <style> *@
-@*         body { *@
-@*             margin: 0; *@
-@*             padding: 0; *@
-@*         } *@
 
-@*         #sidebar { *@
-@*             width: 250px; *@
-@*             height: 100vh; *@
-@*             background-color: #343a40; *@
-@*             color: white; *@
-@*             position: fixed; *@
-@*             transition: all 0.3s; *@
-@*         } *@
+<div class="container py-5 animate__animated animate__fadeIn">
+    <h2 class="text-center fw-bold text-primary mb-5 animate__animated animate__fadeInDown">📊 Admin Dashboard</h2>
 
-@*             #sidebar .nav-link { *@
-@*                 color: white; *@
-@*                 padding: 15px 20px; *@
-@*             } *@
+    <!-- Metrics Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-sm-6 col-lg-4">
+            <div class="card dashboard-card text-center shadow border-0 rounded-4 p-3">
+                <i class="bi bi-people-fill fs-1 text-info icon-float mb-2"></i>
+                <h5>Total Users</h5>
+                <p class="fs-4 fw-semibold">@Model.TotalUsers</p>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+            <div class="card dashboard-card text-center shadow border-0 rounded-4 p-3">
+                <i class="bi bi-shop-window fs-1 text-success icon-float mb-2"></i>
+                <h5>Total Sellers</h5>
+                <p class="fs-4 fw-semibold">@Model.TotalSellers</p>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+            <div class="card dashboard-card text-center shadow border-0 rounded-4 p-3">
+                <i class="bi bi-cart-check-fill fs-1 text-warning icon-float mb-2"></i>
+                <h5>Total Orders</h5>
+                <p class="fs-4 fw-semibold">@Model.TotalOrders</p>
+            </div>
+        </div>
+    </div>
 
-@*                 #sidebar .nav-link:hover { *@
-@*                     background-color: #495057; *@
-@*                     color: #ffffff; *@
-@*                 } *@
+    <!-- Orders Status -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-6">
+            <div class="card dashboard-card text-center shadow border-0 rounded-4 p-3">
+                <i class="bi bi-truck fs-1 text-secondary icon-float mb-2"></i>
+                <h5>Pending Orders</h5>
+                <p class="fs-4 fw-semibold">@Model.PendingOrders</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card dashboard-card text-center shadow border-0 rounded-4 p-3">
+                <i class="bi bi-check-circle-fill fs-1 text-success icon-float mb-2"></i>
+                <h5>Delivered Orders</h5>
+                <p class="fs-4 fw-semibold">@Model.CompletedOrders</p>
+            </div>
+        </div>
+    </div>
 
-@*             #sidebar.collapsed { *@
-@*                 width: 70px; *@
-@*             } *@
+    <!-- Recent Orders Table -->
+    <div class="card shadow border-0 rounded-4 p-4 mb-4 animate__animated animate__fadeInUp">
+        <h4 class="mb-3 text-primary text-center fw-bold"><i class="bi bi-clock-history me-2"></i>Recent Orders</h4>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model.RecentOrders)
+                    {
+                        <tr>
+                            <td>@order.Id</td>
+                            <td>@order.User?.FirstName @order.User?.LastName</td>
+                            <td>
+                                <span class="badge bg-@(order.Status == OrderStatus.Delivered ? "success" : order.Status == OrderStatus.Shipped ? "primary" : "warning")">
+                                    @order.Status
+                                </span>
+                            </td>
+                            <td><strong>TSh @order.TotalAmount.ToString("N2")</strong></td>
+                            <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-@*                 #sidebar.collapsed .nav-link span { *@
-@*                     display: none; *@
-@*                 } *@
-
-@*                 #sidebar.collapsed .nav-link i { *@
-@*                     margin-right: 0; *@
-@*                     text-align: center; *@
-@*                     width: 100%; *@
-@*                 } *@
-
-@*         #main-content { *@
-@*             margin-left: 250px; *@
-@*             transition: margin-left 0.3s; *@
-@*             padding: 20px; *@
-@*         } *@
-
-@*             #main-content.collapsed { *@
-@*                 margin-left: 70px; *@
-@*             } *@
-
-@*         .toggle-btn { *@
-@*             position: absolute; *@
-@*             top: 15px; *@
-@*             right: -20px; *@
-@*             background-color: #343a40; *@
-@*             border-radius: 0 5px 5px 0; *@
-@*             color: white; *@
-@*             padding: 5px 10px; *@
-@*             cursor: pointer; *@
-@*         } *@
-@*     </style> *@
-@* </head> *@
-@* <body> *@
-
-@*     <!-- Sidebar --> *@
-@*     <div id="sidebar"> *@
-@*         <div class="text-center py-3 border-bottom"> *@
-@*             <h5 class="mb-0">Admin</h5> *@
-@*         </div> *@
-@*         @* <div class="toggle-btn" onclick="toggleSidebar()"> *@
-@*             <i class="fas fa-bars"></i> *@
-@*         </div> *@ 
-@*         <nav class="nav flex-column mt-4"> *@
-@*             <a class="nav-link" asp-controller="AdminDashboard" asp-action="Index"> *@
-@*                 <i class="fas fa-tachometer-alt me-2"></i><span>Dashboard</span> *@
-@*             </a> *@
-@*             <a class="nav-link" asp-controller="AdminProducts" asp-action="Index"> *@
-@*                 <i class="fas fa-boxes me-2"></i><span>Manage Products</span> *@
-@*             </a> *@
-@*             <a class="nav-link" asp-controller="AdminOrders" asp-action="Index"> *@
-@*                 <i class="fas fa-shopping-cart me-2"></i><span>Manage Orders</span> *@
-@*             </a> *@
-@*             <a class="nav-link" asp-controller="AdminPayments" asp-action="Index"> *@
-@*                 <i class="fas fa-credit-card me-2"></i><span>Manage Payments</span> *@
-@*             </a> *@
-@*             <a class="nav-link" asp-controller="AdminSellers" asp-action="Index"> *@
-@*                 <i class="fas fa-store me-2"></i><span>Manage Sellers</span> *@
-@*             </a> *@
-@*             <a class="nav-link" asp-controller="AdminBuyers" asp-action="Index"> *@
-@*                 <i class="fas fa-users me-2"></i><span>Manage Buyers</span> *@
-@*             </a> *@
-@*             <a class="nav-link" asp-controller="AdminReports" asp-action="Index"> *@
-@*                 <i class="fas fa-chart-line me-2"></i><span>Reports & Insights</span> *@
-@*             </a> *@
-@*             <a class="nav-link" asp-controller="AdminSettings" asp-action="Index"> *@
-@*                 <i class="fas fa-cogs me-2"></i><span>System Settings</span> *@
-@*             </a> *@
-@*         </nav> *@
-@*     </div> *@
-
-@*     <!-- Main content --> *@
-@*     <div id="main-content"> *@
-@*         <h2>Welcome to the Admin Dashboard</h2> *@
-@*         <p>Here you can manage all operations.</p> *@
-@*     </div> *@
-
-@*     <!-- Bootstrap + JavaScript --> *@
-@*     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> *@
-@*     <script> *@
-@*         function toggleSidebar() { *@
-@*             const sidebar = document.getElementById('sidebar'); *@
-@*             const content = document.getElementById('main-content'); *@
-@*             sidebar.classList.toggle('collapsed'); *@
-@*             content.classList.toggle('collapsed'); *@
-@*         } *@
-@*     </script> *@
-@* </body> *@
-@* </html> *@
+    <!-- Total Sales -->
+    <div class="card dashboard-card text-center shadow border-0 rounded-4 p-4 bg-light">
+        <h4 class="mb-3 text-dark"><i class="bi bi-bar-chart-line-fill me-2"></i>Sales Summary</h4>
+        <div class="fs-4 fw-bold text-success">TSh @Model.TotalSales.ToString("N2")</div>
+    </div>
+</div>

@@ -283,6 +283,37 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Banner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subtitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Banners");
+                });
+
             modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Cart", b =>
                 {
                     b.Property<int>("Id")
@@ -508,6 +539,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("InStock")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsFeatured")

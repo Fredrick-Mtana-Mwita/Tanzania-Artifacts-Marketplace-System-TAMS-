@@ -26,6 +26,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data
         public DbSet<ActivityLog> ActivityLogs => Set<ActivityLog>();
         public DbSet<Notification> Notifications => Set<Notification>();
         public DbSet<SellerProfile> SellerProfiles => Set<SellerProfile>();
+        public DbSet<Banner> Banners => Set<Banner>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

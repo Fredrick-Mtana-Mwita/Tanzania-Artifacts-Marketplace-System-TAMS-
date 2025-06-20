@@ -1,136 +1,38 @@
-﻿@{
-    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
-}
+﻿<!-- Theme & Sidebar Toggle -->
+<div class="d-flex justify-content-between align-items-center mb-4 px-2">
+    <button class="btn btn-sm btn-outline-secondary rounded-pill" onclick="toggleTheme()">
+        <i id="themeIcon" class="bi bi-moon-stars-fill"></i>
+    </button>
 
-<style>
-    .sidebar {
-        background: linear-gradient(135deg, #1f1c2c, #928DAB); /* Elegant gradient */
-        min-height: 100vh;
-        width: 250px;
-    }
-
-        .sidebar .nav-link {
-            color: #f1f1f1 !important;
-            transition: all 0.3s ease;
-        }
-
-            .sidebar .nav-link:hover {
-                background-color: rgba(255, 255, 255, 0.1);
-                border-radius: 8px;
-                padding-left: 18px;
-            }
-
-    .active-admin-link {
-        background-color: rgba(255, 255, 255, 0.2) !important;
-        border-radius: 8px;
-        font-weight: bold;
-        color: #fff !important;
-    }
-
-    .sidebar .btn-outline-light {
-        border-color: #f8f9fa;
-        color: #f8f9fa;
-    }
-
-        .sidebar .btn-outline-light:hover {
-            background-color: #f8f9fa;
-            color: #1f1c2c;
-        }
-</style>
-
-<nav id="sidebar" class="sidebar p-4 shadow-lg text-white rounded-end-4">
-    <!-- User Profile -->
-    <div class="user-profile d-flex align-items-center mb-4">
-        <img src="https://i.pravatar.cc/48?img=15" alt="Seller Avatar" class="rounded-circle me-3 shadow" />
-        <div>
-            <div class="fw-bold">Fred Mwita</div>
-            <small class="text-light opacity-75">System Admin</small>
-        </div>
-    </div>
-
-    <h5 class="fw-semibold mb-4 d-flex align-items-center">
-        <i class="bi bi-shop me-2 fs-4"></i> Admin Menu
-    </h5>
-
-    <ul class="nav flex-column">
-        <li class="nav-item mb-2">
-            <a class="nav-link @(currentAction == "AdminDashboard" ? "active-admin-link" : "")"
-               asp-controller="Admin" asp-action="AdminDashboard">
-                <i class="bi bi-house-door me-2"></i> Admin Dashboard
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link @(currentAction == "CreateSeller" ? "active-admin-link" : "")"
-               asp-controller="SellerDashboard" asp-action="CreateUser">
-                <i class="bi bi-plus-circle me-2"></i> Add Seller
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link @(currentAction == "Index" ? "active-admin-link" : "")"
-               asp-controller="Product" asp-action="Index">
-                <i class="bi bi-box-seam me-2"></i> Products
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link @(currentAction == "AdminOrders" ? "active-admin-link" : "")"
-               asp-controller="Admin" asp-action="AdminOrders">
-                <i class="bi bi-receipt-cutoff me-2"></i>  Orders
-            </a>
-        </li>
-        <li class="nav-item mt-4">
-            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="btn btn-outline-light w-100 d-flex align-items-center justify-content-center">
-                    <i class="bi bi-box-arrow-right me-2"></i> Logout
-                </button>
-            </form>
-        </li>
-    </ul>
-</nav>
-
-
-
-
-@* <div id="adminSidebar" class="bg-dark p-3">
-    <h4 class="text-white mb-4 d-flex align-items-center">
-        <i class="fas fa-user-shield me-2"></i> Admin Panel
-    </h4>
-
-    <ul class="nav flex-column">
-        <li class="nav-item mb-2">
-            <a class="nav-link d-flex align-items-center" asp-controller="Admin" asp-action="AdminDashboard">
-                <i class="fas fa-tachometer-alt me-2"></i> Dashboard
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link d-flex align-items-center" asp-controller="Admin" asp-action="ManageUser">
-                <i class="fas fa-users me-2"></i> Manage Users
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link d-flex align-items-center" asp-controller="Product" asp-action="Index">
-                <i class="fas fa-box-open me-2"></i> Products
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link d-flex align-items-center" asp-controller="Admin" asp-action="AdminOrders">
-                <i class="fas fa-shopping-cart me-2"></i>Admin Orders
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link d-flex align-items-center" asp-controller="Payments" asp-action="Index">
-                <i class="fas fa-credit-card me-2"></i> Payments
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link d-flex align-items-center" asp-controller="Reports" asp-action="Index">
-                <i class="fas fa-chart-line me-2"></i> Reports
-            </a>
-        </li>
-        <li class="nav-item mt-4">
-            <a class="nav-link text-danger d-flex align-items-center" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <i class="fas fa-sign-out-alt me-2"></i> Logout
-            </a>
-        </li>
-    </ul>
+    <button class="btn btn-sm btn-outline-light" onclick="toggleTheme()">
+        <i id="themeIcon" class="bi bi-moon-stars-fill"></i>
+    </button>
 </div>
- *@
+
+<!-- Sidebar Links -->
+<div class="admin-sidebar list-group list-group-flush">
+    <a asp-action="AdminDashboard" asp-controller="Admin"
+       class="list-group-item list-group-item-action">
+        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+    </a>
+    <a asp-action="AdminOrders" asp-controller="Admin"
+       class="list-group-item list-group-item-action">
+        <i class="bi bi-cart-check me-2"></i> Orders
+    </a>
+    <a asp-action="ManageUser" asp-controller="Admin"
+       class="list-group-item list-group-item-action">
+        <i class="bi bi-people-fill me-2"></i> Users
+    </a>
+    <a asp-action="ApproveProduct" asp-controller="Admin"
+       class="list-group-item list-group-item-action">
+        <i class="bi bi-check2-circle me-2"></i> Product Approval
+    </a>
+    <a asp-action="Reports" asp-controller="Admin"
+       class="list-group-item list-group-item-action">
+        <i class="bi bi-graph-up me-2"></i> Reports
+    </a>
+    <a asp-action="BannerManagement" asp-controller="Admin"
+       class="list-group-item list-group-item-action">
+        <i class="bi bi-image-fill me-2"></i> Banners
+    </a>
+</div>

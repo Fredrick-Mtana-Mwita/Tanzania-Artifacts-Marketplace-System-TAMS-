@@ -1,15 +1,6 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
-
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -17,7 +8,6 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Constants;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models;
 
@@ -58,27 +48,27 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
         {
             [Required]
             [Display(Name = "First Name")]
-            public string FirstName { get; set; }
+            public string? FirstName { get; set; }
 
             [Required]
             [Display(Name = "Last Name")]
-            public string LastName { get; set; }
+            public string? LastName { get; set; }
 
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
-            public string Email { get; set; }
+            public string? Email { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
-            public string Password { get; set; }
+            public string? Password { get; set; }
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
+            public string? ConfirmPassword { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null!)
@@ -99,23 +89,26 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
                     UserName = Input.Email,
                     Email = Input.Email,
                     FirstName = Input.FirstName!,
-                    LastName = Input.LastName!
+                    LastName = Input.LastName!,
+                    Role = Roles.User // Set your custom enum role
                 };
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
                 var result = await _userManager.CreateAsync(user, Input.Password!);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    // 🔐 Assign default role
+                    // Assign ASP.NET Identity Role for authorization filters
                     await _userManager.AddToRoleAsync(user, "User");
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
@@ -129,11 +122,16 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
-                    else
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    // 🔁 Redirect user based on enum role
+                    return user.Role switch
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
+                        Roles.Admin => RedirectToAction("AdminDashboard", "Admin"),
+                        Roles.Seller => RedirectToAction("SellerDashboard", "Seller"),
+                        _ => RedirectToAction("Index", "Home")
+                    };
                 }
 
                 foreach (var error in result.Errors)
@@ -144,19 +142,6 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
 
             // If we got this far, something failed, redisplay form
             return Page();
-        }
-
-        private ApplicationUser CreateUser()
-        {
-            try
-            {
-                return Activator.CreateInstance<ApplicationUser>();
-            }
-            catch
-            {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor.");
-            }
         }
 
         private IUserEmailStore<ApplicationUser> GetEmailStore()

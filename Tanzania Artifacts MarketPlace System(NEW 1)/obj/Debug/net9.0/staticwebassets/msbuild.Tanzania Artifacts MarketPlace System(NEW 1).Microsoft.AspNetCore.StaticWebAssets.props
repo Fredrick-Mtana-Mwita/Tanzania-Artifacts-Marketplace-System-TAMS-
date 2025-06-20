@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>hwzqg3keju</Fingerprint>
-      <Integrity>vwtzakKMSXquuoBvWQ0PK5E30A2LXHzGgXrz9yKQ6HM=</Integrity>
+      <Fingerprint>yj4mho3emh</Fingerprint>
+      <Integrity>joHBteOQfitGbexMPbD6eN4CEKTQHdiT07FCcpnaJ84=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</OriginalItemSpec>
@@ -144,6 +144,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\No Image.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\profileImages\6f25c63d-724b-4616-b403-94d2d2b274d1.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Tanzania Artifacts MarketPlace System(NEW 1)</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Tanzania Artifacts MarketPlace System(NEW 1)</BasePath>
+      <RelativePath>images/profileImages/6f25c63d-724b-4616-b403-94d2d2b274d1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>hrsf5j2ho4</Fingerprint>
+      <Integrity>ow+C73OlEN6Dv8tIJuYf5S4bGhuDHpeLCySYNp70JdU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\profileImages\6f25c63d-724b-4616-b403-94d2d2b274d1.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\profileImages\89a312d7-4002-4f70-8107-082c88cda1b3.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>Tanzania Artifacts MarketPlace System(NEW 1)</SourceId>
@@ -246,8 +264,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>26ocftqo4c</Fingerprint>
-      <Integrity>plfATkq4ZKm2Cvt9r+bn3wwz3ouLDl5qBqb3asFziBo=</Integrity>
+      <Fingerprint>hj175ikhr6</Fingerprint>
+      <Integrity>c89IUHZ5RZ3+2F2OKmCylBDMgIAz769s3cwMoTlo5Cw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</OriginalItemSpec>
