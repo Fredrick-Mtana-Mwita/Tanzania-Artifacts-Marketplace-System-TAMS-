@@ -108,7 +108,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data
                     Email = email,
                     FirstName = firstName,
                     EmailConfirmed = true,
-                    ProfileImage = "default-profile.png"
+                    ProfileImage = "default-profile.png",
+                    Role = Enum.Parse<Roles>(role) // 👈 this is the fix
                 };
 
                 var createResult = await userMgr.CreateAsync(newUser, password);

@@ -110,20 +110,25 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
 
             if (ModelState.IsValid)
             {
+                var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
+
+                // 🔒 Prevent inactive users from logging in
+                if (user != null && !user.IsActive)
+                {
+                    ModelState.AddModelError(string.Empty, "Your account is inactive. Please contact the administrator.");
+                    return Page();
+                }
+
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
                 if (result.Succeeded)
                 {
-                    var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
-
-                    // Redirect based on your Roles enum
                     switch (user.Role)
                     {
                         case Roles.Admin:
                             return LocalRedirect("/Admin/AdminDashboard");
-
                         case Roles.Seller:
-                            return LocalRedirect("/Seller/SellerDashboard");
-
+                            return LocalRedirect("/SellerDashboard/SellerDashboard");
                         default:
                             return LocalRedirect("/Home/Index");
                     }

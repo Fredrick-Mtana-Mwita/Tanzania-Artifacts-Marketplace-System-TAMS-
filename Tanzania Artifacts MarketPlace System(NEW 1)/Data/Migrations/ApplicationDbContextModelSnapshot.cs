@@ -224,6 +224,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsVerified")
                         .HasColumnType("bit");
 
@@ -377,9 +380,18 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RedirectUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Severity")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -418,6 +430,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                     b.Property<decimal?>("RefundAmount")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("SellerId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ShippedDate")
                         .HasColumnType("datetime2");
@@ -468,6 +483,12 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SellerShippedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SellerStatus")
                         .HasColumnType("int");
 
                     b.Property<decimal>("UnitPrice")
@@ -528,6 +549,10 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
@@ -567,6 +592,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SellerId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("SoldCount")
@@ -590,8 +616,20 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AltText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsMain")
                         .HasColumnType("bit");
+
+                    b.Property<string>("OriginalFileName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -876,7 +914,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                     b.HasOne("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.ApplicationUser", "Seller")
                         .WithMany()
                         .HasForeignKey("SellerId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Seller");
                 });

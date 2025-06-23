@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Hubs;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Implementations;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Interfaces;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.SignalR;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +29,10 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 
 // Enable MVC support
 builder.Services.AddControllersWithViews();
+builder.Services.AddSignalR();
+// Then register IUserIdProvider as singleton
+builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
+
 
 // Register Repository with DI
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -32,6 +40,10 @@ builder.Services.AddScoped<ICartRepository,CartRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<INotificationSender, NotificationSender>();
+
+
 
 
 // Register UnitOfWork with DI
@@ -63,8 +75,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+
 app.MapRazorPages()
    .WithStaticAssets();
+app.MapHub<NotificationHub>("/notificationHub");
+
 //  Seed default roles and admin user at app startup
 
 using (var scope = app.Services.CreateScope())

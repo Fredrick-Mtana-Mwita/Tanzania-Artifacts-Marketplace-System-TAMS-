@@ -1,0 +1,22 @@
+﻿@* Views/Seller/Product/Delete.cshtml *@
+@model Product
+@{
+    ViewData["Title"] = "Delete Product";
+}
+<div class="container py-5">
+    <div class="alert alert-danger shadow">
+        <h4 class="alert-heading">Are you sure?</h4>
+        <p>You're about to delete <strong>@Model.Name</strong>. This action cannot be undone.</p>
+        <form asp-action="DeleteConfirmed" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Cancel
+                </a>
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Confirm Delete
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

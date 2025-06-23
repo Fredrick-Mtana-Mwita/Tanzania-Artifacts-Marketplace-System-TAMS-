@@ -24,6 +24,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Repositories
         Task<IEnumerable<Product>> GetBestSellersAsync();
         Task UpdateAsync(Product product);
         Task DeleteAsync(Product product);
+        Task CreateAsync(Product product);
+
 
     }
 }

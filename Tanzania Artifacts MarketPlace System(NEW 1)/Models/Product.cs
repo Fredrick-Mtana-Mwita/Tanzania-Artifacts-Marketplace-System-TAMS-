@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
 {
@@ -6,9 +7,12 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
     public class Product
     {
         public int Id { get; set; }
+        public string CategoryId { get; set; } = string.Empty;
+        [Required]
         public string Name { get; set; } = string.Empty;
         public string ProductImage { get; set; } = string.Empty;
         public string ProductHistory { get; set; } = string.Empty;
+        [Required]
         public string Description { get; set; } = string.Empty;
         public decimal Price { get; set; }
         public int Quantity { get; set; }
@@ -22,6 +26,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
         public DateTime? DateUpdated { get; set; }
 
         // Relationships
+        [Required]
         public string? SellerId { get; set; }
         public virtual ApplicationUser Seller { get; set; } = default!;
         public virtual ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();

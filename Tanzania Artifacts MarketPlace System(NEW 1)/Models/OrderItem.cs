@@ -12,5 +12,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
         public decimal UnitPrice { get; set; }
         public int OrderId { get; set; }
         public virtual Order Order { get; set; } = default!;
+        public DateTime SellerShippedDate { get; set; } = DateTime.UtcNow;
+        public SellerOrderStatus SellerStatus { get; set; } = SellerOrderStatus.Pending;
+
     }
 }

@@ -15,6 +15,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
+        private readonly INotificationSender _notificationSender;
+        private readonly INotificationRepository _notificationRepository;
         private readonly ApplicationDbContext _context;
         private readonly ICartRepository _cartRepository;
         private readonly IProductRepository _productRepository;
@@ -27,7 +29,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             IProductRepository productRepository,
             IOrderRepository orderRepository,
             UserManager<ApplicationUser> userManager,
-            IEmailService emailService)
+            IEmailService emailService,
+            INotificationRepository notificationRepository,
+            INotificationSender notificationSender)
         {
             _context = context;
             _cartRepository = cartRepository;
@@ -35,6 +39,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             _orderRepository = orderRepository;
             _userManager = userManager;
             _emailService = emailService;
+            _notificationRepository = notificationRepository;
+            _notificationSender = notificationSender;
         }
 
         public async Task<IActionResult> AdminDashboard()
@@ -138,11 +144,13 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
                 FirstName = u.FirstName,
                 LastName = u.LastName,
                 Email = u.Email,
-                Role = u.Role
+                Role = u.Role,
+                IsActive = u.IsActive 
             }).ToList();
 
             return View(vm);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> UpdateUserRole(string id, Roles role)
@@ -198,6 +206,10 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             product.IsApproved = true;
             await _productRepository.UpdateAsync(product);
 
+            // Send notification to seller
+            await _notificationSender.SendToUser(product.SellerId!, "Product Approved", $"Your product \"{product.Name}\" has been approved!");
+
+
             return RedirectToAction("ProductApproval");
         }
 
@@ -208,6 +220,10 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             if (product == null) return NotFound();
 
             await _productRepository.DeleteAsync(product);
+
+            // Send notification to seller
+            await _notificationSender.SendToUser(product.SellerId!, "Product Approved", $"Your product \"{product.Name}\" has been approved!");
+
 
             return RedirectToAction("ProductApproval");
         }
@@ -344,6 +360,83 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
 
             return RedirectToAction("BannerManagement");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ToggleUserActivation(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
+
+            user.IsActive = !user.IsActive;
+            await _userManager.UpdateAsync(user);
+
+            TempData["Message"] = $"User {user.FirstName} {user.LastName} is now {(user.IsActive ? "Active" : "Inactive")}.";
+            return RedirectToAction("ManageUser");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetNotifications()
+        {
+            var admin = await _userManager.GetUserAsync(User);
+            if (admin == null) return Unauthorized();
+
+            var notifications = await _notificationRepository.GetUnreadByUserIdAsync(admin.Id);
+
+            var result = notifications.Select(n => new
+            {
+                n.Id,
+                n.Title,
+                n.Message,
+                CreatedAt = n.CreatedAt.ToString("MMM dd, yyyy hh:mm tt")
+            });
+
+            return Json(result);
+        }
+        [HttpGet]
+        public async Task<IActionResult> AdminNotifications()
+        {
+            var admin = await _userManager.GetUserAsync(User);
+            if (admin == null) return Unauthorized();
+
+            var allNotifications = await _notificationRepository.GetByUserIdAsync(admin.Id);
+
+            var sortedNotifications = allNotifications
+                .OrderByDescending(n => n.CreatedAt)
+                .ToList();
+
+            return View(sortedNotifications);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> MarkNotificationAsRead(int id)
+        {
+            var notification = await _notificationRepository.GetByIdAsync(id);
+            if (notification == null) return NotFound();
+
+            notification.IsRead = true;
+            await _notificationRepository.UpdateAsync(notification);
+
+            return Ok();
+        }
+        [HttpPost]
+        public async Task<IActionResult> MarkAllNotificationsAsRead()
+        {
+            var admin = await _userManager.GetUserAsync(User);
+            if (admin == null) return Unauthorized();
+
+            var unreadNotifications = await _notificationRepository.GetUnreadByUserIdAsync(admin.Id);
+
+            foreach (var notification in unreadNotifications)
+            {
+                notification.IsRead = true;
+            }
+
+            await _context.SaveChangesAsync(); // Or make a batch method if you prefer
+
+            return RedirectToAction("AdminNotifications");
+        }
+
 
 
     }

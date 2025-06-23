@@ -38,11 +38,11 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public InputModel Input { get; set; } = new InputModel();
 
-        public string ReturnUrl { get; set; }
+        public string ReturnUrl { get; set; } = string.Empty;
 
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
+        public IList<AuthenticationScheme> ExternalLogins { get; set; } = new List<AuthenticationScheme>();
 
         public class InputModel
         {
@@ -129,7 +129,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
                     return user.Role switch
                     {
                         Roles.Admin => RedirectToAction("AdminDashboard", "Admin"),
-                        Roles.Seller => RedirectToAction("SellerDashboard", "Seller"),
+                        Roles.Seller => RedirectToAction("SellerDashboard", "SellerDashboard"),
                         _ => RedirectToAction("Index", "Home")
                     };
                 }

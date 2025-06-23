@@ -13,6 +13,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
         public string City { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
         public bool IsVerified { get; set; } = false;
+        public bool IsActive { get; set; } = true;
         public Roles Role { get; internal set; }
     }
 }

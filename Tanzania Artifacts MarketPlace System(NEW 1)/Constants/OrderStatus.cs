@@ -4,6 +4,7 @@
     {
         Ordered,
         Pending,
+        Confirmed,
         Shipped,
         Delivered,
         Cancelled

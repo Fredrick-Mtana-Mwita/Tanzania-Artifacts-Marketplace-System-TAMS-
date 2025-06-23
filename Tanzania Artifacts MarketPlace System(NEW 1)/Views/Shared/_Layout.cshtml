@@ -4,24 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Tanzania_Artifacts_MarketPlace_System_NEW</title>
-    <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Tanzania_Artifacts_MarketPlace_System_NEW_1_.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
         @await Html.PartialAsync("_NavbarPartial")
-
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    @* Conditionally show footer *@
     @{
         var currentPath = Context.Request.Path.Value?.ToLower() ?? "";
         var isLoginOrRegister = currentPath.Contains("/account/login") || currentPath.Contains("/account/register");
@@ -31,14 +31,25 @@
     {
         @await Html.PartialAsync("_FooterPartial")
     }
+
+    <!-- ✅ Toast Notification Container -->
+    <div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1055;"></div>
+
+    <!-- ✅ Scroll To Top Button -->
+    <button id="scrollTopBtn" class="btn btn-dark position-fixed bottom-0 end-0 m-3 rounded-circle shadow d-none" style="z-index: 1050;">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- ✅ Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/popper.js/umd/popper.js/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 
     <script>
-        // Show/Hide Scroll-To-Top Button
+        // ✅ Scroll to Top Logic
         const scrollTopBtn = document.getElementById("scrollTopBtn");
         window.onscroll = function () {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -47,18 +58,57 @@
                 scrollTopBtn.classList.add("d-none");
             }
         };
+        scrollTopBtn?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        // Scroll to Top
-        scrollTopBtn.addEventListener("click", function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Enable Bootstrap Tooltips
-        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        // ✅ Enable Bootstrap Tooltips
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.map(el => new bootstrap.Tooltip(el));
 
+        // ✅ Sidebar Notification Count
+        async function updateSidebarNotificationCount() {
+            try {
+                const response = await fetch('/Admin/GetNotifications');
+                const data = await response.json();
+                const count = data.length;
+                const badge = document.getElementById('sidebarNotificationCount');
+                if (badge) {
+                    if (count > 0) {
+                        badge.textContent = count;
+                        badge.style.display = 'inline-block';
+                    } else {
+                        badge.style.display = 'none';
+                    }
+                }
+            } catch (error) {
+                console.error("Sidebar notification fetch error:", error);
+            }
+        }
 
+        // ✅ SignalR Notification Toast Logic
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/notificationHub")
+            .build();
+
+        connection.on("ReceiveNotification", function (title, message) {
+            const toastHtml = `
+            <div class="toast align-items-center text-white bg-primary border-0 show fade mb-2" role="alert" style="min-width: 300px;">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <strong>${title}</strong><br>${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>`;
+            const container = document.getElementById("toastContainer");
+            container.innerHTML = toastHtml;
+            new bootstrap.Toast(container.querySelector('.toast')).show();
+            updateSidebarNotificationCount(); // Refresh count immediately
+        });
+
+        connection.start().then(() => {
+            updateSidebarNotificat`ionCount();
+            setInterval(updateSidebarNotificationCount, 30000); // Refresh every 30s
+        }).catch(err => console.error(err.toString()));
     </script>
-
 </body>
 </html>

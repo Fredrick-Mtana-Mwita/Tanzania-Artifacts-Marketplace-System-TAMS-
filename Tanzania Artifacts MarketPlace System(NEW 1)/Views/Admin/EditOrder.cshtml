@@ -1,0 +1,58 @@
+﻿@model Order
+@using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Constants
+
+@{
+    ViewData["Title"] = "Edit Order";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+
+<div class="container py-5 animate__animated animate__fadeIn">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+
+            <div class="card shadow-lg rounded-4 border-0 bg-light bg-gradient">
+                <div class="card-header bg-warning text-white text-center rounded-top-4 shadow-sm">
+                    <h4 class="mb-0">
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Edit Order #@Model.Id
+                    </h4>
+                </div>
+
+                <div class="card-body">
+                    <form asp-action="EditOrder" method="post" class="animate__animated animate__fadeInUp animate__faster">
+                        <input type="hidden" name="id" value="@Model.Id" />
+
+                        <div class="mb-4">
+                            <label for="status" class="form-label fw-semibold">
+                                <i class="bi bi-ui-checks-grid me-1 text-warning"></i>
+                                Order Status
+                            </label>
+                            <select name="status" id="status" class="form-select shadow-sm border-primary border-opacity-25">
+                                @foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
+                                {
+                                    <option value="@status" selected="@(status == Model.Status)">
+                                        @status
+                                    </option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-warning px-4 py-2 shadow-sm transition-btn">
+                                <i class="bi bi-check-circle-fill me-1"></i>
+                                Save Changes
+                            </button>
+                            <a asp-action="AdminOrders" class="btn btn-outline-warning ms-2 px-4 py-2 shadow-sm transition-btn">
+                                <i class="bi bi-arrow-left-circle me-1"></i>
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

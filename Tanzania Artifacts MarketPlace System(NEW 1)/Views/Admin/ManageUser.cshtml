@@ -2,11 +2,62 @@
 @using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Constants
 @{
     ViewData["Title"] = "Manage Users";
+    int modalIndex = 0;
+    var toastMessage = TempData["Message"]?.ToString();
+    var isError = toastMessage?.ToLower().Contains("error") ?? false;
+    var isWarning = toastMessage?.ToLower().Contains("warning") ?? false;
+    var isSuccess = toastMessage?.ToLower().Contains("success") ?? false;
+    var isInfo = toastMessage?.ToLower().Contains("info") ?? false;
+
+    string toastBg = "bg-secondary";
+    if (isSuccess) toastBg = "bg-success";
+    else if (isError) toastBg = "bg-danger";
+    else if (isWarning) toastBg = "bg-warning";
+    else if (isInfo) toastBg = "bg-info";
 }
 
-<!-- Icons + Animations -->
+<!-- Bootstrap Icons + Animate.css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+
+<style>
+    .transition-btn {
+        transition: all 0.3s ease;
+    }
+
+        .transition-btn:hover {
+            transform: scale(1.1);
+            opacity: 0.85;
+        }
+
+    .fade-scale {
+        transition: all 0.3s ease;
+    }
+
+        .fade-scale:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+        }
+
+    .modal-confirm .modal-content {
+        border-radius: 15px;
+        padding: 30px;
+    }
+
+    .modal-confirm .modal-header {
+        border-bottom: none;
+        justify-content: center;
+    }
+
+    .modal-confirm .modal-body {
+        text-align: center;
+    }
+
+    .modal-confirm .modal-footer {
+        justify-content: center;
+        border: none;
+    }
+</style>
 
 <div class="container py-5 animate__animated animate__fadeIn">
     <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
@@ -16,18 +67,20 @@
 
     <div class="table-responsive shadow-lg border rounded-4 bg-white animate__animated animate__fadeInUp animate__faster">
         <table class="table table-hover align-middle mb-0">
-            <thead class="table-light text-white text-center">
+            <thead class="table-light text-center">
                 <tr class="fs-6">
                     <th><i class="bi bi-person-badge"></i> Name</th>
                     <th><i class="bi bi-envelope-at"></i> Email</th>
                     <th><i class="bi bi-person-gear"></i> Role</th>
+                    <th><i class="bi bi-power"></i> Status</th>
                     <th><i class="bi bi-tools"></i> Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var user in Model)
                 {
-                    <tr class="hover-row animate__animated animate__fadeInUp animate__faster">
+                    var modalId = $"confirmModal_{modalIndex++}";
+                    <tr class="text-center animate__animated animate__fadeInUp animate__faster fade-scale">
                         <td>@user.FirstName @user.LastName</td>
                         <td>@user.Email</td>
                         <td>
@@ -39,7 +92,18 @@
                             </span>
                         </td>
                         <td>
-                            <div class="d-flex justify-content-center gap-2">
+                            <span class="badge rounded-pill bg-@(user.IsActive ? "success" : "secondary") px-3">
+                                @(user.IsActive ? "Active" : "Inactive")
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-center gap-2 flex-wrap">
+                                <button type="button"
+                                        class="btn btn-sm btn-outline-@(user.IsActive ? "secondary" : "success") transition-btn shadow-sm"
+                                        onclick="openActivationModal('@user.Id', '@user.Email', '@user.IsActive')">
+                                    <i class="bi @(user.IsActive ? "bi-person-x-fill" : "bi-person-check-fill")"></i>
+                                </button>
+
                                 <form asp-action="UpdateUserRole" method="post" class="d-flex align-items-center gap-2">
                                     <input type="hidden" name="id" value="@user.Id" />
                                     <select name="role" class="form-select form-select-sm shadow-sm" style="width: 130px;">
@@ -51,7 +115,9 @@
                                         <i class="bi bi-check2-circle"></i>
                                     </button>
                                 </form>
-                                <a asp-action="DeleteUser" asp-route-id="@user.Id" class="btn btn-sm btn-outline-danger transition-btn">
+
+                                <a asp-action="DeleteUser" asp-route-id="@user.Id" class="btn btn-sm btn-outline-danger transition-btn"
+                                   onclick="return confirm('Are you sure you want to delete this user?');">
                                     <i class="bi bi-trash3"></i>
                                 </a>
                             </div>
@@ -63,3 +129,71 @@
     </div>
 </div>
 
+<!-- Activation Modal -->
+<div class="modal fade" id="userActivationModal" tabindex="-1" aria-labelledby="activationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-confirm">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center" id="activationModalLabel">Confirm Action</h5>
+            </div>
+            <div class="modal-body">
+                <p id="activationMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <form method="post" asp-action="ToggleUserActivation">
+                    <input type="hidden" id="activationUserId" name="id" />
+                    <button type="submit" id="confirmToggleBtn" class="btn"></button>
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div aria-live="polite" aria-atomic="true" class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+    <div id="adminToast" class="toast align-items-center text-white @toastBg border-0 shadow" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" id="toastMessage">
+                @toastMessage
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function openActivationModal(userId, email, isActive) {
+        const modalEl = document.getElementById('userActivationModal');
+        const userIdInput = document.getElementById('activationUserId');
+        const message = document.getElementById('activationMessage');
+        const confirmBtn = document.getElementById('confirmToggleBtn');
+
+        if (!modalEl || !userIdInput || !message || !confirmBtn) return;
+
+        userIdInput.value = userId;
+
+        const active = isActive === "True" || isActive === true;
+        const action = active ? "deactivate" : "activate";
+        const actionCap = action.charAt(0).toUpperCase() + action.slice(1);
+
+        message.innerHTML = `Are you sure you want to <strong>${action}</strong> this user:<br /><span class="fw-bold">${email}</span>?`;
+        confirmBtn.textContent = actionCap;
+        confirmBtn.className = `btn btn-${active ? "secondary" : "success"}`;
+
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+    }
+
+    // Toast auto-show logic
+    document.addEventListener("DOMContentLoaded", function () {
+        const toastEl = document.getElementById('adminToast');
+        if (toastEl && '@toastMessage'.trim() !== '') {
+            const toast = new bootstrap.Toast(toastEl, { delay: 5000 });
+            toast.show();
+        }
+    });
+</script>

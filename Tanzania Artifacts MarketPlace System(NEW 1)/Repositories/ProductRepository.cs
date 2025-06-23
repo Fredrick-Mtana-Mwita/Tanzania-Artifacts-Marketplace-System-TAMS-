@@ -61,5 +61,12 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task CreateAsync(Product product)
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+        }
+
+
     }
 }

@@ -11,6 +11,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
         public int Id { get; set; }
 
         public string UserId { get; set; } = string.Empty;
+        public string? SellerId { get; set; }
         public virtual ApplicationUser User { get; set; } = default!;
 
         public DateTime? ShippedDate { get; set; }

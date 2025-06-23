@@ -46,15 +46,39 @@
                             </span>
                         </td>
                         <td>
-                            <div class="d-flex justify-content-center gap-2">
-                                <a asp-action="EditOrder" asp-route-id="@order.Id" class="btn btn-sm btn-outline-primary shadow-sm transition-btn">
+                            <div class="d-flex justify-content-center flex-wrap gap-2">
+                                <!-- Edit -->
+                                <a asp-action="EditOrder" asp-route-id="@order.Id" class="btn btn-sm btn-outline-primary shadow-sm transition-btn" title="Edit Order">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
+
+                                <!-- Cancel -->
                                 <form asp-action="CancelOrder" asp-route-id="@order.Id" method="post" class="d-inline">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger shadow-sm transition-btn" onclick="return confirm('Are you sure you want to cancel this order?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger shadow-sm transition-btn" title="Cancel Order"
+                                            onclick="return confirm('Are you sure you want to cancel this order?');">
                                         <i class="bi bi-x-circle"></i>
                                     </button>
                                 </form>
+
+                                <!-- Mark as Shipped -->
+                                @if (order.Status == OrderStatus.Pending || order.Status == OrderStatus.Confirmed)
+                                {
+                                    <form asp-action="MarkAsShipped" asp-route-id="@order.Id" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-outline-warning shadow-sm transition-btn" title="Mark as Shipped">
+                                            <i class="bi bi-truck"></i>
+                                        </button>
+                                    </form>
+                                }
+
+                                <!-- Mark as Delivered -->
+                                @if (order.Status == OrderStatus.Shipped)
+                                {
+                                    <form asp-action="MarkAsDelivered" asp-route-id="@order.Id" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-outline-success shadow-sm transition-btn" title="Mark as Delivered">
+                                            <i class="bi bi-box-seam"></i>
+                                        </button>
+                                    </form>
+                                }
                             </div>
                         </td>
                     </tr>
