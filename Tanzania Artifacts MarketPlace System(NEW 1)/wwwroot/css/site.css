@@ -843,6 +843,126 @@ body {
 
 
 /*===styling for _SellerLayout.cshtml ends here ===*/
+/*===styling for WishList.cshtml starts here ===*/
+
+    .wishlist-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #dc3545;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    .wishlist-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 16px;
+        overflow: hidden;
+        opacity: 0.95;
+    }
+
+        .wishlist-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+            opacity: 1;
+        }
+
+    .wishlist-img {
+        height: 220px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .wishlist-card:hover .wishlist-img {
+        transform: scale(1.05);
+    }
+
+    .wishlist-body {
+        padding: 1rem;
+    }
+
+        .wishlist-body h5 {
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 0.5rem;
+        }
+
+    .wishlist-price {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #28a745;
+    }
+
+    .wishlist-description {
+        font-size: 0.95rem;
+        color: #6c757d;
+    }
+
+    .wishlist-remove-btn {
+        transition: all 0.2s ease;
+        font-weight: 600;
+    }
+
+        .wishlist-remove-btn:hover {
+            background-color: #dc3545 !important;
+            color: white !important;
+            box-shadow: 0 0 8px rgba(220, 53, 69, 0.3);
+        }
+
+    @media (max-width: 576px) {
+        .wishlist-title {
+            font-size: 1.5rem;
+        }
+
+        .wishlist-img {
+            height: 180px;
+        }
+    }
+
+/*===styling for Wishlist.cshtml ends here ===*/
+
+/*===styling for NewsletterSubscription.cshtml ends here ===*/
+.table-row-hover:hover {
+    background-color: #f8f9fa !important;
+    transform: scale(1.005);
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.animated {
+    animation-duration: 0.6s;
+    animation-fill-mode: both;
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}
+
+.fadeInUp {
+    animation-name: fadeInUp;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*===styling for NewsletterSubscription.cshtml ends here ===*/
 
 
 

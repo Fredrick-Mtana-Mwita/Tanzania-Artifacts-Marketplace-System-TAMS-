@@ -1,26 +1,61 @@
 ﻿@page
 @model ResendEmailConfirmationModel
 @{
-    ViewData["Title"] = "Resend email confirmation";
+    ViewData["Title"] = "Resend Email Confirmation";
 }
 
-<h1>@ViewData["Title"]</h1>
-<h2>Enter your email.</h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Input.Email" class="form-label"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+@if (TempData["ToastMessage"] != null)
+{
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+        <div class="toast align-items-center text-white bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    @TempData["ToastMessage"]
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-warning">Resend</button>
-        </form>
+        </div>
+    </div>
+}
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-4">
+
+                    <h2 class="text-center text-warning mb-4">Resend Email Confirmation</h2>
+                    <p class="text-muted text-center">Enter your email address and we'll send you a new confirmation link.</p>
+
+                    <form method="post">
+                        <div asp-validation-summary="All" class="text-danger mb-3" role="alert"></div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.Email" class="form-control" placeholder="name@example.com" />
+                            <label asp-for="Input.Email">Email address</label>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="w-100 btn btn-warning btn-lg rounded-pill">Resend Email</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const toastElList = [].slice.call(document.querySelectorAll('.toast'));
+            toastElList.forEach(function (toastEl) {
+                const toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            });
+        });
+    </script>
 }

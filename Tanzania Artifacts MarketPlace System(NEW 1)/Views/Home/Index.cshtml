@@ -149,20 +149,53 @@
 </section>
 
 <!-- Newsletter Section -->
+<!-- Newsletter Section -->
 <section class="newsletter py-5 bg-dark text-white text-center shadow-lg" data-aos="fade-up">
     <div class="container">
         <h3 class="mb-3">Stay Connected</h3>
         <p class="mb-4">Subscribe to get the latest on new arrivals and exclusive offers.</p>
-        <form class="row justify-content-center g-2">
+        <form id="newsletterForm" class="row justify-content-center g-2">
             <div class="col-md-6 col-sm-8">
-                <input type="email" class="form-control" placeholder="Enter your email">
+                <input type="email" name="email" id="newsletterEmail" class="form-control" placeholder="Enter your email" required>
             </div>
             <div class="col-auto">
                 <button class="btn btn-warning shadow" type="submit">Subscribe</button>
             </div>
         </form>
+        <div id="subscriptionResult" class="mt-3"></div>
     </div>
 </section>
 
 <!-- Spacer before footer -->
 <div class="mb-5"></div>
+
+<script>
+    document.getElementById("newsletterForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+
+        fetch("/api/newsletter/subscribe", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `email=${encodeURIComponent(email)}`
+        })
+        .then(response => {
+            if (response.status === 409) {
+                return Promise.reject("You're already subscribed!");
+            } else if (!response.ok) {
+                return Promise.reject("Failed to subscribe.");
+            }
+            return response.text();
+        })
+        .then(message => {
+            alert(message);
+            form.reset();
+        })
+        .catch(error => {
+            alert(error);
+        });
+    });
+</script>

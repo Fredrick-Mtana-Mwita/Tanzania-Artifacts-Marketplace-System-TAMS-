@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using System.Reflection.Emit;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models;
@@ -26,6 +27,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data
         public DbSet<ActivityLog> ActivityLogs => Set<ActivityLog>();
         public DbSet<Notification> Notifications => Set<Notification>();
         public DbSet<SellerProfile> SellerProfiles => Set<SellerProfile>();
+        public DbSet<Subscriber> Subscribers { get; set; }
+        public DbSet<NewsletterSubscription> NewsletterSubscriptions { get; set; }
         public DbSet<Banner> Banners => Set<Banner>();
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -65,6 +68,10 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data
             builder.Entity<Order>()
                 .Property(o => o.Status)
                 .HasConversion(new EnumToStringConverter<OrderStatus>());
+
+            builder.Entity<WishlistItem>()
+               .HasIndex(w => new { w.ProductId, w.WishlistId })
+               .IsUnique();
         }
     }
 }

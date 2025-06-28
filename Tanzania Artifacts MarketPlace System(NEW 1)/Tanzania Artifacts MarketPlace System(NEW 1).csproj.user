@@ -9,5 +9,9 @@
     <Controller_SelectedScaffolderCategoryPath>root/Common/MVC/Controller</Controller_SelectedScaffolderCategoryPath>
     <View_SelectedScaffolderID>RazorViewEmptyScaffolder</View_SelectedScaffolderID>
     <View_SelectedScaffolderCategoryPath>root/Common/MVC/View</View_SelectedScaffolderCategoryPath>
+    <NameOfLastUsedPublishProfile>D:\C# projects\Tanzania Artifacts MarketPlace System%28NEW 1%29\Tanzania Artifacts MarketPlace System%28NEW 1%29\Properties\PublishProfiles\FolderProfile1.pubxml</NameOfLastUsedPublishProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

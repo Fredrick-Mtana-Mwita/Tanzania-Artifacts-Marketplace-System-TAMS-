@@ -1,91 +1,109 @@
+// Program.cs
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.Http.Features; // ✅ Needed for request size config
 using Microsoft.EntityFrameworkCore;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Hubs;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Implementations;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Interfaces;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.SignalR;
-
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+// ==================== SERVICES CONFIGURATION ====================
+
+// ✅ Database connection
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                      ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// Configure Identity using AddDefaultIdentity to ensure all required services (including SignInManager) are registered
+// ✅ ASP.NET Identity setup (with roles, email confirmation)
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
-{     // Require email confirmation
-    options.SignIn.RequireConfirmedAccount = true; 
+{
+    options.SignIn.RequireConfirmedAccount = true; // Require email confirmation
 })
-// ✅ Support for roles like Admin, Seller, etc
-.AddRoles<IdentityRole>() 
+.AddRoles<IdentityRole>() // Enable role support
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultUI()
 .AddDefaultTokenProviders();
 
-// Enable MVC support
+// ✅ MVC and SignalR
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
-// Then register IUserIdProvider as singleton
 builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
 
-
-// Register Repository with DI
+// ✅ DI: Application Services
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<ICartRepository,CartRepository>();   
+builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationSender, NotificationSender>();
+builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
 
-
-
-
-// Register UnitOfWork with DI
+// ✅ Email settings configuration
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+// ✅ Configure max request body size (important for image upload)
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 50 * 1024 * 1024; // 50 MB
+});
+
+// ==================== BUILD APP ====================
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// ==================== MIDDLEWARE ====================
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+    app.UseDeveloperExceptionPage(); // ✅ Enables detailed error page
 }
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-app.UseRouting();
+app.UseStaticFiles();
 
+app.UseRouting();
+app.UseAuthentication(); // Required for Identity
 app.UseAuthorization();
 
-app.MapStaticAssets();
+// ==================== ROUTING ====================
 
+// ✅ Area support route — this must come BEFORE 
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+// ✅ Default route for non-area controllers
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
-
+// ✅ Razor Pages (e.g., Identity UI)
 app.MapRazorPages()
    .WithStaticAssets();
+
+// ✅ SignalR notification hub
 app.MapHub<NotificationHub>("/notificationHub");
 
-//  Seed default roles and admin user at app startup
-
+// ✅ Seed Roles and Admin at startup
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     await DbSeeder.SeedDefaultData(services);
 }
 
+// ✅ Run the app
 app.Run();

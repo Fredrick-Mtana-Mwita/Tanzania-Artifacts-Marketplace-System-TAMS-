@@ -437,7 +437,14 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             return RedirectToAction("AdminNotifications");
         }
 
+        public async Task<IActionResult> NewsletterSubscription()
+        {
+            var subscribers = await _context.NewsletterSubscriptions
+                .OrderByDescending(s => s.SubscribedAt)
+                .ToListAsync();
 
+            return View(subscribers);
+        }
 
     }
 }

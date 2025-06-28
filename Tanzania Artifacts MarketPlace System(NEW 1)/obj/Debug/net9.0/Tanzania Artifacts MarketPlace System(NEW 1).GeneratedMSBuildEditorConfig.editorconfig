@@ -188,6 +188,42 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Areas/Seller/Views/Order/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXE9yZGVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Areas/Seller/Views/Product/CreateEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFByb2R1Y3RcQ3JlYXRlRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Areas/Seller/Views/Product/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFByb2R1Y3RcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Areas/Seller/Views/Product/Gallery.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFByb2R1Y3RcR2FsbGVyeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Areas/Seller/Views/Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFByb2R1Y3RcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Areas/Seller/Views/Product/MyProducts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFByb2R1Y3RcTXlQcm9kdWN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Areas/Seller/Views/SellerDashboard/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFNlbGxlckRhc2hib2FyZFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Areas/Seller/Views/SellerDashboard/SellerDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFNlbGxlckRhc2hib2FyZFxTZWxsZXJEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Areas/Seller/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Admin/AdminDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5EYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -230,6 +266,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Admin/ManageUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlVXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Admin/NewsletterSubscription.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTmV3c2xldHRlclN1YnNjcmlwdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Admin/Reports.cshtml]
@@ -276,42 +316,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxTZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/SellerDashboard/CreateProduct.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyRGFzaGJvYXJkXENyZWF0ZVByb2R1Y3QuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/SellerDashboard/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyRGFzaGJvYXJkXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/SellerDashboard/MyProducts.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyRGFzaGJvYXJkXE15UHJvZHVjdHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/SellerDashboard/SellerDashboard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyRGFzaGJvYXJkXFNlbGxlckRhc2hib2FyZC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Seller/Order/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyXE9yZGVyXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Seller/Product/CreateEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyXFByb2R1Y3RcQ3JlYXRlRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Seller/Product/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyXFByb2R1Y3RcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Seller/Product/Gallery.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyXFByb2R1Y3RcR2FsbGVyeS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Seller/Product/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsbGVyXFByb2R1Y3RcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Shared/Components/CartCount/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ2FydENvdW50XERlZmF1bHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -350,6 +354,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/Wishlist/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2lzaGxpc3RcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/C\# projects/Tanzania Artifacts MarketPlace System(NEW 1)/Tanzania Artifacts MarketPlace System(NEW 1)/Views/_ViewImports.cshtml]

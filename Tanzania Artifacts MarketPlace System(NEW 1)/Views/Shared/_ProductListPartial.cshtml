@@ -10,20 +10,35 @@
                     <div class="position-relative overflow-hidden rounded-top-4">
                         <img src="~/images/@(string.IsNullOrEmpty(product.ProductImage) ? "No Image.jpg" : product.ProductImage)"
                              class="card-img-top product-image"
-                             alt="@product.Name" />
+                             alt="@product.Name" style="height: 220px; object-fit: cover;" />
+
                         <div class="badge bg-warning text-dark position-absolute top-0 end-0 m-2 fw-semibold">
                             <i class="bi bi-currency-exchange"></i> TSh @product.Price.ToString("N0")
                         </div>
                     </div>
+
                     <div class="card-body d-flex flex-column">
                         <h6 class="card-title text-dark fw-bold text-truncate">@product.Name</h6>
+
                         <p class="card-text small text-muted text-wrap overflow-hidden" style="max-height: 3.2em;">
                             @product.Description
                         </p>
-                        <a href="@Url.Action("Details", "Product", new { id = product.Id })"
-                           class="btn btn-outline-warning mt-auto w-100 transition-all">
-                            <i class="bi bi-eye-fill me-1"></i> View Details
-                        </a>
+
+                        <div class="d-flex flex-wrap gap-2 mt-auto">
+                            <a href="@Url.Action("Details", "Product", new { id = product.Id })"
+                               class="btn btn-outline-warning w-100">
+                                <i class="bi bi-eye-fill me-1"></i> View Details
+                            </a>
+
+                            <form asp-controller="Wishlist" asp-action="Add" method="post" class="w-100">
+                                <input type="hidden" name="productId" value="@product.Id" />
+                                <button type="submit"
+                                        class="btn btn-outline-danger w-100"
+                                        title="Add to Wishlist">
+                                    <i class="bi bi-heart-fill"></i> Wishlist
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

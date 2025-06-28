@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "ContainingType": "Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers.NewsletterController",
+    "Method": "Subscribe",
+    "RelativePath": "api/Newsletter/subscribe",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers.SubscriptionController",
+    "Method": "Subscribe",
+    "RelativePath": "api/Subscription/subscribe",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

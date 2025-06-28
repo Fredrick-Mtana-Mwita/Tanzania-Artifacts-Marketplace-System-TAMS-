@@ -362,6 +362,26 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                     b.ToTable("CartItem");
                 });
 
+            modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.NewsletterSubscription", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SubscribedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NewsletterSubscriptions");
+                });
+
             modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -716,6 +736,26 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                     b.ToTable("SellerProfile");
                 });
 
+            modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Subscriber", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SubscribedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subscribers");
+                });
+
             modelBuilder.Entity("Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Wishlist", b =>
                 {
                     b.Property<int>("Id")
@@ -729,7 +769,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -750,6 +791,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -758,9 +802,10 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
-
                     b.HasIndex("WishlistId");
+
+                    b.HasIndex("ProductId", "WishlistId")
+                        .IsUnique();
 
                     b.ToTable("WishListItem");
                 });

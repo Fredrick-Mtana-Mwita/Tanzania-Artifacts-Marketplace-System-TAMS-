@@ -1,0 +1,50 @@
+﻿@model List<NewsletterSubscription>
+
+@{
+    ViewData["Title"] = "Subscribers";
+}
+
+<div class="container py-4">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-dark" style="letter-spacing: 1px;">
+            <i class="bi bi-people-fill text-primary me-2"></i>Newsletter Subscribers
+        </h2>
+        <p class="text-muted">List of all users who subscribed to our newsletter.</p>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info shadow-sm fade show animated fadeIn" role="alert">
+            <i class="bi bi-info-circle me-2"></i> No subscribers yet.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive animated fadeInUp">
+            <table class="table table-hover shadow-sm rounded overflow-hidden border border-light-subtle">
+                <thead class="table-dark text-white">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col"><i class="bi bi-envelope-at"></i> Email</th>
+                        <th scope="col"><i class="bi bi-clock-history"></i> Subscribed At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr class="table-row-hover transition-all">
+                            <td class="fw-semibold text-secondary">@(i + 1)</td>
+                            <td>@Model[i].Email</td>
+                            <td>
+                                <span class="badge bg-light text-dark shadow-sm">
+                                    @Model[i].SubscribedAt.ToLocalTime().ToString("dd MMM yyyy, HH:mm")
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+

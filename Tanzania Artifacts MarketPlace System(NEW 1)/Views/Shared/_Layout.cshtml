@@ -24,13 +24,21 @@
     @* Conditionally show footer *@
     @{
         var currentPath = Context.Request.Path.Value?.ToLower() ?? "";
-        var isLoginOrRegister = currentPath.Contains("/account/login") || currentPath.Contains("/account/register");
+
+        var hideFooter = currentPath.Contains("/account/login")
+        || currentPath.Contains("/account/register")
+        || currentPath.Contains("/account/resendemailconfirmation")
+        || currentPath.Contains("/account/forgotpasswordconfirmation")
+        || currentPath.Contains("/account/forgotpassword"); 
     }
 
-    @if (!isLoginOrRegister)
+
+
+    @if (!hideFooter)
     {
         @await Html.PartialAsync("_FooterPartial")
     }
+
 
     <!-- ✅ Toast Notification Container -->
     <div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1055;"></div>

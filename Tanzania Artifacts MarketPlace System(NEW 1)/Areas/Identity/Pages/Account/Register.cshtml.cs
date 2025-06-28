@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Constants;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Interfaces;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models;
 
 namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Account
@@ -20,21 +21,21 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly IEmailService _emailService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailService emailService)
         {
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+            _emailService = emailService;
         }
 
         [BindProperty]
@@ -115,7 +116,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email!, "Confirm your email",
+                    await _emailService.SendEmailAsync(Input.Email!, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl!)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)

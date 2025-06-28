@@ -1,0 +1,926 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+/* === Buttons & Forms === */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* === Navbar Styling === */
+.navbar-light {
+    background-color: #fff !important;
+}
+
+.navbar .nav-link {
+    color: #000 !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+        color: #f0ad4e !important;
+    }
+
+.btn-outline-dark i {
+    color: #000;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background-color: white;
+}
+
+/* === Sidebar === */
+.sidebar {
+    width: 260px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1f4037, #99f2c8);
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1050;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(-280px);
+        box-shadow: 2px 0 12px rgba(0,0,0,0.4);
+    }
+
+        .sidebar.show {
+            transform: translateX(0);
+        }
+}
+
+.sidebar-link {
+    transition: all 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+}
+
+    .sidebar-link:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+        text-decoration: none;
+    }
+
+.active-seller-link {
+    background-color: rgba(255, 255, 255, 0.35);
+    font-weight: 700;
+    border-left: 4px solid white;
+}
+
+.user-profile img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    box-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+
+/* === Checkout Section === */
+.checkout-section {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.list-group-item img {
+    border-radius: 10px;
+}
+
+.checkout-btn {
+    transition: all 0.3s ease;
+}
+
+    .checkout-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+
+.spinner-border {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .checkout-section {
+        padding: 1rem;
+    }
+
+    .list-group-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+        .list-group-item .text-end {
+            text-align: left !important;
+        }
+}
+
+/* === Product Details Enhanced Styling === */
+.product-img {
+    border-radius: 12px;
+    object-fit: cover;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 100%;
+}
+
+    .product-img:hover {
+        transform: scale(1.03);
+        opacity: 0.95;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+/* Responsive product image */
+@media (max-width: 768px) {
+    .product-img {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-img {
+        max-height: 200px;
+    }
+}
+
+/* === Product History Box === */
+.product-history-box {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* === Product Details Buttons === */
+.product-btn {
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+    .product-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+/* Product History Scroll Styling */
+.history-scroll {
+    position: relative;
+    transition: all 0.4s ease-in-out;
+    scrollbar-width: thin;
+    scrollbar-color: #c0c0c0 transparent;
+}
+
+    .history-scroll::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .history-scroll::-webkit-scrollbar-thumb {
+        background-color: #adb5bd;
+        border-radius: 10px;
+    }
+
+    .history-scroll:hover {
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fdfdfd;
+    }
+
+
+/* === Back to Products Button === */
+.back-to-products {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 50px;
+}
+
+    .back-to-products:hover {
+        transform: scale(1.03);
+        background-color: #f8f9fa;
+    }
+
+/* === Product Cards === */
+.hover-effect {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .hover-effect:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+.product-card img {
+    object-fit: cover;
+    height: 220px;
+    border-radius: 8px;
+}
+
+/* === Newsletter Section === */
+.newsletter {
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/newsletter-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding: 3rem 1rem;
+    border-radius: 12px;
+}
+
+/* === Carousel === */
+#heroCarousel {
+    height: 500px;
+    margin-top: 1rem;
+}
+
+    #heroCarousel .carousel-item img {
+        object-fit: cover;
+        height: 100%;
+        border-radius: 12px;
+    }
+
+.carousel-caption {
+    bottom: 2rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 90%;
+    margin: auto;
+}
+
+    .carousel-caption h3 {
+        font-size: 1.75rem;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .carousel-caption p {
+        font-size: 1.1rem;
+        color: #ddd;
+    }
+
+@media (max-width: 768px) {
+    .carousel-caption {
+        padding: 0.75rem;
+        bottom: 1rem;
+    }
+
+    .carousel-item img {
+        height: 300px;
+    }
+
+    .carousel-caption h3 {
+        font-size: 1.25rem;
+    }
+
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+}
+
+/* === Category Cards === */
+.category-card img {
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* === Transitions === */
+.transition-all {
+    transition: all 0.3s ease-in-out;
+}
+
+/* === Footer === */
+footer.footer {
+    background-color: #212529;
+    color: #ccc;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+footer a {
+    color: #f0ad4e;
+    text-decoration: none;
+}
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+/* === Product Card Enhancements === */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    background-color: #fff;
+    border-radius: 16px;
+    margin-top: 1rem;
+}
+
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        opacity: 0.97;
+    }
+
+.product-image {
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+@media (max-width: 576px) {
+    .product-image {
+        height: 160px;
+    }
+}
+/* === css styling for Checkout.cshtml === */
+/* Hover Effect on Table Rows */
+table tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .form-control-lg, .form-select-lg {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .fs-5 {
+        font-size: 1.1rem !important;
+    }
+}
+/* === css styling for Confirmation.cshtml === */
+/* Hover effect for table rows */
+table tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Responsive padding on mobile */
+@media (max-width: 576px) {
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .display-6 {
+        font-size: 1.8rem;
+    }
+
+    .table-responsive {
+        font-size: 0.9rem;
+    }
+
+    ul.list-group li {
+        font-size: 0.95rem;
+    }
+}
+/*===styling for admindashboard.cshtml starts here ===*/
+
+.dashboard-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-float {
+    animation: floatIcon 2.5s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+/*===styling for admindashboard.cshtml ends here ===*/
+
+/*===styling for adminorder.cshtml starts here ===*/
+
+.hover-row:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+}
+
+.transition-btn {
+    transition: all 0.2s ease-in-out;
+}
+
+    .transition-btn:hover {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+@media (max-width: 576px) {
+    .table th, .table td {
+        font-size: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .btn {
+        padding: 0.35rem 0.65rem;
+    }
+
+    .badge {
+        font-size: 0.75rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .table th, .table td {
+        font-size: 1rem;
+    }
+}
+
+/*===styling for adminorder.cshtml ends here ===*/
+/*===styling for ManageUser.cshtml starts here ===*/
+
+.hover-row:hover {
+    background-color: rgba(255, 228, 132, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.1);
+}
+
+.transition-btn {
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+    .transition-btn:hover {
+        transform: scale(1.1);
+        opacity: 0.85;
+    }
+
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 0.85rem;
+    }
+
+    .form-select {
+        width: 100px !important;
+    }
+
+    .btn {
+        padding: 0.35rem 0.65rem;
+    }
+}
+
+/*===styling for ManageUser.cshtml ends here ===*/
+/*===styling for ProductApproval.cshtml ends here ===*/
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-success:hover,
+.btn-outline-danger:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+@media (max-width: 576px) {
+    .card-body h5 {
+        font-size: 1rem;
+    }
+
+    .card-body p {
+        font-size: 0.85rem;
+    }
+}
+
+/*===styling for ProductApproval.cshtml ends here ===*/
+/*===styling for AdminSidebar.cshtml starts here ===*/
+/* Base styles */
+body.light-theme {
+    background-color: #f9fafb;
+    color: #111;
+}
+
+body.dark-theme {
+    background-color: #111827;
+    color: #fff;
+}
+
+/* Sidebar */
+.admin-sidebar {
+    transition: all 0.3s ease;
+}
+
+    .admin-sidebar a {
+        color: inherit;
+        padding: 12px 18px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .admin-sidebar a:hover,
+        .admin-sidebar a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fbbf24 !important;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+
+.toggle-sidebar {
+    display: none;
+}
+
+/* Mobile sidebar toggle */
+@media (max-width: 768px) {
+    .admin-sidebar {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 250px;
+        height: 100%;
+        background-color: #111827;
+        z-index: 1000;
+        padding-top: 60px;
+        transition: left 0.3s ease;
+    }
+
+        .admin-sidebar.show {
+            left: 0;
+        }
+
+    .toggle-sidebar {
+        display: inline-block;
+    }
+
+    #notificationCount {
+        font-size: 0.6rem;
+        display: none;
+    }
+
+}
+
+/*===styling for AdminSidebar.cshtml ends here ===*/
+/* Base styles for theme starts here  */
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+    /* Light Theme */
+    body.light-theme {
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+
+.light-theme .card,
+.light-theme .table,
+.light-theme .modal-content {
+    background-color: #ffffff;
+    color: #212529;
+    border-color: #dee2e6;
+}
+
+.light-theme .list-group-item {
+    background-color: #fff;
+    color: #212529;
+    border-color: #dee2e6;
+}
+
+.light-theme a,
+.light-theme .bi {
+    color: #0d6efd;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-theme .card,
+.dark-theme .table,
+.dark-theme .modal-content {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border-color: #333;
+}
+
+.dark-theme .list-group-item {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border-color: #333;
+}
+
+.dark-theme a,
+.dark-theme .bi {
+    color: #66b2ff;
+}
+
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5 {
+    color: #ffffff;
+}
+
+/* Ensure icons and text contrast well */
+.dark-theme .btn-outline-primary {
+    color: #66b2ff;
+    border-color: #66b2ff;
+}
+
+    .dark-theme .btn-outline-primary:hover {
+        background-color: #66b2ff;
+        color: #000;
+    }
+
+/* Navbar adjustments */
+.dark-theme .navbar {
+    background-color: #1e1e1e !important;
+    border-bottom: 1px solid #333;
+}
+
+.light-theme .navbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Table hover fix */
+.dark-theme .table-hover tbody tr:hover {
+    background-color: #2a2a2a;
+}
+/* Base styles for theme starts here  */
+/* Base styles for EditOrder for admin starts here  */
+
+.transition-btn {
+    transition: all 0.3s ease-in-out;
+}
+
+.transition-btn:hover {
+    transform: scale(1.05);
+    opacity: 0.95;
+}
+
+.card-body select.form-select {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+@media (max-width: 768px) {
+    .btn {
+        font-size: 0.875rem;
+    }
+
+    h4 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .btn {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+}
+
+
+
+/* Base styles for EditOrder for admin ends here  */
+/*===styling for _SellerLayout.cshtml starts here ===*/
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    transition: background 0.3s ease-in-out;
+}
+
+.sidebar {
+    background-color: #343a40;
+    min-height: 100vh;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+}
+
+    .sidebar a {
+        color: white;
+        padding: 15px;
+        display: block;
+        text-decoration: none;
+        transition: background 0.2s, transform 0.2s;
+    }
+
+        .sidebar a:hover {
+            background-color: #495057;
+            transform: translateX(5px);
+        }
+
+.topbar {
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+    .topbar .seller-info {
+        font-weight: 500;
+        color: #333;
+    }
+
+.main-content {
+    padding: 20px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 250px;
+        height: 100%;
+        z-index: 1050;
+    }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+    .sidebar-toggle {
+        display: inline-block;
+    }
+}
+
+
+
+/*===styling for _SellerLayout.cshtml ends here ===*/
+/*===styling for WishList.cshtml starts here ===*/
+
+    .wishlist-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #dc3545;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    .wishlist-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 16px;
+        overflow: hidden;
+        opacity: 0.95;
+    }
+
+        .wishlist-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+            opacity: 1;
+        }
+
+    .wishlist-img {
+        height: 220px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .wishlist-card:hover .wishlist-img {
+        transform: scale(1.05);
+    }
+
+    .wishlist-body {
+        padding: 1rem;
+    }
+
+        .wishlist-body h5 {
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 0.5rem;
+        }
+
+    .wishlist-price {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #28a745;
+    }
+
+    .wishlist-description {
+        font-size: 0.95rem;
+        color: #6c757d;
+    }
+
+    .wishlist-remove-btn {
+        transition: all 0.2s ease;
+        font-weight: 600;
+    }
+
+        .wishlist-remove-btn:hover {
+            background-color: #dc3545 !important;
+            color: white !important;
+            box-shadow: 0 0 8px rgba(220, 53, 69, 0.3);
+        }
+
+    @media (max-width: 576px) {
+        .wishlist-title {
+            font-size: 1.5rem;
+        }
+
+        .wishlist-img {
+            height: 180px;
+        }
+    }
+
+  
+
+/*===styling for Wishlist.cshtml ends here ===*/
+
+
+
+
