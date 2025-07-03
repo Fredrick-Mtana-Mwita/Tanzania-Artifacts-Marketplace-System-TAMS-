@@ -30,11 +30,12 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Repositories
 
         // Gets featured products (e.g., manually marked)
         public async Task<IEnumerable<Product>> GetFeaturedAsync()
-            => await _context.Products
-                             .Where(p => p.IsFeatured)
-                             .OrderByDescending(p => p.DateCreated)
-                             .Take(6)
-                             .ToListAsync();
+                   => await _context.Products
+                      .Where(p => p.IsFeatured && p.IsApproved)
+                      .OrderByDescending(p => p.DateCreated)
+                      .Take(6)
+                      .ToListAsync();
+
 
         // Gets the most recently added products
         public async Task<IEnumerable<Product>> GetNewArrivalsAsync()

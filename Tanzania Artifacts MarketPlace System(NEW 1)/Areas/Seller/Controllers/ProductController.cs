@@ -1,12 +1,13 @@
 ﻿
 using Microsoft.AspNetCore.Authorization; // For role-based access
+using Microsoft.AspNetCore.Http; // For model binding with form files
 using Microsoft.AspNetCore.Identity; // For UserManager
 using Microsoft.AspNetCore.Mvc; // For MVC controller base
 using Microsoft.EntityFrameworkCore; // For EF Core DB access
 using System.Security.Claims; // For accessing logged-in user info
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.SellerViewModel;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data; // Your DbContext
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models; // Your models
-using Microsoft.AspNetCore.Http; // For model binding with form files
 
 namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.Controllers
 {
@@ -46,33 +47,108 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.Controllers
         }
 
         // ✅ Render the create form
+        // ✅ new
         public IActionResult Create()
         {
             ViewData["FormAction"] = "Create";
-            return View("CreateEdit", new Product());
+            return View("Create", new SellerProductVM());
         }
 
-        // ✅ POST: Handle product creation (with model binding for images)
+
+        // ✅ POST: Handle product creation 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(
-            [Bind("Name,Description,ProductHistory,Price,Quantity,IsFeatured")] Product product,
-            [FromForm] List<IFormFile> images)
+        public async Task<IActionResult> Create(SellerProductVM model)
         {
             if (!ModelState.IsValid)
-                return View("CreateEdit", product);
+            {
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
 
-            product.SellerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            product.DateCreated = DateTime.UtcNow;
-            product.IsApproved = false;
+                TempData["Error"] = "Validation failed: " + string.Join(" | ", errors);
+                return View(model);
+            }
 
-            _context.Add(product);
-            await _context.SaveChangesAsync();
+            try
+            {
+                // ✅ Check if user is logged in and has a valid SellerId
+                var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (string.IsNullOrEmpty(sellerId))
+                {
+                    TempData["Error"] = "Seller ID is not found. Are you logged in?";
+                    return View(model);
+                }
 
-            await SaveImages(images, product);
+                var product = new Product
+                {
+                    Name = model.ProductName!,
+                    Description = model.Description!,
+                    Price = model.Price,
+                    StockQuantity = model.StockQuantity,
+                    Quantity = model.StockQuantity,
+                    SellerId = sellerId,
+                    DateCreated = DateTime.UtcNow,
+                    IsFeatured = model.IsFeatured,
+                    IsApproved = false,
+                    ProductHistory = model.ProductHistory ?? ""
+                };
 
-            TempData["Success"] = "Product submitted successfully!";
-            return RedirectToAction(nameof(Index));
+                _context.Products.Add(product);
+                await _context.SaveChangesAsync();
+
+                // ✅ Handle image upload
+                if (model.Image != null && model.Image.Length > 0)
+                {
+                    var ext = Path.GetExtension(model.Image.FileName);
+                    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
+
+                    if (!allowedExtensions.Contains(ext.ToLower()))
+                    {
+                        TempData["Error"] = "Invalid image format. Only JPG, PNG, GIF, and WEBP are allowed.";
+                        return View(model);
+                    }
+
+                    if (model.Image.Length > 5 * 1024 * 1024)
+                    {
+                        TempData["Error"] = "Image file is too large. Max allowed size is 5MB.";
+                        return View(model);
+                    }
+
+                    var uniqueName = $"{Guid.NewGuid()}{ext}";
+                    var folderPath = Path.Combine(_env.WebRootPath, "uploads", "products");
+                    Directory.CreateDirectory(folderPath);
+                    var fullPath = Path.Combine(folderPath, uniqueName);
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await model.Image.CopyToAsync(stream);
+                    }
+
+                    var productImage = new ProductImage
+                    {
+                        ProductId = product.Id,
+                        Url = $"/uploads/products/{uniqueName}",
+                        OriginalFileName = model.Image.FileName,
+                        CreatedAt = DateTime.UtcNow,
+                        DisplayOrder = 0,
+                        AltText = product.Name,
+                        IsMain = true
+                    };
+
+                    _context.ProductImages.Add(productImage);
+                    await _context.SaveChangesAsync();
+                }
+
+                TempData["Success"] = "Product submitted successfully!";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Unexpected error occurred: " + ex.Message;
+                return View(model);
+            }
         }
 
         // ✅ Render edit form

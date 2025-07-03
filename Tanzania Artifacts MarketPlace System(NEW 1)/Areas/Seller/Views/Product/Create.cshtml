@@ -1,0 +1,112 @@
+﻿@model Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.SellerViewModel.SellerProductVM
+
+@{
+    ViewData["Title"] = "Create Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="card shadow-lg border-0 rounded-4 animate__animated animate__fadeIn">
+        <div class="card-body p-4">
+            <h2 class="mb-4 fw-bold text-primary">
+                <i class="bi bi-plus-circle me-2"></i> Add New Product
+            </h2>
+
+            <form asp-action="Create" method="post" enctype="multipart/form-data" class="needs-validation" >
+                @Html.AntiForgeryToken()
+
+                <!-- ✅ Show error if TempData["Error"] is set -->
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["Error"]</div>
+                }
+
+                <!-- ✅ Display validation summary -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="mb-3">
+                    <label asp-for="ProductName" class="form-label">Product Name</label>
+                    <input asp-for="ProductName" class="form-control shadow-sm" placeholder="Enter product name" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control shadow-sm" rows="3" placeholder="Describe the product"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ProductHistory" class="form-label">Product History</label>
+                    <textarea asp-for="ProductHistory" class="form-control shadow-sm" rows="3" placeholder="History or origin (optional)"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Price" class="form-label">Price (TSh)</label>
+                        <input asp-for="Price" type="number" step="0.01" class="form-control shadow-sm" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="StockQuantity" class="form-label">Stock Quantity</label>
+                        <input asp-for="StockQuantity" type="number" class="form-control shadow-sm" />
+                        <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="IsFeatured" class="form-label">Is Featured?</label>
+                    <select asp-for="IsFeatured" class="form-select shadow-sm">
+                        <option value="false">No</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Image" class="form-label">Upload Product Image</label>
+                    <input asp-for="Image" type="file" class="form-control shadow-sm" accept="image/*" onchange="previewImages(this)" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                    <div id="preview" class="d-flex flex-wrap gap-2 mt-3"></div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-outline-secondary shadow-sm">
+                        <i class="bi bi-arrow-left"></i> Back
+                    </a>
+                    <button type="submit" class="btn btn-success shadow-sm">
+                        <i class="bi bi-save"></i> Save Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function previewImages(input) {
+            const preview = document.getElementById('preview');
+            preview.innerHTML = '';
+
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                img.className = "rounded shadow-sm border";
+                img.style.height = "100px";
+                img.style.objectFit = "cover";
+                img.style.opacity = "0.9";
+                img.style.transition = "transform 0.3s ease";
+                img.onmouseover = () => img.style.transform = "scale(1.05)";
+                img.onmouseout = () => img.style.transform = "scale(1)";
+                preview.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+}

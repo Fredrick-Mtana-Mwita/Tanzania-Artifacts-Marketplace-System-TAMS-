@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -22,32 +23,36 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
         {
             _signInManager = signInManager;
             _logger = logger;
-
-            // Initialize non-nullable properties
-            ReturnUrl = string.Empty;
-            ErrorMessage = string.Empty;
         }
 
+     
         [BindProperty]
-        public InputModel Input { get; set; } = new();
+        public InputModel Input { get; set; } = new InputModel();
+
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; } = new List<AuthenticationScheme>();
 
-        public string ReturnUrl { get; set; } 
+       
+        public string? ReturnUrl { get; set; }
 
+   
         [TempData]
-        public string ErrorMessage { get; set; }
+        public string? ErrorMessage { get; set; }
 
+     
         public class InputModel
         {
+         
             [Required]
             [EmailAddress]
             public string? Email { get; set; }
 
+      
             [Required]
             [DataType(DataType.Password)]
             public string? Password { get; set; }
 
+           
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
         }
@@ -56,74 +61,42 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
-                // Show TempData error (from redirect or failed attempt)
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
             returnUrl ??= Url.Content("~/");
 
-            // Clear external login session
+            // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            // Get external login providers
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             ReturnUrl = returnUrl;
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null!)
         {
             returnUrl ??= Url.Content("~/");
-
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             if (ModelState.IsValid)
             {
-                // 🔍 Find user
-                var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email!);
-
-                if (user != null)
-                {
-                    // ⛔ Inactive users
-                    if (!user.IsActive)
-                    {
-                        ModelState.AddModelError(string.Empty, "Your account is inactive. Please contact the administrator.");
-                        return Page();
-                    }
-
-                    // 📧 Email not confirmed
-                    if (!await _signInManager.UserManager.IsEmailConfirmedAsync(user))
-                    {
-                        ModelState.AddModelError(string.Empty, "You must confirm your email before logging in.");
-                        return Page();
-                    }
-                }
-
-                // ✅ Attempt login
                 var result = await _signInManager.PasswordSignInAsync(Input.Email!, Input.Password!, Input.RememberMe, lockoutOnFailure: false);
-
                 if (result.Succeeded)
                 {
-                    // 👣 Refresh user session
-                    await _signInManager.SignOutAsync();
-                    await _signInManager.SignInAsync(user!, isPersistent: Input.RememberMe);
+                    _logger.LogInformation("User logged in.");
 
-                    _logger.LogInformation("Redirecting user with role: {role}", user!.Role);
+                    var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email!);
+                    var roles = await _signInManager.UserManager.GetRolesAsync(user!);
 
-                    switch (user!.Role)
-                    {
-                        case Roles.Admin:
-                            _logger.LogInformation("Redirecting to Admin Dashboard");
-                            return LocalRedirect("/Admin/AdminDashboard");
+                    if (roles.Contains("Admin"))
+                        return RedirectToAction("AdminDashboard", "Admin", new { area = "Admin" });
 
-                        case Roles.Seller:
-                            _logger.LogInformation("Redirecting to SellerDashboard in Seller Area");
-                            return RedirectToAction("SellerDashboard", "SellerDashboard", new { area = "Seller" });
+                    if (roles.Contains("Seller"))
+                        return RedirectToAction("SellerDashboard", "SellerDashboard", new { area = "Seller" });
 
-                        default:
-                            _logger.LogInformation("Redirecting to Home/Index");
-                            return LocalRedirect("/Home/Index");
-                    }
-
+                    // Default for User
+                    return RedirectToAction("Index", "Home");
                 }
 
                 if (result.RequiresTwoFactor)
@@ -137,12 +110,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
                     return RedirectToPage("./Lockout");
                 }
 
-                // ❌ Fallback for invalid attempts
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                return Page();
             }
 
-            // ❌ Model validation failed
             return Page();
         }
     }
