@@ -32,7 +32,11 @@
                         <tr class="text-center">
                             <td>@product.Id</td>
                             <td>
-                                <img src="@product.ProductImage" alt="Product Image" class="rounded" style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #dee2e6;" />
+                                <img src="@(product.Images.FirstOrDefault(i => i.IsMain)?.Url ?? "/images/no-image.png")"
+                                     alt="Product Image"
+                                     class="rounded"
+                                     style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #dee2e6;" />
+
                             </td>
                             <td>@product.Name</td>
                             <td>@product.Seller?.FirstName @product.Seller?.LastName</td>

@@ -13,19 +13,21 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Interfaces;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models;
 
 namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Account
 {
     public class ForgotPasswordModel : PageModel
     {
+        private readonly IEmailService _emailService;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<ApplicationUser> userManager,  IEmailService emailService   )
         {
             _userManager = userManager;
-            _emailSender = emailSender;
+           
+            _emailService = emailService;
         }
 
         /// <summary>
@@ -71,10 +73,10 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                await _emailService.SendEmailAsync(
+                Input.Email!,
+                "Reset Your Password",
+                $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

@@ -963,6 +963,23 @@ body {
 }
 
 /*===styling for NewsletterSubscription.cshtml ends here ===*/
+/*===styling for Succes.cshtml when user register as seller starts here ===*/
+
+.btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: white;
+    box-shadow: 0 0 12px rgba(13, 110, 253, 0.3);
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 2rem 1.2rem;
+    }
+}
+
+
+
+/*===styling for Succes.cshtml when user register as seller  ends here ===*/
 
 
 

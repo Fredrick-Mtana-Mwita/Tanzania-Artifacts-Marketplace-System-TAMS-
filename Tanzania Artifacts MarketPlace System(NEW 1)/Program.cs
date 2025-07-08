@@ -1,4 +1,4 @@
-// Program.cs
+ // Program.cs
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Http.Features; // ✅ Needed for request size config
@@ -10,6 +10,7 @@ using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.SignalR;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 
 // ✅ MVC and SignalR
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient(); // ✅ Register IHttpClientFactory
 builder.Services.AddSignalR();
 builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
 
@@ -44,6 +46,9 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationSender, NotificationSender>();
 builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
+builder.Services.Configure<PayPalSettings>(
+    builder.Configuration.GetSection("PayPal"));
+builder.Services.AddScoped<PayPalService>();
 
 // ✅ Email settings configuration
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));

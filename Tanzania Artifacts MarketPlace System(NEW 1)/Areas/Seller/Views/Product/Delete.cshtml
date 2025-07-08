@@ -1,22 +1,37 @@
-﻿@* Views/Seller/Product/Delete.cshtml *@
-@model Product
+﻿@model Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Product
+
 @{
     ViewData["Title"] = "Delete Product";
+    Layout = "~/Views/Shared/_SellerLayout.cshtml";
 }
-<div class="container py-5">
-    <div class="alert alert-danger shadow">
-        <h4 class="alert-heading">Are you sure?</h4>
-        <p>You're about to delete <strong>@Model.Name</strong>. This action cannot be undone.</p>
-        <form asp-action="DeleteConfirmed" method="post">
-            <input type="hidden" asp-for="Id" />
-            <div class="d-flex justify-content-between mt-4">
-                <a asp-action="Index" class="btn btn-secondary">
-                    <i class="bi bi-arrow-left"></i> Cancel
-                </a>
-                <button type="submit" class="btn btn-danger">
-                    <i class="bi bi-trash"></i> Confirm Delete
-                </button>
+
+<h2 class="text-danger fw-bold mb-4">Delete Product</h2>
+
+<div class="alert alert-warning">
+    <strong>Are you sure?</strong> This action cannot be undone.
+</div>
+
+<div class="card shadow-sm">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="@(Model.Images.FirstOrDefault()?.Url ?? "/images/no-image.png")" class="img-fluid rounded-start" alt="Product Image">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <p class="card-text text-muted">TSh @Model.Price.ToString("N0")</p>
+                <p class="card-text">@Model.Description</p>
+                <p class="card-text small">Stock: @Model.StockQuantity</p>
+
+                <form asp-area="Seller" asp-controller="Product" asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-trash me-1"></i> Delete Permanently
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </form>
+
             </div>
-        </form>
+        </div>
     </div>
 </div>

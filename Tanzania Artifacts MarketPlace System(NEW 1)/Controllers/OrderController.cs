@@ -32,22 +32,9 @@ public class OrderController : Controller
         _userManager = userManager;
         _emailService = emailService;
     }
-
-    public async Task<IActionResult> Checkout()
-    {
-        var user = await _userManager.GetUserAsync(User);
-        if (user == null) return RedirectToAction("Login", "Account");
-
-        var cart = await _cartRepository.GetCartByUserIdAsync(user.Id);
-        if (cart == null || !cart.Items.Any()) return RedirectToAction("Index", "Cart");
-
-        var vm = new CheckoutVM { Items = cart.Items.ToList() };
-        return View(vm);
-    }
-
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> PlaceOrder(CheckoutVM vm)
+    public async Task<IActionResult> CreateOrder()
     {
         var user = await _userManager.GetUserAsync(User);
         if (user == null) return RedirectToAction("Login", "Account");
@@ -58,10 +45,10 @@ public class OrderController : Controller
         var order = new Order
         {
             UserId = user.Id,
-            ShippingCity = vm.ShippingCity,
-            PaymentMethod = vm.PaymentMethod,
+            ShippingCity = "", // Empty for now
+            PaymentMethod = PaymentMethod.Unknown,
             OrderDate = DateTime.UtcNow,
-            Status = OrderStatus.Ordered,
+            Status = OrderStatus.Pending,
             TotalAmount = cart.Items.Sum(i => i.Product.Price * i.Quantity),
             Items = cart.Items.Select(i => new OrderItem
             {
@@ -72,46 +59,117 @@ public class OrderController : Controller
         };
 
         await _orderRepository.AddAsync(order);
+
+        // DO NOT clear the cart here! We need cart info on Checkout & PlaceOrder
+
+        return RedirectToAction("Checkout", new { orderId = order.Id });
+    }
+
+    public async Task<IActionResult> Checkout(int orderId)
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null) return RedirectToAction("Login", "Account");
+
+        var order = await _orderRepository.GetByIdAsync(orderId);
+        if (order == null || order.UserId != user.Id)
+            return RedirectToAction("Index", "Cart");
+
+        // Fetch product details in parallel for all order items
+        var items = new List<CartItem>();
+
+        foreach (var item in order.Items)
+        {
+            var product = await _productRepository.GetByIdAsync(item.ProductId);
+            if (product == null) continue; // skip nulls safely
+
+            items.Add(new CartItem
+            {
+                Product = product,
+                ProductId = item.ProductId,
+                Quantity = item.Quantity
+            });
+        }
+
+        var vm = new CheckoutVM
+        {
+            OrderId = order.Id,
+            Items = items,
+            ShippingCity = order.ShippingCity,
+            PaymentMethod = order.PaymentMethod
+        };
+
+        return View(vm);
+    }
+
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> PlaceOrder(CheckoutVM vm)
+    {
+        if (!ModelState.IsValid)
+        {
+            TempData["Errors"] = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+            return RedirectToAction("Checkout", new { orderId = vm.OrderId });
+        }
+
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null) return RedirectToAction("Login", "Account");
+
+        var order = await _orderRepository.GetByIdAsync(vm.OrderId);
+        if (order == null || order.UserId != user.Id) return RedirectToAction("Index", "Cart");
+
+        // Update order details from vm
+        order.ShippingCity = vm.ShippingCity;
+        order.PaymentMethod = vm.PaymentMethod;
+        order.Status = OrderStatus.Ordered;
+        order.OrderDate = DateTime.UtcNow; // or keep original order date if you want
+
+        // Update total amount if needed
+        // If order items or quantity changed, you might want to recalculate total here
+
+        await _orderRepository.UpdateAsync(order);
+
+        // Clear cart now that order is finalized
         await _cartRepository.ClearCartAsync(user.Id);
 
-        // Build Email Body with table
+        // Send confirmation email (same as before)
         string subject = "Order Confirmation - Tanzania Artifacts Marketplace";
 
         string tableRows = string.Join("", order.Items.Select(item => $@"
-            <tr>
-                <td style='padding:8px;border:1px solid #ccc'>{item.Product?.Name}</td>
-                <td style='padding:8px;border:1px solid #ccc'>{item.Quantity}</td>
-                <td style='padding:8px;border:1px solid #ccc'>TSh {item.UnitPrice:N2}</td>
-                <td style='padding:8px;border:1px solid #ccc'>TSh {(item.Quantity * item.UnitPrice):N2}</td>
-            </tr>
-        "));
+        <tr>
+            <td style='padding:8px;border:1px solid #ccc'>{item.Product?.Name}</td>
+            <td style='padding:8px;border:1px solid #ccc'>{item.Quantity}</td>
+            <td style='padding:8px;border:1px solid #ccc'>TSh {item.UnitPrice:N2}</td>
+            <td style='padding:8px;border:1px solid #ccc'>TSh {(item.Quantity * item.UnitPrice):N2}</td>
+        </tr>
+    "));
 
         string body = $@"
-            <div style='font-family:sans-serif;'>
-                <h2>Hello {user.FirstName}, thank you for your order!</h2>
-                <p>Your order <strong>#{order.Id}</strong> has been successfully placed.</p>
-                <p><strong>Shipping City:</strong> {order.ShippingCity}</p>
-                <p><strong>Payment Method:</strong> {order.PaymentMethod}</p>
-                <p><strong>Order Date:</strong> {order.OrderDate:yyyy-MM-dd HH:mm}</p>
-                <p><strong>Total Amount:</strong> TSh {order.TotalAmount:N2}</p>
+        <div style='font-family:sans-serif;'>
+            <h2>Hello {user.FirstName}, thank you for your order!</h2>
+            <p>Your order <strong>#{order.Id}</strong> has been successfully placed.</p>
+            <p><strong>Shipping City:</strong> {order.ShippingCity}</p>
+            <p><strong>Payment Method:</strong> {order.PaymentMethod}</p>
+            <p><strong>Order Date:</strong> {order.OrderDate:yyyy-MM-dd HH:mm}</p>
+            <p><strong>Total Amount:</strong> TSh {order.TotalAmount:N2}</p>
 
-                <h3 style='margin-top:30px;'>Order Items</h3>
-                <table style='border-collapse:collapse;width:100%;margin-top:10px;'>
-                    <thead>
-                        <tr style='background:#f0f0f0;'>
-                            <th style='padding:8px;border:1px solid #ccc;'>Product</th>
-                            <th style='padding:8px;border:1px solid #ccc;'>Quantity</th>
-                            <th style='padding:8px;border:1px solid #ccc;'>Unit Price</th>
-                            <th style='padding:8px;border:1px solid #ccc;'>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>{tableRows}</tbody>
-                </table>
+            <h3 style='margin-top:30px;'>Order Items</h3>
+            <table style='border-collapse:collapse;width:100%;margin-top:10px;'>
+                <thead>
+                    <tr style='background:#f0f0f0;'>
+                        <th style='padding:8px;border:1px solid #ccc;'>Product</th>
+                        <th style='padding:8px;border:1px solid #ccc;'>Quantity</th>
+                        <th style='padding:8px;border:1px solid #ccc;'>Unit Price</th>
+                        <th style='padding:8px;border:1px solid #ccc;'>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>{tableRows}</tbody>
+            </table>
 
-                <p style='margin-top:30px;'>We will notify you once your order is processed.</p>
-                <p style='color:#888;'>Tanzania Artifacts Marketplace Team</p>
-            </div>
-        ";
+            <p style='margin-top:30px;'>We will notify you once your order is processed.</p>
+            <p style='color:#888;'>Tanzania Artifacts Marketplace Team</p>
+        </div>
+    ";
 
         await _emailService.SendEmailAsync(user.Email!, subject, body);
 

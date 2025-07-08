@@ -29,9 +29,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "Product")">Shop</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("About", "Home")">About</a>
-                </li>
+               
+                <!-- Become a Seller button (only for logged-in users who are not sellers) -->
+                @using Microsoft.AspNetCore.Identity
+                @inject SignInManager<ApplicationUser> SignInManager
+                @inject UserManager<ApplicationUser> UserManager
+
+                @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Seller"))
+                {
+                   <li class="nav-item">
+                        <a asp-area="Seller" asp-controller="SellerOnboarding" asp-action="Start" class="nav-link"> Sell</a>
+                   </li>
+                }
             </ul>
 
             <!-- Search -->
@@ -46,16 +55,11 @@
             <!-- Cart -->
             @await Component.InvokeAsync("CartCount")
 
-            @* <a href="@Url.Action("Index", "Cart")" class="btn btn-outline-dark position-relative me-3" aria-label="Shopping cart">
-                <i class="bi bi-cart-fill fs-4"></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;">
-                    @(ViewBag.CartCount ?? 0)
-                    <span class="visually-hidden">items in cart</span>
-                </span>
-            </a> *@
+           
 
             <!-- Login / Register -->
             @await Html.PartialAsync("_LoginPartial")
+
         </div>
     </div>
 </nav>

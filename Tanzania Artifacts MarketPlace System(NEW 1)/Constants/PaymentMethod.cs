@@ -11,6 +11,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Constants
         MobileMoney,
 
         [Display(Name = "PayPal")]
-        Paypal
+        Paypal,
+        Unknown
     }
 }

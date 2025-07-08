@@ -63,7 +63,11 @@
                 <h4 class="d-inline-block me-3">
                     Total: @("TSh " + Model.Items.Sum(i => i.Product.Price * i.Quantity).ToString("N2"))
                 </h4>
-                <a href="@Url.Action("Checkout", "Order")" class="btn btn-warning">Checkout</a>
+                <form method="post" asp-controller="Order" asp-action="CreateOrder">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-warning">Checkout</button>
+                </form>
+
             </div>
         </div>
     }

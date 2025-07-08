@@ -1,5 +1,5 @@
-﻿@* Views/Seller/Product/Index.cshtml *@
-@model IEnumerable<Product>
+﻿@model IEnumerable<Product>
+
 @{
     ViewData["Title"] = "My Products";
 }
@@ -21,13 +21,24 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             @foreach (var item in Model)
             {
+                var mainImage = item.Images?.FirstOrDefault(img => img.IsMain);
+
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0 position-relative">
+
+                        @* Show product image if exists, else placeholder *@
+                        <img src="@(mainImage != null ? mainImage.Url : Url.Content("~/images/no-image.png"))"
+                             alt="@item.Name"
+                             class="card-img-top"
+                             style="height: 200px; object-fit: cover;" />
+
                         <div class="card-body">
                             <h5 class="card-title text-primary">@item.Name</h5>
-                            <p class="card-text">@item.Description?.Substring(0, Math.Min(100, item.Description.Length))...</p>
+                            <p class="card-text">
+                                @(item.Description?.Length > 100 ? item.Description.Substring(0, 100) + "..." : item.Description)
+                            </p>
                             <p class="text-muted small">Price: <strong class="text-dark">TSh @item.Price.ToString("N0")</strong></p>
-                            <p class="text-muted small">Quantity: @item.Quantity</p>
+                            <p class="text-muted small">Quantity: @item.StockQuantity</p>
                         </div>
                         <div class="card-footer bg-white d-flex justify-content-between">
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">

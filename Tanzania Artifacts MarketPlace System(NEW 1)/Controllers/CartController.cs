@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
 {
+    [Authorize]
     public class CartController : BaseController
     {
         public CartController(ICartRepository cartRepository, UserManager<ApplicationUser> userManager)

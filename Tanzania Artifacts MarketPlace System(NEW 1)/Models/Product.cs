@@ -31,5 +31,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
         public virtual ApplicationUser Seller { get; set; } = default!;
         public virtual ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+     
+
     }
 }

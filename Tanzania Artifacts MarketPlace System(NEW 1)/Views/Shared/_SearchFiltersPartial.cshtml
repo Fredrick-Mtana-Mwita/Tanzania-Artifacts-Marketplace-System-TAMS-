@@ -1,0 +1,47 @@
+﻿@{
+    var query = Context.Request.Query;
+    var searchTerm = query["searchTerm"];
+    var productId = query["productId"];
+    var inStock = query["inStock"];
+    var minPrice = query["minPrice"];
+    var maxPrice = query["maxPrice"];
+
+    string selectedTrue = inStock == "true" ? "selected" : "";
+    string selectedFalse = inStock == "false" ? "selected" : "";
+}
+
+<form class="row g-2 mb-4" method="get" action="@Url.Action("Index", "Product")">
+    <div class="col-md-3">
+        <input name="searchTerm" class="form-control" placeholder="Search by name or description..."
+               value="@searchTerm" />
+    </div>
+
+    <div class="col-md-2">
+        <input name="productId" class="form-control" type="number" placeholder="Product ID"
+               value="@productId" />
+    </div>
+
+    <div class="col-md-2">
+        <select name="inStock" class="form-select">
+            <option value="">Stock Status</option>
+            @Html.Raw($"<option value=\"true\" {selectedTrue}>In Stock</option>")
+            @Html.Raw($"<option value=\"false\" {selectedFalse}>Out of Stock</option>")
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <input name="minPrice" class="form-control" type="number" step="0.01" placeholder="Min Price"
+               value="@minPrice" />
+    </div>
+
+    <div class="col-md-2">
+        <input name="maxPrice" class="form-control" type="number" step="0.01" placeholder="Max Price"
+               value="@maxPrice" />
+    </div>
+
+    <div class="col-md-1 d-grid">
+        <button class="btn btn-warning" type="submit">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+</form>

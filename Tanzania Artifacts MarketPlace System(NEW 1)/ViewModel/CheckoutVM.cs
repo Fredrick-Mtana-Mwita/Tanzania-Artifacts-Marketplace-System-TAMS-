@@ -3,6 +3,7 @@
     
     public class CheckoutVM
     {
+        public int OrderId { get; set; }
         public string ShippingCity { get; set; } = string.Empty;
         public PaymentMethod PaymentMethod { get; set; }
 

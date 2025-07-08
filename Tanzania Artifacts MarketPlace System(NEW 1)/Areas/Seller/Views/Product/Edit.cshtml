@@ -1,119 +1,69 @@
-﻿@model Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Product
+﻿@model Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.SellerViewModel.SellerProductVM
 
 @{
     ViewData["Title"] = "Edit Product";
 }
 
-<div class="container py-4">
-    <h2 class="fw-bold text-center mb-4 animate__animated animate__fadeInDown">
-        <i class="bi bi-pencil-square"></i> Edit Product
-    </h2>
+<h2 class="text-primary fw-bold mb-4">Edit Product</h2>
 
-    <form asp-action="Edit" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
-        <input type="hidden" asp-for="Id" />
+<form asp-action="Edit" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+    <input type="hidden" asp-for="ProductId" />
 
-        <!-- Product Name -->
-        <div class="mb-3">
-            <label asp-for="Name" class="form-label"></label>
-            <input asp-for="Name" class="form-control shadow-sm" required />
-            <span asp-validation-for="Name" class="text-danger"></span>
+    <div class="col-md-6">
+        <label asp-for="ProductName" class="form-label">Product Name</label>
+        <input asp-for="ProductName" class="form-control" />
+        <span asp-validation-for="ProductName" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Price" class="form-label">Price (TSh)</label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Description" class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="ProductHistory" class="form-label">Product History</label>
+        <textarea asp-for="ProductHistory" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="StockQuantity" class="form-label">Stock Quantity</label>
+        <input asp-for="StockQuantity" class="form-control" />
+    </div>
+
+    <div class="col-md-4 d-flex align-items-end">
+        <div class="form-check">
+            <input asp-for="IsFeatured" class="form-check-input" />
+            <label asp-for="IsFeatured" class="form-check-label">Featured Product</label>
         </div>
+    </div>
 
-        <!-- Description -->
-        <div class="mb-3">
-            <label asp-for="Description" class="form-label"></label>
-            <textarea asp-for="Description" class="form-control shadow-sm" rows="4" required></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
-
-        <!-- Product History -->
-        <div class="mb-3">
-            <label asp-for="ProductHistory" class="form-label"></label>
-            <textarea asp-for="ProductHistory" class="form-control shadow-sm" rows="3"></textarea>
-        </div>
-
-        <div class="row">
-            <!-- Price -->
-            <div class="col-md-6 mb-3">
-                <label asp-for="Price" class="form-label"></label>
-                <input asp-for="Price" class="form-control shadow-sm" required />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-
-            <!-- Quantity -->
-            <div class="col-md-6 mb-3">
-                <label asp-for="Quantity" class="form-label"></label>
-                <input asp-for="Quantity" class="form-control shadow-sm" required />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-        </div>
-
-        <!-- Featured -->
-        <div class="mb-3">
-            <label asp-for="IsFeatured" class="form-label"></label>
-            <select asp-for="IsFeatured" class="form-select shadow-sm">
-                <option value="false">No</option>
-                <option value="true">Yes</option>
-            </select>
-        </div>
-
-        <!-- Current Images -->
-        @if (Model.Images != null && Model.Images.Any())
+    <div class="col-md-4">
+        <label asp-for="Image" class="form-label">Change Product Image</label>
+        <input asp-for="Image" type="file" class="form-control" accept="image/*" />
+        @if (!string.IsNullOrEmpty(Model.ExistingImagePath))
         {
-            <div class="mb-3">
-                <label class="form-label">Current Images</label>
-                <div class="d-flex flex-wrap gap-2">
-                    @foreach (var img in Model.Images)
-                    {
-                        <div class="border rounded shadow-sm p-1 position-relative animate__animated animate__fadeIn">
-                            <img src="@img.Url" alt="@img.AltText" style="height:100px; object-fit:cover; border-radius:8px;" />
-                        </div>
-                    }
-                </div>
+            <div class="mt-2">
+                <p class="mb-1">Current Image:</p>
+                <img src="@Model.ExistingImagePath" alt="Current Product Image" class="img-thumbnail" style="max-height: 150px;" />
             </div>
         }
+    </div>
 
-        <!-- Upload New Images -->
-        <div class="mb-3">
-            <label class="form-label">Upload New Images</label>
-            <input type="file" name="images" class="form-control shadow-sm" multiple accept="image/*" onchange="previewImages(this)" />
-            <div id="preview" class="mt-2 d-flex flex-wrap gap-2"></div>
-        </div>
-
-        <div class="d-flex justify-content-between mt-4">
-            <a asp-action="Index" class="btn btn-outline-secondary shadow-sm">
-                <i class="bi bi-arrow-left"></i> Cancel
-            </a>
-            <button type="submit" class="btn btn-primary shadow-sm">
-                <i class="bi bi-check-circle"></i> Update
-            </button>
-        </div>
-    </form>
-</div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-save me-1"></i> Update Product
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
 
 @section Scripts {
-    <script>
-        function previewImages(input) {
-            const preview = document.getElementById('preview');
-            preview.innerHTML = '';
-
-            const files = input.files;
-            for (const file of files) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const img = document.createElement("img");
-                    img.src = e.target.result;
-                    img.classList.add("rounded", "shadow", "border");
-                    img.style.height = "100px";
-                    img.style.objectFit = "cover";
-                    img.style.opacity = "0.9";
-                    img.style.transition = "transform 0.3s ease";
-                    img.onmouseover = () => img.style.transform = "scale(1.05)";
-                    img.onmouseout = () => img.style.transform = "scale(1)";
-                    preview.appendChild(img);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
+    <partial name="_ValidationScriptsPartial" />
 }

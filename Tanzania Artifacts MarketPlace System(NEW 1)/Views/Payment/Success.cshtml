@@ -1,0 +1,41 @@
+﻿@model Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Payment
+@{
+    ViewData["Title"] = "Payment Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="card shadow-lg rounded-4 p-5 text-center animate__animated animate__fadeInDown">
+        <div class="mb-4">
+            <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+            <h2 class="fw-bold mt-3">Payment Successful!</h2>
+            <p class="text-muted">Thank you for your purchase.</p>
+        </div>
+
+        <div class="text-start mt-4">
+            <h5>Payment Summary</h5>
+            <ul class="list-group shadow-sm">
+                <li class="list-group-item d-flex justify-content-between">
+                    <strong>Transaction ID:</strong>
+                    <span>@Model.TransactionId</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <strong>Amount Paid:</strong>
+                    <span>@Model.Amount.ToString("C2")</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <strong>Status:</strong>
+                    <span class="badge bg-success">@Model.Status</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <strong>Date:</strong>
+                    <span>@Model.PaymentDate.ToLocalTime().ToString("f")</span>
+                </li>
+            </ul>
+        </div>
+
+        <a asp-controller="Orders" asp-action="MyOrders" class="btn btn-outline-primary mt-4 shadow-sm">
+            <i class="bi bi-box-seam"></i> View My Orders
+        </a>
+    </div>
+</div>

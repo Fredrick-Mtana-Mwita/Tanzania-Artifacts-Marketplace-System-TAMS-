@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.Controllers
 {
-    
+    [Area("Seller")]
     [Authorize(Roles = "Seller")]
     public class OrderController : Controller
     {

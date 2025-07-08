@@ -588,4 +588,4 @@ D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts M
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\staticwebassets.build.json.cache
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\kx5jlyzdim-a20enzg886.gz
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\kx5jlyzdim-o9lsehkh9i.gz

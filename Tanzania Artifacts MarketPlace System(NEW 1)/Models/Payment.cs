@@ -11,6 +11,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
         public string PaymentMethod { get; set; } = string.Empty;
         public decimal Amount { get; set; }
         public string TransactionId { get; set; } = string.Empty;
+        public string? PayPalPaymentId { get; set; }
+        public string? PayerEmail { get; set; }
         public string Status { get; set; } = "Success"; // Success, Failed, Refunded
         public DateTime PaymentDate { get; set; } = DateTime.UtcNow;
     }

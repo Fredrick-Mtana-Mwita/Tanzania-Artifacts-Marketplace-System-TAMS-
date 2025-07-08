@@ -104,7 +104,13 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
                     _logger.LogInformation("User created a new account with password.");
 
                     // Assign ASP.NET Identity Role for authorization filters
+                    // Assign identity role
                     await _userManager.AddToRoleAsync(user, "User");
+
+                    // Set your enum Role property
+                    user.Role = Roles.User;
+                    await _userManager.UpdateAsync(user);
+
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

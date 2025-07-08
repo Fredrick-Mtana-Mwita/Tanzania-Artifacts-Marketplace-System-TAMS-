@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.SellerProfile>
+
+<div class="container py-4">
+    <h2 class="mb-4">Pending Seller Applications</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">No pending seller applications.</div>
+    }
+    else
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Business Name</th>
+                    <th>Email</th>
+                    <th>Description</th>
+                    <th>Submitted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var seller in Model)
+                {
+                    <tr>
+                        <td>@seller.BusinessName</td>
+                        <td>@seller.User.Email</td>
+                        <td>@seller.StoreDescription</td>
+                        <td>@seller.CreatedAt.ToLocalTime().ToString("MMM dd yyyy, hh:mm tt")</td>
+                        <td>
+                            <form asp-action="ApproveSeller" method="post">
+                                <input type="hidden" name="id" value="@seller.Id" />
+                                <button class="btn btn-success btn-sm">Approve</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

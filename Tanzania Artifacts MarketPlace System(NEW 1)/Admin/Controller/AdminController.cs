@@ -15,6 +15,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly INotificationSender _notificationSender;
         private readonly INotificationRepository _notificationRepository;
         private readonly ApplicationDbContext _context;
@@ -31,7 +32,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             UserManager<ApplicationUser> userManager,
             IEmailService emailService,
             INotificationRepository notificationRepository,
-            INotificationSender notificationSender)
+            INotificationSender notificationSender,
+            SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
             _cartRepository = cartRepository;
@@ -41,6 +43,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             _emailService = emailService;
             _notificationRepository = notificationRepository;
             _notificationSender = notificationSender;
+            _signInManager = signInManager;
         }
 
         public async Task<IActionResult> AdminDashboard()
@@ -210,7 +213,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             await _notificationSender.SendToUser(product.SellerId!, "Product Approved", $"Your product \"{product.Name}\" has been approved!");
 
 
-            return RedirectToAction("ProductApproval");
+            return RedirectToAction("ApproveProduct");
         }
 
         [HttpPost]
@@ -221,11 +224,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
 
             await _productRepository.DeleteAsync(product);
 
-            // Send notification to seller
-            await _notificationSender.SendToUser(product.SellerId!, "Product Approved", $"Your product \"{product.Name}\" has been approved!");
+            await _notificationSender.SendToUser(product.SellerId!, "Product Rejected", $"Your product \"{product.Name}\" has been rejected.");
 
-
-            return RedirectToAction("ProductApproval");
+            return RedirectToAction("ApproveProduct");
         }
         public async Task<IActionResult> Reports()
         {
@@ -445,6 +446,51 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
 
             return View(subscribers);
         }
+
+        public async Task<IActionResult> ApproveSeller()
+        {
+            var pendingSellers = await _context.SellerProfiles
+                .Include(s => s.User)
+                .Where(s => !s.IsApproved)
+                .ToListAsync();
+
+            return View(pendingSellers);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ApproveSeller(int id)
+        {
+            var seller = await _context.SellerProfiles.Include(s => s.User).FirstOrDefaultAsync(s => s.Id == id);
+            if (seller == null)
+                return NotFound();
+
+            seller.IsApproved = true;
+            seller.ApprovedAt = DateTime.UtcNow;
+
+            // Ensure IdentityRole is correctly assigned
+            if (!await _userManager.IsInRoleAsync(seller.User, "Seller"))
+                await _userManager.AddToRoleAsync(seller.User, "Seller");
+
+            // Ensure Role enum is updated
+            if (seller.User.Role != Roles.Seller)
+            {
+                seller.User.Role = Roles.Seller;
+                await _userManager.UpdateAsync(seller.User);
+            }
+
+            await _context.SaveChangesAsync();
+
+            // Refresh role claims by forcing re-login if seller is online (optional)
+            await _signInManager.SignOutAsync();
+            await _signInManager.SignInAsync(seller.User, isPersistent: false);
+
+            // Notify seller
+            await _notificationSender.SendToUser(seller.UserId, "Seller Application Approved", "Your seller application has been approved.");
+            await _emailService.SendEmailAsync(seller.User.Email!, "You are now a Seller!", "Your seller application has been approved by the admin.");
+
+            return RedirectToAction("ApproveSeller");
+        }
+
 
     }
 }

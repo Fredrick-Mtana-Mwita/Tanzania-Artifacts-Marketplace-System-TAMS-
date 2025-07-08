@@ -1,74 +1,130 @@
-﻿@model CheckoutVM
+﻿@model Tanzania_Artifacts_MarketPlace_System_NEW_1_.ViewModel.CheckoutVM
 
 @{
     ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+@if (TempData["Errors"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Errors"]
+    </div>
+}
 
-<div class="container my-5 animate__animated animate__fadeInUp">
-    <div class="card shadow-lg p-4 rounded-4 border-0 bg-white">
-        <h2 class="text-center mb-4 fw-bold text-warning display-6"><i class="bi bi-bag-check-fill me-2"></i>Checkout</h2>
-        <hr class="mb-4" />
 
-        <form asp-action="PlaceOrder" method="post" class="row gy-4">
-            <!-- Shipping Info -->
-            <div class="col-md-6">
-                <label asp-for="ShippingCity" class="form-label fw-semibold"><i class="bi bi-geo-alt-fill text-danger me-1"></i>Shipping City</label>
-                <input asp-for="ShippingCity" required class="form-control form-control-lg shadow-sm" placeholder="e.g., Dar es Salaam" />
-            </div>
+<div class="container py-5">
+    <div class="card shadow-lg border-0 rounded-4 animate__animated animate__fadeIn">
+        <div class="card-body p-4">
+            <h2 class="fw-bold text-primary mb-4">
+                <i class="bi bi-cart-check me-2"></i> Checkout
+            </h2>
 
-            <!-- Payment Method -->
-            <div class="col-md-6">
-                <label class="form-label fw-semibold"><i class="bi bi-credit-card-2-back-fill text-success me-1"></i>Payment Method</label>
-                <select name="paymentMethod" class="form-select form-select-lg shadow-sm" required>
-                    <option value="">-- Select Payment Method --</option>
-                    <option value="Paypal">PayPal</option>
-                    <option value="MobileMoney">Mobile Money</option>
-                    <option value="CashOnDelivery">Cash on Delivery</option>
-                </select>
-            </div>
+            <!-- ✅ Checkout Form -->
+            <form id="checkoutForm" asp-action="PlaceOrder" asp-controller="Order" method="post" class="row gy-4 needs-validation" novalidate onsubmit="return handleCheckout(event)">
+                <input type="hidden" name="ShippingCity" id="shippingCity" />
+                <input type="hidden" name="PaymentMethod" id="selectedPaymentMethod" />
+                <input type="hidden" id="orderId" name="orderId" value="@Model.OrderId" />
 
-            <!-- Cart Summary -->
-            <div class="col-12">
-                <h4 class="text-dark fw-bold mt-4 mb-3 text-center"><i class="bi bi-cart-fill me-2"></i>Your Cart</h4>
-                <div class="table-responsive shadow-sm rounded-3">
-                    <table class="table table-bordered align-middle text-center">
-                        <thead class="table-light">
-                            <tr>
-                                <th><i class="bi bi-box-seam"></i> Product</th>
-                                <th><i class="bi bi-stack"></i> Quantity</th>
-                                <th><i class="bi bi-currency-exchange"></i> Price</th>
-                                <th><i class="bi bi-calculator-fill"></i> Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Items)
-                            {
-                                <tr class="hover-shadow-sm transition-all">
-                                    <td>@item.Product.Name</td>
-                                    <td>@item.Quantity</td>
-                                    <td>TSh @item.Product.Price.ToString("N2")</td>
-                                    <td class="fw-semibold text-success">TSh @(item.Quantity * item.Product.Price)</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Total and Submit -->
-            <div class="col-12 d-flex justify-content-between align-items-center mt-3 flex-wrap">
-                <div class="fs-5 fw-bold text-warning mb-2">
-                    <i class="bi bi-receipt-cutoff me-1"></i>Order Total:
-                    <span class="text-dark">TSh @Model.Items.Sum(i => i.Product.Price * i.Quantity). Tsh</span>
+                <!-- Shipping City -->
+                <div class="col-md-6">
+                    <label class="form-label">Shipping City</label>
+                    <input type="text" name="ShippingCityInput" class="form-control shadow-sm" placeholder="Enter your city" required />
+                    <div class="invalid-feedback">Shipping city is required.</div>
                 </div>
 
-                <button type="submit" class="btn btn-warning btn-lg px-5 py-2 shadow-sm rounded-pill animate__animated animate__pulse animate__infinite">
-                    <i class="bi bi-check2-circle me-2"></i>Place Order
-                </button>
-            </div>
-        </form>
+                <!-- Payment Method -->
+                <div class="col-md-6">
+                    <label class="form-label">Payment Method</label>
+                    <select class="form-select shadow-sm" name="paymentMethod" required>
+                        <option value="" selected disabled>-- Select --</option>
+                        <option value="CashOnDelivery">Cash on Delivery</option>
+                        <option value="MobileMoney">Mobile Money</option>
+                        <option value="Paypal">PayPal</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a payment method.</div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="col-12">
+                    <h4 class="fw-bold mt-4 mb-3">
+                        <i class="bi bi-bag-check-fill me-1 text-success"></i> Order Summary
+                    </h4>
+                    <ul class="list-group mb-3">
+                        @foreach (var item in Model.Items)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center shadow-sm rounded mb-2">
+                                <span>
+                                    <strong>@item.Product.Name</strong> <small class="text-muted">x @item.Quantity</small>
+                                </span>
+                                <span class="text-success fw-semibold">TSh @((item.Product.Price * item.Quantity).ToString("N0"))</span>
+                            </li>
+                        }
+                        <li class="list-group-item d-flex justify-content-between bg-light shadow-sm">
+                            <span class="fw-bold">Total</span>
+                            <span class="fw-bold text-primary">TSh @Model.TotalAmount.ToString("N0")</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-success px-4 py-2 shadow-sm">
+                        <i class="bi bi-credit-card-2-front-fill me-1"></i> Place Order
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        function handleCheckout(e) {
+            const paymentMethod = document.querySelector('select[name="paymentMethod"]').value;
+            const shippingCity = document.querySelector('input[name="ShippingCityInput"]').value;
+
+            if (!paymentMethod || !shippingCity) {
+                alert("Please fill in all fields.");
+                e.preventDefault(); // prevent submit if validation fails
+                return false;
+            }
+
+            // Set hidden values
+            document.getElementById("shippingCity").value = shippingCity;
+            document.getElementById("selectedPaymentMethod").value = paymentMethod;
+
+            if (paymentMethod === "Paypal") {
+                e.preventDefault(); // prevent default only for PayPal, so you can handle it custom way
+
+                const amount = '@Model.TotalAmount';
+                const orderId = document.getElementById("orderId").value;
+
+                const form = document.createElement("form");
+                form.method = "post";
+                form.action = "/Payment/PayWithPayPal";
+
+                const amtInput = document.createElement("input");
+                amtInput.type = "hidden";
+                amtInput.name = "amount";
+                amtInput.value = amount;
+
+                const orderIdInput = document.createElement("input");
+                orderIdInput.type = "hidden";
+                orderIdInput.name = "orderId";
+                orderIdInput.value = orderId;
+
+                form.appendChild(amtInput);
+                form.appendChild(orderIdInput);
+                document.body.appendChild(form);
+                form.submit();
+
+                return false;
+            }
+
+            // For other payment methods, allow normal form submit without preventing default
+            // So just do nothing here, the form will submit as usual.
+            return true;
+        }
+    </script>
+}

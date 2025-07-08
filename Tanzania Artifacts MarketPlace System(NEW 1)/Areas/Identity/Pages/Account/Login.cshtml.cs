@@ -96,7 +96,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
                         return RedirectToAction("SellerDashboard", "SellerDashboard", new { area = "Seller" });
 
                     // Default for User
-                    return RedirectToAction("Index", "Home");
+                    return LocalRedirect(returnUrl);
                 }
 
                 if (result.RequiresTwoFactor)
