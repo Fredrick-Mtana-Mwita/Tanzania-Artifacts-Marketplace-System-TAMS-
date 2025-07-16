@@ -6,8 +6,11 @@ wwwroot\images\Kiondo Basket.jpeg
 wwwroot\images\MAKONDE .jpg
 wwwroot\images\Makonde-tree-of-life.jpg
 wwwroot\images\No Image.jpg
-wwwroot\images\products\61523fba-f2a7-403d-ad63-61e540ace4c0.jpg
+wwwroot\images\products\443c4a79-72c3-4b55-8471-ed5bcaf7b4cf.jpg
+wwwroot\images\products\90dd6ba3-8fe7-4065-9dcf-c4498f03cceb.jpg
 wwwroot\images\products\94164b70-168a-4492-8076-b812e737a241.jpg
+wwwroot\images\products\b90b3732-eb17-4c0b-84d2-11f837f963ec.jpg
+wwwroot\images\profileImages\3caa261d-257e-4b40-9ff0-a3f06bdabad2.jpg
 wwwroot\images\profileImages\6f25c63d-724b-4616-b403-94d2d2b274d1.jpg
 wwwroot\images\profileImages\89a312d7-4002-4f70-8107-082c88cda1b3.jpg
 wwwroot\images\profileImages\cf957403-13e7-4280-9447-b480ebd510c7.jpg

@@ -1,13 +1,3 @@
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).csproj.AssemblyReference.cache
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).GeneratedMSBuildEditorConfig.editorconfig
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).AssemblyInfoInputs.cache
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).AssemblyInfo.cs
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).csproj.CoreCompileInputs.cache
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).MvcApplicationPartsAssemblyInfo.cs
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).MvcApplicationPartsAssemblyInfo.cache
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).RazorAssemblyInfo.cache
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).RazorAssemblyInfo.cs
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).sourcelink.json
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\appsettings.Development.json
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\appsettings.json
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\libman.json
@@ -295,6 +285,20 @@ D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts M
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\runtimes\win-x86\native\e_sqlite3.dll
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).csproj.AssemblyReference.cache
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\rpswa.dswa.cache.json
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).GeneratedMSBuildEditorConfig.editorconfig
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).AssemblyInfoInputs.cache
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).AssemblyInfo.cs
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).csproj.CoreCompileInputs.cache
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).MvcApplicationPartsAssemblyInfo.cs
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).MvcApplicationPartsAssemblyInfo.cache
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).RazorAssemblyInfo.cache
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).RazorAssemblyInfo.cs
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).sourcelink.json
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\rjimswa.dswa.cache.json
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\scopedcss\bundle\Tanzania Artifacts MarketPlace System(NEW 1).styles.css
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\scopedcss\projectbundle\Tanzania Artifacts MarketPlace System(NEW 1).bundle.scp.css
@@ -360,6 +364,7 @@ D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts M
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\nezrqnk58p-muycvpuwrr.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\v0zgfp0y55-87fc7y1x7t.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\yfc7ypekbg-mlv21k5csn.gz
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\kx5jlyzdim-o9lsehkh9i.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\8uiudbouiw-61n19gt1b8.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\x3iv3yw6wf-hj175ikhr6.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\lt68c4x32l-bqjiyaj88i.gz
@@ -574,6 +579,7 @@ D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts M
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\1kb6h9j023-ohp1l7j03e.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\hjgyb5bedp-ohp1l7j03e.gz
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\staticwebassets.build.json
+D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\staticwebassets.build.json.cache
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\staticwebassets.development.json
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\staticwebassets.build.endpoints.json
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
@@ -583,9 +589,3 @@ D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts M
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).pdb
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\Tanzania Artifacts MarketPlace System(NEW 1).genruntimeconfig.cache
 D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\ref\Tanzania Artifacts MarketPlace System(NEW 1).dll
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\rpswa.dswa.cache.json
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\rjimswa.dswa.cache.json
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\staticwebassets.build.json.cache
-D:\C# projects\Tanzania Artifacts MarketPlace System(NEW 1)\Tanzania Artifacts MarketPlace System(NEW 1)\obj\Debug\net9.0\compressed\kx5jlyzdim-o9lsehkh9i.gz

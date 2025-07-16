@@ -61,7 +61,7 @@
                                 </form>
 
                                 <!-- Mark as Shipped -->
-                                @if (order.Status == OrderStatus.Pending || order.Status == OrderStatus.Confirmed)
+                                @if (order.Status == OrderStatus.Pending || order.Status == OrderStatus.Paid)
                                 {
                                     <form asp-action="MarkAsShipped" asp-route-id="@order.Id" method="post" class="d-inline">
                                         <button type="submit" class="btn btn-sm btn-outline-warning shadow-sm transition-btn" title="Mark as Shipped">

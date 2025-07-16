@@ -33,6 +33,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
         public DateTime? DeliveredDate { get; set; }
 
         public bool IsCancelled { get; set; } = false;
+        public bool IsPaid { get; set; } = false;
 
         public DateTime? CancelledDate { get; set; }
 

@@ -1,4 +1,4 @@
- // Program.cs
+// Program.cs
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Http.Features; // ✅ Needed for request size config

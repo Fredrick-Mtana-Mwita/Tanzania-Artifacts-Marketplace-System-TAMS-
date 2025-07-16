@@ -16,5 +16,6 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models
         public virtual Wishlist Wishlist { get; set; } = default!;
 
         public DateTime DateAdded { get; set; } = DateTime.UtcNow;
+        public string? UserId { get; set; }
     }
 }

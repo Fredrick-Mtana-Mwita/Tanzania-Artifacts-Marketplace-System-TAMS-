@@ -441,6 +441,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
                     b.Property<bool>("IsCancelled")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsPaid")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -835,6 +838,9 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data.Migrations
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("WishlistId")
                         .HasColumnType("int");

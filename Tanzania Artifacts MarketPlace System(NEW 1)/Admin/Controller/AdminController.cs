@@ -15,6 +15,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
+       
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly INotificationSender _notificationSender;
         private readonly INotificationRepository _notificationRepository;
@@ -460,37 +461,58 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
         [HttpPost]
         public async Task<IActionResult> ApproveSeller(int id)
         {
-            var seller = await _context.SellerProfiles.Include(s => s.User).FirstOrDefaultAsync(s => s.Id == id);
+            var seller = await _context.SellerProfiles
+                .Include(s => s.User)
+                .FirstOrDefaultAsync(s => s.Id == id);
             if (seller == null)
                 return NotFound();
 
-            seller.IsApproved = true;
-            seller.ApprovedAt = DateTime.UtcNow;
-
-            // Ensure IdentityRole is correctly assigned
-            if (!await _userManager.IsInRoleAsync(seller.User, "Seller"))
-                await _userManager.AddToRoleAsync(seller.User, "Seller");
-
-            // Ensure Role enum is updated
-            if (seller.User.Role != Roles.Seller)
+            try
             {
-                seller.User.Role = Roles.Seller;
-                await _userManager.UpdateAsync(seller.User);
+                // Update seller profile
+                seller.IsApproved = true;
+                seller.ApprovedAt = DateTime.UtcNow;
+
+                // Update user role
+                var user = seller.User;
+                if (!await _userManager.IsInRoleAsync(user, "Seller"))
+                {
+                    await _userManager.RemoveFromRoleAsync(user, "User"); // Remove User role
+                    await _userManager.AddToRoleAsync(user, "Seller");    // Add Seller role
+                }
+
+                // Update Role enum
+                if (user.Role != Roles.Seller)
+                {
+                    user.Role = Roles.Seller;
+                    await _userManager.UpdateAsync(user);
+                }
+
+                await _context.SaveChangesAsync();
+
+                // Refresh user claims
+                await _signInManager.RefreshSignInAsync(user);
+
+                // Notify seller
+                await _notificationSender.SendToUser(
+                    seller.UserId,
+                    "Seller Application Approved",
+                    "Your seller application has been approved. You can now access your Seller Dashboard."
+                );
+                await _emailService.SendEmailAsync(
+                    user.Email!,
+                    "You are now a Seller!",
+                    "Your seller application has been approved by the admin. Start selling now!"
+                );
+
+                return RedirectToAction("ApproveSeller");
             }
-
-            await _context.SaveChangesAsync();
-
-            // Refresh role claims by forcing re-login if seller is online (optional)
-            await _signInManager.SignOutAsync();
-            await _signInManager.SignInAsync(seller.User, isPersistent: false);
-
-            // Notify seller
-            await _notificationSender.SendToUser(seller.UserId, "Seller Application Approved", "Your seller application has been approved.");
-            await _emailService.SendEmailAsync(seller.User.Email!, "You are now a Seller!", "Your seller application has been approved by the admin.");
-
-            return RedirectToAction("ApproveSeller");
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error approving seller: {ex.Message}");
+                TempData["Error"] = "An error occurred while approving the seller.";
+                return RedirectToAction("ApproveSeller");
+            }
         }
-
-
     }
 }

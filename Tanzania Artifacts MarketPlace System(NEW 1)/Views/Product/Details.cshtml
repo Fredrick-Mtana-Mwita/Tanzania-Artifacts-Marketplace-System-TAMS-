@@ -1,4 +1,4 @@
-﻿@model Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Product
+@model Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models.Product
 
 @{
     ViewData["Title"] = "Product Details";
@@ -16,10 +16,11 @@
             <!-- LHS: Product Image -->
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="zoom-container mx-auto">
-                    <img src="~/images/@Model.ProductImage"
-                         alt="@Model.Name"
-                         class="zoom-image img-fluid shadow-sm rounded-3"
-                         style="max-width: 280px; max-height: 280px; object-fit: cover;" />
+                   <img src="@Url.Content("~/images/" + (Model.Images.FirstOrDefault()?.Url ?? "no-image.png"))"
+     alt="@Model.Name"
+     class="zoom-image img-fluid shadow-sm rounded-3"
+     style="max-width: 280px; max-height: 280px; object-fit: cover;" />
+
                 </div>
             </div>
 

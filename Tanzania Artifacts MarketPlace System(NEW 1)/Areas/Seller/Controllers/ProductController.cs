@@ -63,7 +63,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.Controllers
                 StockQuantity = model.StockQuantity,
                 ProductHistory = model.ProductHistory,
                 SellerId = sellerId,
-                InStock = model.StockQuantity > 0
+                InStock = model.StockQuantity > 0,
+                IsFeatured = model.IsFeatured  
             };
 
             if (model.Image != null)

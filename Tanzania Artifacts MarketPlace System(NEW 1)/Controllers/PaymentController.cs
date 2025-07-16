@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Headers;
-using System.Text.Json;
 using System.Text;
-using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services;
+using System.Text.Json;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Data;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Helpers;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Models;
+using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services;
 
 namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
 {
@@ -23,7 +25,6 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             _configuration = configuration;
         }
 
-        // ✅ Step 1: Initiate PayPal Payment
         [HttpPost]
         public async Task<IActionResult> PayWithPayPal(decimal amount, int orderId)
         {
@@ -32,10 +33,10 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
 
             try
             {
-                var approvalUrl = await _paypalService.CreateOrderAsync(amount);
                 TempData["PendingOrderId"] = orderId;
-                TempData["Amount"] = amount.ToString("F2"); // Store as string
+                TempData["PendingAmount"] = amount.ToString("F2");
 
+                var approvalUrl = await _paypalService.CreateOrderAsync(amount);
                 return Redirect(approvalUrl);
             }
             catch (Exception ex)
@@ -45,7 +46,6 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             }
         }
 
-        // ✅ Step 2: PayPal redirects here on success
         [HttpGet]
         public async Task<IActionResult> Success(string token)
         {
@@ -56,28 +56,29 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             {
                 var accessToken = await GetPayPalAccessTokenAsync();
 
-                // Capture order
-                var captureClient = _httpClientFactory.CreateClient();
-                captureClient.DefaultRequestHeaders.Authorization =
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Bearer", accessToken);
 
-                var captureResponse = await captureClient.PostAsync(
+                var response = await client.PostAsync(
                     $"https://api-m.sandbox.paypal.com/v2/checkout/orders/{token}/capture", null);
 
-                if (!captureResponse.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode)
                     return RedirectToAction("Cancel");
 
-                var captureContent = await captureResponse.Content.ReadAsStringAsync();
-                var captureJson = JsonDocument.Parse(captureContent);
+                var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
 
-                var status = captureJson.RootElement.GetProperty("status").GetString();
-                var purchaseUnit = captureJson.RootElement.GetProperty("purchase_units")[0];
-                var transactionId = purchaseUnit.GetProperty("payments").GetProperty("captures")[0].GetProperty("id").GetString();
-                var amountStr = purchaseUnit.GetProperty("payments").GetProperty("captures")[0].GetProperty("amount").GetProperty("value").GetString();
+                var status = json.RootElement.GetProperty("status").GetString();
+                var capture = json.RootElement
+                    .GetProperty("purchase_units")[0]
+                    .GetProperty("payments")
+                    .GetProperty("captures")[0];
 
-                // Save to DB
+                var transactionId = capture.GetProperty("id").GetString();
+
+                // ✅ Recover TempData
                 var orderId = Convert.ToInt32(TempData["PendingOrderId"]);
-                var amount = Convert.ToDecimal(TempData["Amount"]);
+                var amount = Convert.ToDecimal(TempData["PendingAmount"]);
 
                 var payment = new Payment
                 {
@@ -90,7 +91,27 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
                 };
 
                 _context.Payments.Add(payment);
+
+                var order = _context.Orders.FirstOrDefault(o => o.Id == orderId);
+                if (order != null)
+                {
+                    order.IsPaid = true;
+                    order.Status = OrderStatus.Paid;
+                }
+
                 await _context.SaveChangesAsync();
+
+                var user = await _context.Users.FindAsync(order?.UserId);
+                if (user != null)
+                {
+                    var message = $@"
+                        <h2>Hi {user.FirstName},</h2>
+                        <p>Your payment of <strong>{amount:C}</strong> was successful.</p>
+                        <p>Transaction ID: {transactionId}</p>
+                        <p>Thank you for your order!</p>";
+
+                    await EmailHelper.SendEmailAsync(user.Email!, "Order Payment Confirmation", message, _configuration);
+                }
 
                 return RedirectToAction("ThankYou", new { id = payment.Id });
             }
@@ -100,7 +121,6 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             }
         }
 
-        // ❌ Step 3: User cancels payment
         [HttpGet]
         public IActionResult Cancel()
         {
@@ -108,34 +128,30 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Controllers
             return View();
         }
 
-        // ✅ Step 4: Show success message and payment details
         public IActionResult ThankYou(int id)
         {
             var payment = _context.Payments.FirstOrDefault(p => p.Id == id);
             if (payment == null) return NotFound();
-
             return View(payment);
         }
 
-        // 🔑 Utility: Get PayPal access token
         private async Task<string> GetPayPalAccessTokenAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var clientId = _configuration["PayPal:ClientId"];
-            var clientSecret = _configuration["PayPal:ClientSecret"]; // ✅ Correct key
 
-            var byteArray = Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}");
+            var byteArray = Encoding.UTF8.GetBytes(
+                $"{_configuration["PayPal:ClientId"]}:{_configuration["PayPal:ClientSecret"]}");
             client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
 
-            var tokenResponse = await client.PostAsync("https://api-m.sandbox.paypal.com/v1/oauth2/token",
-                new FormUrlEncodedContent(new[]
-                {
+            var response = await client.PostAsync(
+                "https://api-m.sandbox.paypal.com/v1/oauth2/token",
+                new FormUrlEncodedContent(new[] {
                     new KeyValuePair<string, string>("grant_type", "client_credentials")
                 }));
 
-            tokenResponse.EnsureSuccessStatusCode();
-            var json = JsonDocument.Parse(await tokenResponse.Content.ReadAsStringAsync());
+            response.EnsureSuccessStatusCode();
+            var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
             return json.RootElement.GetProperty("access_token").GetString()!;
         }
     }

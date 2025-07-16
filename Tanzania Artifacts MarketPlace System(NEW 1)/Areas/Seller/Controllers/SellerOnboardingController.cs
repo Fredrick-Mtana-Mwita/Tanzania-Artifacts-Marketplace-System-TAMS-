@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore; // Add this line
 using System.Security.Claims;
 using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Interfaces;
 
@@ -9,6 +10,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.Controllers
     [Area("Seller")]
     public class SellerOnboardingController : Controller
     {
+        private readonly IEmailService _emailService;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly INotificationSender _notificationSender;
         private readonly INotificationRepository _notificationRepository;
@@ -19,7 +21,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.Controllers
         public SellerOnboardingController(ApplicationDbContext context,
             UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
             INotificationSender notificationSender,
-            INotificationRepository notificationRepository, SignInManager<ApplicationUser> signInManager)
+            INotificationRepository notificationRepository, SignInManager<ApplicationUser> signInManager, IEmailService emailService)
         {
             _context = context;
             _userManager = userManager;
@@ -27,6 +29,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.Controllers
             _notificationSender = notificationSender;
             _notificationRepository = notificationRepository;
             _signInManager = signInManager;
+            _emailService = emailService;
         }
 
         [HttpGet]
@@ -46,62 +49,61 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.Controllers
         public async Task<IActionResult> Start(SellerProfile model)
         {
             if (!ModelState.IsValid)
+            {
+                foreach (var modelError in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine($"Model Error: {modelError.ErrorMessage}");
+                }
                 return View(model);
+            }
 
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
                 return Unauthorized();
 
-            var existing = await _context.SellerProfiles.FirstOrDefaultAsync(p => p.UserId == user.Id);
+            var existing = await _context.SellerProfiles
+                .FirstOrDefaultAsync(p => p.UserId == user.Id);
             if (existing != null)
             {
                 ModelState.AddModelError("", "You have already submitted an application.");
                 return View(model);
             }
 
-            // ⚠️ Remove 'User' role if present
-            var roles = await _userManager.GetRolesAsync(user);
-            if (roles.Contains("User"))
-                await _userManager.RemoveFromRoleAsync(user, "User");
-
-            // ✅ Assign 'Seller' role
-            if (!roles.Contains("Seller"))
-                await _userManager.AddToRoleAsync(user, "Seller");
-
-            // ✅ Update Role enum
-            user.Role = Roles.Seller;
-            await _userManager.UpdateAsync(user);
-
-            // ✅ Save profile
-            model.UserId = user.Id;
-            model.CreatedAt = DateTime.UtcNow;
-            model.IsApproved = false;
-
-            _context.SellerProfiles.Add(model);
-            await _context.SaveChangesAsync();
-
-            // ✅ Notify Admins
-            var admins = await _userManager.GetUsersInRoleAsync("Admin");
-            foreach (var admin in admins)
+            try
             {
-                var notification = new Notification
+                // Save profile with IsApproved = false
+                model.UserId = user.Id;
+                model.CreatedAt = DateTime.UtcNow;
+                model.IsApproved = false; // Pending admin approval
+
+                _context.SellerProfiles.Add(model);
+                await _context.SaveChangesAsync();
+
+                // Notify admin about new seller application
+                var admins = await _userManager.GetUsersInRoleAsync("Admin");
+                foreach (var admin in admins)
                 {
-                    UserId = admin.Id,
-                    Title = "New Seller Application",
-                    Message = $"{user.FirstName} {user.LastName} has applied to become a seller.",
-                    CreatedAt = DateTime.UtcNow,
-                    IsRead = false
-                };
-                await _notificationRepository.AddAsync(notification);
+                    await _notificationSender.SendToUser(
+                        admin.Id,
+                        "New Seller Application",
+                        $"A new seller application from {model.BusinessName} ({user.Email}) is awaiting approval."
+                    );
+                    await _emailService.SendEmailAsync(
+                        admin.Email!,
+                        "New Seller Application",
+                        $"A new seller application from {model.BusinessName} ({user.Email}) is awaiting your approval. Please review in the admin dashboard."
+                    );
+                }
+
+                // Redirect to Success action
+                return RedirectToAction("Success");
             }
-
-            await _notificationSender.SendToAdmin("New Seller Application", $"{user.FirstName} {user.LastName} has applied.");
-
-            await _signInManager.SignOutAsync();
-            await _signInManager.SignInAsync(user, isPersistent: false);
-
-            // ✅ Redirect to success view
-            return RedirectToAction("Success", "SellerOnboarding", new { area = "Seller" });
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in seller registration: {ex.Message}");
+                ModelState.AddModelError("", "An error occurred while processing your request.");
+                return View(model);
+            }
         }
 
 

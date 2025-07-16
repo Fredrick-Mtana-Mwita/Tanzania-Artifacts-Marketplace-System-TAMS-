@@ -1,4 +1,4 @@
-﻿@using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.SellerViewModel
+@using Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Seller.SellerViewModel
 @model List<Product>
 @using System.Web
 
@@ -27,7 +27,7 @@
                 var encodedDesc = HttpUtility.JavaScriptStringEncode(product.Description ?? "");
                 <tr data-product-id="@product.Id">
                     <td>
-                        <img src="@Url.Content("~/" + product.ProductImage)" alt="@product.Name" width="60" height="60" class="img-thumbnail" />
+                        <img src="@Url.Content($"~/images/{(product.Images.FirstOrDefault()?.Url ?? "no-image.png")}")" alt="@product.Name" width="60" height="60" class="img-thumbnail" />
                     </td>
                     <td>@product.Name</td>
                     <td>TSh @product.Price.ToString("N0")</td>

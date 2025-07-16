@@ -36,6 +36,7 @@
             {
                 wishlist.Items.Add(new WishlistItem
                 {
+                   
                     ProductId = productId,
                     WishlistId = wishlist.Id
                 });
@@ -58,8 +59,12 @@
 
         public async Task<List<WishlistItem>> GetWishlistItemsAsync(string userId)
         {
-            var wishlist = await GetOrCreateWishlistAsync(userId);
-            return wishlist.Items.ToList();
+            return await _context.WishlistItems
+                .Include(w => w.Product)
+                    .ThenInclude(p => p.Images) // ✅ include images here
+                .Where(w => w.UserId == userId)
+                .ToListAsync();
         }
+
     }
 }

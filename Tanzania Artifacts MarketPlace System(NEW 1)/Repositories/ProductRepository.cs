@@ -14,11 +14,11 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Repositories
         }
 
         public async Task<IEnumerable<Product>> GetAllAsync()
-            => await _context.Products
-                .Include(p => p.Images)
-                .Where(p => p.IsApproved)
-                .ToListAsync();
-
+     => await _context.Products
+         .Include(p => p.Images)
+         .Where(p => p.IsApproved)
+         .OrderByDescending(p => p.DateCreated)
+         .ToListAsync();
         public async Task<Product?> GetByIdAsync(int id)
             => await _context.Products
                 .Include(p => p.Images)

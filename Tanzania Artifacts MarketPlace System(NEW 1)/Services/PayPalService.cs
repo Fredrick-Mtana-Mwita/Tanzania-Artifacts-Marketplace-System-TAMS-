@@ -17,7 +17,6 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services
             _httpClient = new HttpClient();
         }
 
-        // 🔑 Step 1: Get OAuth2 Access Token
         public async Task<string> GetAccessTokenAsync()
         {
             var byteArray = Encoding.UTF8.GetBytes($"{_settings.ClientId}:{_settings.ClientSecret}");
@@ -26,7 +25,7 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services
 
             var form = new Dictionary<string, string>
             {
-                {"grant_type", "client_credentials"}
+                { "grant_type", "client_credentials" }
             };
 
             var response = await _httpClient.PostAsync($"{_settings.BaseUrl}/v1/oauth2/token", new FormUrlEncodedContent(form));
@@ -39,7 +38,6 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services
             return json.access_token;
         }
 
-        // 🛒 Step 2: Create a PayPal Order
         public async Task<string> CreateOrderAsync(decimal amount, string currency = "USD")
         {
             var accessToken = await GetAccessTokenAsync();
@@ -48,11 +46,13 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services
                 new AuthenticationHeaderValue("Bearer", accessToken);
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+            string returnUrl = $"{_settings.BaseAppUrl}/Payment/Success";
+            string cancelUrl = $"{_settings.BaseAppUrl}/Payment/Cancel";
+
             var order = new
             {
                 intent = "CAPTURE",
-                purchase_units = new[]
-                {
+                purchase_units = new[] {
                     new {
                         amount = new {
                             currency_code = currency,
@@ -62,8 +62,8 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services
                 },
                 application_context = new
                 {
-                    return_url = "https://localhost:7235/Payment/Success",
-                    cancel_url = "https://localhost:7235/Payment/Cancel"
+                    return_url = returnUrl,
+                    cancel_url = cancelUrl
                 }
             };
 
@@ -78,13 +78,10 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Services
 
             dynamic result = JsonConvert.DeserializeObject(responseJson)!;
 
-            // 🔗 Extract approval URL from response
             foreach (var link in result.links)
             {
                 if (link.rel == "approve")
-                {
                     return link.href;
-                }
             }
 
             throw new Exception("PayPal approval link not found.");

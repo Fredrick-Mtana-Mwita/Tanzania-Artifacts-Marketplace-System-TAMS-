@@ -1,4 +1,4 @@
-﻿@model HomePageViewModel
+@model HomePageViewModel
 @{
     ViewData["Title"] = "Welcome to Tanzania Artifacts Marketplace";
     int i = 0;
@@ -6,74 +6,82 @@
 
 <!-- Hero Carousel -->
 <div id="heroCarousel" class="carousel slide mb-4" data-bs-ride="carousel" data-aos="zoom-in">
-    <div class="carousel-item active">
-        <img src="~/images/carousel-1.jpg" class="d-block w-100 img-fluid" alt="Artifact 1" style="object-fit: cover; height: 500px;">
-        <div class="carousel-caption">
-            <h3>Explore Unique Tanzanian Artifacts</h3>
-            <p>Handcrafted by local artisans. Shop with culture.</p>
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+    </div>
+    <div class="carousel-inner rounded shadow-lg">
+        <div class="carousel-item active">
+            <img src="~/images/carousel-1.jpg" class="d-block w-100 img-fluid" alt="Artifact 1" style="object-fit: cover; height: 500px;">
+            <div class="carousel-caption bg-dark bg-opacity-50 rounded-pill py-3">
+                <h3 class="fw-bold">Explore Unique Tanzanian Artifacts</h3>
+                <p class="mb-0">Handcrafted by local artisans. Shop with culture.</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="~/images/MAKONDE .jpg" class="d-block w-100 img-fluid" alt="Artifact 2" style="object-fit: cover; height: 500px;">
+            <div class="carousel-caption bg-dark bg-opacity-50 rounded-pill py-3">
+                <h3 class="fw-bold">Limited Time Offers</h3>
+                <p class="mb-0">Get discounts on exclusive collections.</p>
+            </div>
         </div>
     </div>
-
-    <div class="carousel-item">
-        <img src="~/images/MAKONDE .jpg" class="d-block w-100 img-fluid" alt="Artifact 2" style="object-fit: cover; height: 500px;">
-        <div class="carousel-caption">
-            <h3>Limited Time Offers</h3>
-            <p>Get discounts on exclusive collections.</p>
-        </div>
-    </div>    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bg-dark rounded-circle"></span>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon bg-dark rounded-circle"></span>
+        <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
     </button>
 </div>
-<!-- Categories Section -->
+
+@* <!-- Categories Section -->
 <section class="mb-5" data-aos="fade-up">
     <div class="container text-center">
-        <h2 class="mb-4">Explore by Categories</h2>
+        <h2 class="mb-4 fw-bold">Explore by Categories</h2>
         <div class="row g-4 justify-content-center">
             <div class="col-md-3 col-6" data-aos="zoom-in-up">
-                <div class="card shadow-sm border-0 category-card h-100 hover-effect transition-all">
-                    <img src="~/images/category1.jpg" class="card-img-top" alt="Jewelry">
+                <div class="card shadow border-0 category-card h-100 hover-effect transition-all rounded-4">
+                    <img src="~/images/category1.jpg" class="card-img-top rounded-top-4" alt="Jewelry">
                     <div class="card-body">
-                        <h5 class="card-title">Jewelry</h5>
+                        <h5 class="card-title fw-bold">Jewelry</h5>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-6" data-aos="zoom-in-up" data-aos-delay="100">
-                <div class="card shadow-sm border-0 category-card h-100 hover-effect transition-all">
-                    <img src="~/images/category2.jpg" class="card-img-top" alt="Textiles">
+                <div class="card shadow border-0 category-card h-100 hover-effect transition-all rounded-4">
+                    <img src="~/images/category2.jpg" class="card-img-top rounded-top-4" alt="Textiles">
                     <div class="card-body">
-                        <h5 class="card-title">Textiles</h5>
+                        <h5 class="card-title fw-bold">Textiles</h5>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-6" data-aos="zoom-in-up" data-aos-delay="200">
-                <div class="card shadow-sm border-0 category-card h-100 hover-effect transition-all">
-                    <img src="~/images/category3.jpg" class="card-img-top" alt="Wood Carvings">
+                <div class="card shadow border-0 category-card h-100 hover-effect transition-all rounded-4">
+                    <img src="~/images/category3.jpg" class="card-img-top rounded-top-4" alt="Wood Carvings">
                     <div class="card-body">
-                        <h5 class="card-title">Wood Carvings</h5>
+                        <h5 class="card-title fw-bold">Wood Carvings</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
+ *@
 <!-- Featured Products -->
 <section class="mb-5" data-aos="fade-up">
     <div class="container">
-        <h2 class="mb-4 text-center">Featured Artifacts</h2>
+        <h2 class="mb-4 text-center fw-bold">Featured Artifacts</h2>
         <div class="row g-4">
             @foreach (var product in Model.FeaturedProducts)
             {
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12" data-aos="fade-up" data-aos-delay="@(i * 100)">
-                    <div class="card product-card shadow-lg hover-effect h-100 transition-all">
-                        <img src="~/@product.ProductImage" class="card-img-top" alt="@product.Name" style="object-fit: cover; height: 200px;">
+                    <div class="card product-card shadow-lg hover-effect h-100 transition-all rounded-4 border-0">
+                        <img src="@(product.Images.FirstOrDefault()?.Url ?? "/images/No Image.jpg")" class="card-img-top rounded-top-4" alt="@product.Name" style="object-fit: cover; height: 200px;">
                         <div class="card-body text-center">
-                            <h5 class="card-title">@product.Name</h5>
+                            <h5 class="card-title fw-bold">@product.Name</h5>
                             <p class="card-text text-muted">TSh @product.Price.ToString("N0")</p>
-                            <a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id" class="btn btn-outline-dark shadow-sm">View</a>
+                            <a asp-action="Details" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-outline-dark shadow-sm rounded-pill">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -84,22 +92,22 @@
 </section>
 
 <!-- Trending Products -->
-@{
+@* @{
     i = 0;
-}
-<section class="mb-5" data-aos="fade-up">
+} *@
+@* <section class="mb-5" data-aos="fade-up">
     <div class="container">
-        <h2 class="mb-4 text-center">Trending Now</h2>
+        <h2 class="mb-4 text-center fw-bold">Trending Now</h2>
         <div class="row g-4">
             @foreach (var trending in Model.TrendingProducts)
             {
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12" data-aos="zoom-in" data-aos-delay="@(i * 100)">
-                    <div class="card shadow-sm h-100 hover-effect transition-all">
-                        <img src="~/@trending.ProductImage" class="card-img-top" style="object-fit: cover; height: 200px;" alt="@trending.Name" />
+                    <div class="card shadow-lg h-100 hover-effect transition-all rounded-4 border-0">
+                        <img src="@(trending.Images.FirstOrDefault()?.Url ?? "/images/No Image.jpg")" class="card-img-top rounded-top-4" style="object-fit: cover; height: 200px;" alt="@trending.Name" />
                         <div class="card-body text-center">
-                            <h5 class="card-title">@trending.Name</h5>
+                            <h5 class="card-title fw-bold">@trending.Name</h5>
                             <p class="text-muted">TSh @trending.Price.ToString("N0")</p>
-                            <a asp-action="Details" asp-controller="Products" asp-route-id="@trending.Id" class="btn btn-outline-warning shadow-sm">View</a>
+                            <a asp-action="Details" asp-controller="Product" asp-route-id="@trending.Id" class="btn btn-outline-warning shadow-sm rounded-pill">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -108,15 +116,15 @@
         </div>
     </div>
 </section>
-
+ *@
 <!-- CTA Section -->
-<section class="bg-light py-5 text-center" data-aos="fade-up">
+<section class="bg-light py-5 text-center rounded-4 shadow-sm mx-3" data-aos="fade-up">
     <div class="container">
-        <h3 class="mb-3">Are You a Seller or a Buyer?</h3>
+        <h3 class="mb-3 fw-bold">Are You a Seller or a Buyer?</h3>
         <p class="mb-4">Join us to showcase or discover unique Tanzanian artifacts!</p>
         <div>
-            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-dark me-2  text-warning shadow">Register Now</a>
-            <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-dark text-warning shadow">Login</a>
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-dark me-2 text-warning shadow rounded-pill">Register Now</a>
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-dark text-warning shadow rounded-pill">Login</a>
         </div>
     </div>
 </section>
@@ -124,24 +132,24 @@
 <!-- Testimonials -->
 <section class="bg-white py-5" data-aos="fade-up">
     <div class="container text-center">
-        <h2 class="mb-4">What Our Users Say</h2>
+        <h2 class="mb-4 fw-bold">What Our Users Say</h2>
         <div class="row g-4">
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="shadow p-4 rounded bg-light h-100">
-                    <p>"Amazing variety and fast delivery. I found the perfect wood carving for my office!"</p>
-                    <h6 class="mt-3 mb-0">— Fatma M.</h6>
+                <div class="shadow p-4 rounded-4 bg-light h-100">
+                    <p class="fst-italic">"Amazing variety and fast delivery. I found the perfect wood carving for my office!"</p>
+                    <h6 class="mt-3 mb-0 fw-bold">— Fatma M.</h6>
                 </div>
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="shadow p-4 rounded bg-light h-100">
-                    <p>"This platform helped me reach international buyers. Proudly showcasing Tanzanian art!"</p>
-                    <h6 class="mt-3 mb-0">— Joseph K. (Seller)</h6>
+                <div class="shadow p-4 rounded-4 bg-light h-100">
+                    <p class="fst-italic">"This platform helped me reach international buyers. Proudly showcasing Tanzanian art!"</p>
+                    <h6 class="mt-3 mb-0 fw-bold">— Joseph K. (Seller)</h6>
                 </div>
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="shadow p-4 rounded bg-light h-100">
-                    <p>"Secure payments and beautiful products. I’ll definitely shop again."</p>
-                    <h6 class="mt-3 mb-0">— Asha B.</h6>
+                <div class="shadow p-4 rounded-4 bg-light h-100">
+                    <p class="fst-italic">"Secure payments and beautiful products. I'll definitely shop again."</p>
+                    <h6 class="mt-3 mb-0 fw-bold">— Asha B.</h6>
                 </div>
             </div>
         </div>
@@ -149,16 +157,16 @@
 </section>
 
 <!-- Newsletter Section -->
-<section class="newsletter py-5 bg-dark text-white text-center shadow-lg" data-aos="fade-up">
+<section class="newsletter py-5 bg-dark text-white text-center shadow-lg rounded-4 mx-3" data-aos="fade-up">
     <div class="container">
-        <h3 class="mb-3">Stay Connected</h3>
+        <h3 class="mb-3 fw-bold">Stay Connected</h3>
         <p class="mb-4">Subscribe to get the latest on new arrivals and exclusive offers.</p>
         <form id="newsletterForm" class="row justify-content-center g-2">
             <div class="col-md-6 col-sm-8">
-                <input type="email" name="email" id="newsletterEmail" class="form-control" placeholder="Enter your email" required>
+                <input type="email" name="email" id="newsletterEmail" class="form-control rounded-pill" placeholder="Enter your email" required>
             </div>
             <div class="col-auto">
-                <button class="btn btn-warning shadow" type="submit">Subscribe</button>
+                <button class="btn btn-warning shadow rounded-pill px-4" type="submit">Subscribe</button>
             </div>
         </form>
         <div id="subscriptionResult" class="mt-3"></div>
@@ -190,11 +198,15 @@
             return response.text();
         })
         .then(message => {
-            alert(message);
+            const resultDiv = document.getElementById("subscriptionResult");
+            resultDiv.textContent = message;
+            resultDiv.className = "mt-3 alert alert-success";
             form.reset();
         })
         .catch(error => {
-            alert(error);
+            const resultDiv = document.getElementById("subscriptionResult");
+            resultDiv.textContent = error;
+            resultDiv.className = "mt-3 alert alert-danger";
         });
     });
 </script>

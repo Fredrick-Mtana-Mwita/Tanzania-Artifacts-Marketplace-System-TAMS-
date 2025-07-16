@@ -5,6 +5,7 @@
         Ordered,
         Pending,
         Confirmed,
+        Paid,
         Shipped,
         Delivered,
         Cancelled

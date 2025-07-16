@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
@@ -20,14 +20,13 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
 {
     public class ForgotPasswordModel : PageModel
     {
-        private readonly IEmailService _emailService;
+        private readonly IEmailSender _emailSender;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public ForgotPasswordModel(UserManager<ApplicationUser> userManager,  IEmailService emailService   )
+        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
-           
-            _emailService = emailService;
+            _emailSender = emailSender;
         }
 
         /// <summary>
@@ -73,10 +72,10 @@ namespace Tanzania_Artifacts_MarketPlace_System_NEW_1_.Areas.Identity.Pages.Acco
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                await _emailService.SendEmailAsync(
-                Input.Email!,
-                "Reset Your Password",
-                $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                await _emailSender.SendEmailAsync(
+                    Input.Email!,
+                    "Reset Your Password",
+                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }
